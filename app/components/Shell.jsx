@@ -21,7 +21,6 @@ export function Header({ site }) {
     <header className={`fixed inset-x-0 top-0 z-40 px-4 transition-all duration-300 md:px-6 ${scrolled ? 'py-3' : 'py-5'}`}>
       <div className={`mx-auto flex max-w-7xl items-center justify-between gap-5 rounded-full border px-4 py-3 transition-all duration-300 md:px-5 ${scrolled ? 'border-black/10 bg-white/[0.92] shadow-2xl shadow-black/10 backdrop-blur-xl' : 'border-black/5 bg-white/[0.85] shadow-lg shadow-black/5 backdrop-blur-md'}`}>
         <Link href="/" className="logo-title group relative text-sm font-bold tracking-[0.08em] md:text-base" data-tina-field={tinaField(site, 'brandLabel')}>
-          <span className="mr-3 grid h-9 w-9 place-items-center rounded-full bg-black text-xs font-bold tracking-normal text-white transition-transform duration-300 group-hover:scale-105">R</span>
           {site.logo ? (
             <img className="max-h-9 w-auto" src={site.logo} alt={site.brandLabel} data-tina-field={tinaField(site, 'logo')} />
           ) : (
