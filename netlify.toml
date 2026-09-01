@@ -1,0 +1,15 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"
+  NEXT_PUBLIC_TINA_CLIENT_ID = "37a76d06-2d72-4b01-9e06-67c1e2a180a8"
+
+[[redirects]]
+  from = "/admin"
+  to = "/admin/index.html"
+  status = 200
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"

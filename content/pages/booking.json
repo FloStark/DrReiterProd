@@ -1,0 +1,16 @@
+{
+  "title": "Terminvereinbarung",
+  "eyebrow": "Termin online anfragen",
+  "heading": "Terminvereinbarung",
+  "intro": "Wählen Sie zuerst die gewünschte Ärztin oder den gewünschten Arzt. Danach folgen Terminart, Tag, Uhrzeit und Patientendaten.",
+  "steps": ["1 Arzt", "2 Termin", "3 Daten"],
+  "doctorQuestion": "Bei wem möchten Sie einen Termin vereinbaren?",
+  "doctors": [
+    { "label": "Dr. L. R.", "name": "Dr. Lukas Reiter", "initials": "LR", "photo": "", "photoPosition": "center" },
+    { "label": "Dr. S. R.", "name": "Dr. Sigrid Reiter", "initials": "SR", "photo": "", "photoPosition": "center" }
+  ],
+  "appointmentHeading": "Terminart, Tag und Uhrzeit wählen",
+  "appointmentTypes": ["Innere Medizin", "Allgemeinmedizin"],
+  "times": ["08:30", "10:00", "14:30", "16:00"],
+  "patientHeading": "Patientendaten"
+}

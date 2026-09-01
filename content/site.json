@@ -1,0 +1,67 @@
+{
+  "siteTitle": "Ordination Dr. Reiter",
+  "brandLabel": "ORDINATION DR. REITER",
+  "logo": "",
+  "favicon": "",
+  "vacationPopup": {
+    "enabled": true,
+    "endDate": "2026-09-15T00:00:00.000Z",
+    "title": "Urlaubsvertretung",
+    "lines": [
+      {
+        "segments": [
+          {
+            "text": "Wichtiger Hinweis: ",
+            "bold": true,
+            "red": true
+          },
+          {
+            "text": "Unsere Ordination ist vorübergehend geschlossen.",
+            "bold": false,
+            "red": false
+          }
+        ]
+      },
+      {
+        "segments": [
+          {
+            "text": "Vertretung: ",
+            "bold": true,
+            "red": false
+          },
+          {
+            "text": "Bitte wenden Sie sich in dringenden Fällen an die jeweils angegebene Vertretungsordination.",
+            "bold": false,
+            "red": false
+          }
+        ]
+      }
+    ]
+  },
+  "navigation": [
+    {
+      "label": "Startseite",
+      "href": "/"
+    },
+    {
+      "label": "Dr. Lukas Reiter",
+      "href": "/lukas-reiter"
+    },
+    {
+      "label": "Dr. Sigrid Reiter",
+      "href": "/sigrid-reiter"
+    },
+    {
+      "label": "Terminvereinbarung",
+      "href": "/terminvereinbarung"
+    },
+    {
+      "label": "Rezeptbestellung",
+      "href": "/rezeptbestellung"
+    },
+    {
+      "label": "Kontakt",
+      "href": "/kontakt"
+    }
+  ]
+}

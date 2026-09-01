@@ -1,0 +1,11 @@
+{
+  "title": "Rezeptbestellung",
+  "eyebrow": "Keine freie Texteingabe",
+  "heading": "Rezeptbestellung",
+  "intro": "Medikamente können nur aus der hinterlegten Erstattungskodex-Mockliste ausgewählt werden.",
+  "steps": ["1 Arzt wählen", "2 Medikament suchen", "Ausgewählte Medikamente"],
+  "doctorOptions": ["Dr. Lukas Reiter", "Dr. Sigrid Reiter"],
+  "searchPlaceholder": "Medikament aus Liste suchen",
+  "emptySelectionText": "Kein Medikament ausgewählt.",
+  "emptyListText": "Noch keine Medikamente hinzugefügt."
+}

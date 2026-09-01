@@ -1,0 +1,10 @@
+[
+  { "id": "at-eko-001", "name": "Amlodipin 5 mg Tabletten", "substance": "Amlodipin", "package": "30 Stück" },
+  { "id": "at-eko-002", "name": "Atorvastatin 20 mg Filmtabletten", "substance": "Atorvastatin", "package": "30 Stück" },
+  { "id": "at-eko-003", "name": "Bisoprolol 5 mg Tabletten", "substance": "Bisoprolol", "package": "30 Stück" },
+  { "id": "at-eko-004", "name": "Metformin 1000 mg Filmtabletten", "substance": "Metformin", "package": "60 Stück" },
+  { "id": "at-eko-005", "name": "Pantoprazol 40 mg magensaftresistente Tabletten", "substance": "Pantoprazol", "package": "30 Stück" },
+  { "id": "at-eko-006", "name": "Ramipril 5 mg Tabletten", "substance": "Ramipril", "package": "30 Stück" },
+  { "id": "at-eko-007", "name": "Thrombo ASS 100 mg Filmtabletten", "substance": "Acetylsalicylsäure", "package": "30 Stück" },
+  { "id": "at-eko-008", "name": "Euthyrox 75 Mikrogramm Tabletten", "substance": "Levothyroxin", "package": "100 Stück" }
+]

@@ -1,0 +1,138 @@
+fragment SiteSettingsParts on SiteSettings {
+  __typename
+  siteTitle
+  brandLabel
+  logo
+  favicon
+  vacationPopup {
+    __typename
+    enabled
+    endDate
+    title
+    lines {
+      __typename
+      segments {
+        __typename
+        text
+        bold
+        red
+      }
+    }
+  }
+  navigation {
+    __typename
+    label
+    href
+  }
+}
+
+fragment HomePageParts on HomePage {
+  __typename
+  title
+  doctors {
+    __typename
+    name
+    initials
+    specialty
+    photo
+    photoPosition
+    href
+    servicesTitle
+    services
+    openingHours
+    phoneLabel
+    phoneHref
+  }
+  ordination {
+    __typename
+    eyebrow
+    title
+    text
+    images {
+      __typename
+      image
+      imagePosition
+      alt
+    }
+  }
+  directions {
+    __typename
+    eyebrow
+    title
+    text
+    mapTitle
+    mapQuery
+  }
+}
+
+fragment DoctorPagesParts on DoctorPages {
+  __typename
+  slug
+  title
+  subtitle
+  sections {
+    __typename
+    id
+    short
+    title
+    theme
+    text
+    services
+    actions
+  }
+}
+
+fragment BookingPageParts on BookingPage {
+  __typename
+  title
+  eyebrow
+  heading
+  intro
+  steps
+  doctorQuestion
+  doctors {
+    __typename
+    label
+    name
+    initials
+    photo
+    photoPosition
+  }
+  appointmentHeading
+  appointmentTypes
+  times
+  patientHeading
+}
+
+fragment PrescriptionsPageParts on PrescriptionsPage {
+  __typename
+  title
+  eyebrow
+  heading
+  intro
+  steps
+  doctorOptions
+  searchPlaceholder
+  emptySelectionText
+  emptyListText
+}
+
+fragment ContactPageParts on ContactPage {
+  __typename
+  title
+  eyebrow
+  heading
+  addressLines
+  phoneLabel
+  phoneHref
+  email
+  mapTitle
+  mapQuery
+}
+
+fragment LegalPagesParts on LegalPages {
+  __typename
+  title
+  heading
+  body
+}

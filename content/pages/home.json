@@ -1,0 +1,80 @@
+{
+  "title": "Ordination Dr. Reiter",
+  "doctors": [
+    {
+      "name": "Dr. Lukas Reiter",
+      "initials": "LR",
+      "specialty": "FA f. Innere Med.",
+      "photo": "/uploads/DSC03100-Bearbeitet-51.jpg",
+      "photoPosition": "top",
+      "href": "/lukas-reiter",
+      "servicesTitle": "Leistungen",
+      "services": [
+        "Innere Medizin",
+        "Gutachten",
+        "EKG und Blutdruckkontrolle",
+        "Befundbesprechung"
+      ],
+      "openingHours": "Mo, Mi 08:00-13:00 · Do 14:00-18:00",
+      "phoneLabel": "0316 7173880",
+      "phoneHref": "03167173880"
+    },
+    {
+      "name": "Dr. Sigrid Reiter",
+      "initials": "SR",
+      "specialty": "FA f. Allgemeinmedizin",
+      "photo": "/uploads/DSC03126-Bearbeitet-64.jpg",
+      "photoPosition": "top",
+      "href": "/sigrid-reiter",
+      "servicesTitle": "Leistungen",
+      "services": [
+        "Allgemeinmedizin",
+        "Familienmedizin",
+        "Vorsorgeuntersuchung",
+        "Impfberatung"
+      ],
+      "openingHours": "Di, Fr 08:00-13:00 · Mi 14:00-18:00",
+      "phoneLabel": "0316 7173880",
+      "phoneHref": "03167173880"
+    }
+  ],
+  "ordination": {
+    "eyebrow": "Unsere Ordination",
+    "title": "Ruhige Atmosphäre, klare Abläufe.",
+    "text": "Einblicke in die Ordination und die Räume der Praxis. Die Bilder können direkt im CMS ausgetauscht und erweitert werden.",
+    "images": [
+      {
+        "image": "/uploads/DSC02966-10.jpg",
+        "imagePosition": "center",
+        "alt": "Empfang"
+      },
+      {
+        "image": "/uploads/DSC02989-16.jpg",
+        "imagePosition": "center",
+        "alt": "Warteberich"
+      },
+      {
+        "image": "/uploads/DSC03031-25.jpg",
+        "imagePosition": "center",
+        "alt": "Labor"
+      },
+      {
+        "image": "/uploads/DSC03076-40.jpg",
+        "imagePosition": "center",
+        "alt": "Untersuchungsraum"
+      },
+      {
+        "image": "/uploads/DSC03052-Bearbeitet-33.jpg",
+        "imagePosition": "center",
+        "alt": "Untersuchungsraum"
+      }
+    ]
+  },
+  "directions": {
+    "eyebrow": "Anfahrt",
+    "title": "Gut erreichbar im Herzen von Graz.",
+    "text": "Mariahilfer Str. 1, 8020 Graz. Öffentliche Anreise über Straßenbahn und Bus im direkten Umfeld.",
+    "mapTitle": "Google Maps Standort Ordination Dr. Reiter",
+    "mapQuery": "Mariahilfer Str. 1, 8020 Graz"
+  }
+}

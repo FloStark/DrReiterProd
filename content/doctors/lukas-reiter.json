@@ -1,0 +1,34 @@
+{
+  "slug": "lukas-reiter",
+  "title": "DR. LUKAS REITER",
+  "subtitle": "Facharzt für Innere Medizin",
+  "sections": [
+    {
+      "id": "innere-medizin",
+      "short": "IM",
+      "title": "Innere Medizin ",
+      "theme": "light",
+      "text": "Abklärung, Behandlung und Verlaufskontrolle internistischer Beschwerden mit ruhiger Diagnostik und klarer Beratung.",
+      "services": [
+        "Kardiologische Basisdiagnostik",
+        "Labor- und Befundbesprechung",
+        "EKG und Blutdruckkontrolle",
+        "Therapieplanung und Kontrollen"
+      ],
+      "actions": true
+    },
+    {
+      "id": "gutachten",
+      "short": "Gutachten",
+      "title": "Gutachten",
+      "theme": "accent",
+      "text": "Medizinische Gutachten und Stellungnahmen nach individueller Terminvereinbarung.",
+      "services": [
+        "Strukturierte Befunderhebung",
+        "Medizinische Einschätzung",
+        "Dokumentation für formale Anforderungen"
+      ],
+      "actions": false
+    }
+  ]
+}

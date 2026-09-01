@@ -1,0 +1,25 @@
+{
+  "slug": "sigrid-reiter",
+  "title": "DR. SIGRID REITER",
+  "subtitle": "Ärztin für Allgemeinmedizin",
+  "sections": [
+    {
+      "id": "allgemeinmedizin",
+      "short": "AM",
+      "title": "Allgemeinmedizin (AM)",
+      "theme": "light",
+      "text": "Hausärztliche Betreuung für akute Anliegen, chronische Erkrankungen und persönliche Vorsorge.",
+      "services": ["Akutordination", "Kontrolltermine", "Impfberatung", "Hausärztliche Begleitung"],
+      "actions": true
+    },
+    {
+      "id": "vorsorgeuntersuchungen",
+      "short": "Vorsorge",
+      "title": "Vorsorgeuntersuchung",
+      "theme": "accent",
+      "text": "Vorsorge mit Fokus auf Früherkennung, Lebensstil und verständlicher Einordnung der Ergebnisse.",
+      "services": ["Anamnese und Status", "Laborplanung", "Befundbesprechung", "Individuelle Empfehlungen"],
+      "actions": false
+    }
+  ]
+}

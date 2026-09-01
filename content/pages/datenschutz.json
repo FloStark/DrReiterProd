@@ -1,0 +1,33 @@
+{
+  "title": "Datenschutz",
+  "heading": "Datenschutz",
+  "body": [
+    "### Verantwortliche Stelle",
+    "Verantwortlich für die Verarbeitung personenbezogener Daten auf dieser Website ist die Ordination Dr. Reiter, Mariahilfer Str. 1, 8020 Graz, Österreich. Kontakt: office@ordination-reiter.com, Telefon: 0316 7173880.",
+    "### Allgemeines",
+    "Wir verarbeiten personenbezogene Daten ausschließlich auf Grundlage der Datenschutz-Grundverordnung (DSGVO), des österreichischen Datenschutzgesetzes (DSG) sowie der einschlägigen berufsrechtlichen Verschwiegenheitspflichten. Gesundheitsdaten werden besonders vertraulich behandelt.",
+    "### Zugriffsdaten und Hosting",
+    "Beim Aufruf dieser Website werden technisch notwendige Zugriffsdaten verarbeitet, insbesondere IP-Adresse, Datum und Uhrzeit des Zugriffs, aufgerufene Seiten, Browsertyp, Betriebssystem und Referrer-URL. Diese Daten sind erforderlich, um die Website sicher und stabil bereitzustellen.",
+    "Diese Website wird über Netlify gehostet. Dabei können technische Zugriffsdaten auf Servern von Netlify verarbeitet werden. Die Verarbeitung erfolgt zur Bereitstellung, Sicherheit und Wartung der Website.",
+    "### Kontaktaufnahme",
+    "Wenn Sie uns per Telefon, E-Mail oder über künftig eingebundene Formulare kontaktieren, verarbeiten wir die von Ihnen angegebenen Daten zur Bearbeitung Ihrer Anfrage. Rechtsgrundlage ist je nach Inhalt der Anfrage die Durchführung vorvertraglicher Maßnahmen, die Erfüllung rechtlicher Pflichten oder unser berechtigtes Interesse an der Kommunikation mit Patientinnen und Patienten.",
+    "### Terminvereinbarung",
+    "Die Terminvereinbarung auf dieser Website ist derzeit als vorbereitete Benutzeroberfläche umgesetzt. Eine spätere technische Anbindung an ein externes Terminbuchungssystem ist vorgesehen. Sobald ein solches System produktiv eingebunden wird, werden die dort verarbeiteten Daten, Anbieter und Rechtsgrundlagen in dieser Datenschutzerklärung ergänzt.",
+    "### Rezeptbestellung",
+    "Die Rezeptbestellung ist derzeit als vorbereitete Benutzeroberfläche mit einer lokalen Medikamentenliste umgesetzt. Eine freie Medikamenteneingabe ist nicht vorgesehen. Eine spätere Anbindung an ein externes System ist möglich. In diesem Fall werden die Datenverarbeitung, Anbieter und Speicherdauer entsprechend ergänzt.",
+    "### Google Maps",
+    "Auf dieser Website kann Google Maps eingebunden sein, um den Standort der Ordination darzustellen. Anbieter ist Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland. Beim Laden der Karte können personenbezogene Daten, insbesondere IP-Adresse und Nutzungsdaten, an Google übertragen werden. Weitere Informationen finden Sie in der Datenschutzerklärung von Google.",
+    "### TinaCMS und Website-Verwaltung",
+    "Zur redaktionellen Verwaltung der Website wird TinaCMS verwendet. Der Admin-Bereich ist nicht für Patientinnen und Patienten bestimmt. Beim Zugriff auf den Admin-Bereich können Authentifizierungs- und technische Nutzungsdaten verarbeitet werden.",
+    "### Cookies und lokale Speicherung",
+    "Die öffentliche Website verwendet derzeit keine Tracking-Cookies zu Werbezwecken. Technisch notwendige Speicherungen können erforderlich sein, um Funktionen der Website oder eingebundener Dienste bereitzustellen.",
+    "### Speicherdauer",
+    "Personenbezogene Daten werden nur so lange gespeichert, wie dies für den jeweiligen Zweck erforderlich ist oder gesetzliche Aufbewahrungspflichten bestehen. Medizinische Dokumentationspflichten bleiben unberührt.",
+    "### Ihre Rechte",
+    "Sie haben nach Maßgabe der DSGVO das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit sowie Widerspruch gegen bestimmte Verarbeitungen. Wenn eine Verarbeitung auf Einwilligung beruht, können Sie diese Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen.",
+    "### Beschwerderecht",
+    "Wenn Sie der Ansicht sind, dass die Verarbeitung Ihrer personenbezogenen Daten gegen Datenschutzrecht verstößt, können Sie sich bei der Österreichischen Datenschutzbehörde, Barichgasse 40-42, 1030 Wien, beschweren.",
+    "### Stand",
+    "Diese Datenschutzerklärung wurde zuletzt im August 2026 aktualisiert. Bei Änderung der Website-Funktionen oder eingebundener Dienste wird sie entsprechend angepasst."
+  ]
+}
