@@ -1,7 +1,7 @@
 // tina/config.ts
 import { defineConfig } from "tinacms";
 var branch = process.env.GITHUB_BRANCH || process.env.HEAD || "main";
-var clientId = process.env.NEXT_PUBLIC_TINA_CLIENT_ID || "37a76d06-2d72-4b01-9e06-67c1e2a180a8";
+var clientId = process.env.NEXT_PUBLIC_TINA_CLIENT_ID || "a7f121a6-ef75-447d-bd19-ea1b25d3d4e2";
 var navigationFields = [
   { type: "string", name: "label", label: "Label", required: true },
   { type: "string", name: "href", label: "Link", required: true }

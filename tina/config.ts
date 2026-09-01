@@ -1,7 +1,7 @@
 import { defineConfig } from 'tinacms';
 
 const branch = process.env.GITHUB_BRANCH || process.env.HEAD || 'main';
-const clientId = process.env.NEXT_PUBLIC_TINA_CLIENT_ID || '37a76d06-2d72-4b01-9e06-67c1e2a180a8';
+const clientId = process.env.NEXT_PUBLIC_TINA_CLIENT_ID || 'a7f121a6-ef75-447d-bd19-ea1b25d3d4e2';
 
 const navigationFields = [
   { type: 'string', name: 'label', label: 'Label', required: true },
