@@ -1,0 +1,24 @@
+{
+  "title": "Gutachten",
+  "seoTitle": "Medizinische Gutachten Graz | Ordination Dr. Reiter",
+  "seoDescription": "Medizinische Gutachten und Stellungnahmen in Graz nach individueller Terminvereinbarung in der Ordination Dr. Reiter.",
+  "eyebrow": "Gutachten",
+  "heading": "Medizinische Gutachten und Stellungnahmen.",
+  "intro": "Gutachten erfordern eine sorgfältige Befunderhebung, klare Dokumentation und individuelle Terminplanung.",
+  "sections": [
+    {
+      "title": "Vorgehen",
+      "text": "Vor dem Termin wird geklärt, welche Fragestellung besteht und welche Unterlagen erforderlich sind. Die medizinische Einschätzung erfolgt nach strukturierter Untersuchung und Befundsichtung.",
+      "href": "/kontakt",
+      "linkLabel": "Kontakt aufnehmen",
+      "items": ["Fragestellung klären", "Unterlagen vorbereiten", "Untersuchung", "Dokumentation"]
+    },
+    {
+      "title": "Unterlagen",
+      "text": "Bitte bringen Sie relevante Vorbefunde, Arztbriefe, Bildgebung, Laborwerte und vorhandene Schreiben zur Begutachtung mit.",
+      "href": "/terminvereinbarung",
+      "linkLabel": "Termin vereinbaren",
+      "items": ["Vorbefunde", "Arztbriefe", "Laborwerte", "Relevante Schreiben"]
+    }
+  ]
+}

@@ -6,6 +6,10 @@ var navigationFields = [
   { type: "string", name: "label", label: "Label", required: true },
   { type: "string", name: "href", label: "Link", required: true }
 ];
+var seoFields = [
+  { type: "string", name: "seoTitle", label: "SEO Titel" },
+  { type: "string", name: "seoDescription", label: "SEO Beschreibung", ui: { component: "textarea" } }
+];
 var imagePositionOptions = [
   { label: "Mitte", value: "center" },
   { label: "Oben", value: "top" },
@@ -56,6 +60,43 @@ var legalFields = [
   { type: "string", name: "title", label: "Meta-Titel", required: true },
   { type: "string", name: "heading", label: "\xDCberschrift", required: true },
   { type: "string", name: "body", label: "Textzeilen", list: true }
+];
+var infoPageFields = [
+  { type: "string", name: "title", label: "Meta-Titel", required: true },
+  ...seoFields,
+  { type: "string", name: "eyebrow", label: "Eyebrow" },
+  { type: "string", name: "heading", label: "\xDCberschrift", required: true },
+  { type: "string", name: "intro", label: "Intro", ui: { component: "textarea" } },
+  {
+    type: "object",
+    name: "sections",
+    label: "Abschnitte",
+    list: true,
+    fields: [
+      { type: "string", name: "title", label: "Titel", required: true },
+      { type: "string", name: "text", label: "Text", ui: { component: "textarea" } },
+      { type: "string", name: "items", label: "Punkte", list: true },
+      { type: "string", name: "href", label: "Link" },
+      { type: "string", name: "linkLabel", label: "Link-Text" }
+    ]
+  }
+];
+var faqPageFields = [
+  { type: "string", name: "title", label: "Meta-Titel", required: true },
+  ...seoFields,
+  { type: "string", name: "eyebrow", label: "Eyebrow" },
+  { type: "string", name: "heading", label: "\xDCberschrift", required: true },
+  { type: "string", name: "intro", label: "Intro", ui: { component: "textarea" } },
+  {
+    type: "object",
+    name: "faqs",
+    label: "Fragen und Antworten",
+    list: true,
+    fields: [
+      { type: "string", name: "question", label: "Frage", required: true },
+      { type: "string", name: "answer", label: "Antwort", ui: { component: "textarea" } }
+    ]
+  }
 ];
 var vacationPopupFields = [
   { type: "boolean", name: "enabled", label: "Popup anzeigen" },
@@ -112,6 +153,10 @@ var config_default = defineConfig({
         ui: { router: () => "/" },
         fields: [
           { type: "string", name: "siteTitle", label: "Seitentitel", required: true },
+          { type: "string", name: "siteUrl", label: "Website URL", required: true },
+          { type: "string", name: "defaultDescription", label: "Standard SEO Beschreibung", ui: { component: "textarea" } },
+          { type: "string", name: "keywords", label: "SEO Keywords", list: true },
+          { type: "image", name: "socialImage", label: "Standard Social Sharing Bild" },
           { type: "string", name: "brandLabel", label: "Header Title", required: true },
           { type: "image", name: "logo", label: "Header Logo" },
           { type: "image", name: "favicon", label: "Favicon" },
@@ -128,6 +173,7 @@ var config_default = defineConfig({
         ui: { router: () => "/" },
         fields: [
           { type: "string", name: "title", label: "Meta-Titel", required: true },
+          ...seoFields,
           { type: "object", name: "doctors", label: "Hero \xC4rzte", list: true, fields: homeDoctorFields },
           {
             type: "object",
@@ -162,6 +208,7 @@ var config_default = defineConfig({
         fields: [
           { type: "string", name: "slug", label: "Slug", required: true },
           { type: "string", name: "title", label: "\xDCberschrift", required: true },
+          ...seoFields,
           { type: "string", name: "subtitle", label: "Untertitel", required: true },
           {
             type: "object",
@@ -189,6 +236,7 @@ var config_default = defineConfig({
         ui: { router: () => "/terminvereinbarung" },
         fields: [
           { type: "string", name: "title", label: "Meta-Titel", required: true },
+          ...seoFields,
           { type: "string", name: "eyebrow", label: "Eyebrow" },
           { type: "string", name: "heading", label: "\xDCberschrift", required: true },
           { type: "string", name: "intro", label: "Intro", ui: { component: "textarea" } },
@@ -202,6 +250,24 @@ var config_default = defineConfig({
         ]
       },
       {
+        name: "infoPages",
+        label: "Seiten: Leistungen & Themen",
+        path: "content/pages",
+        format: "json",
+        match: { include: "{leistungen,vorsorgeuntersuchung,gutachten}" },
+        ui: { router: ({ document }) => `/${document._sys.filename}` },
+        fields: infoPageFields
+      },
+      {
+        name: "faqPage",
+        label: "Seite: FAQ",
+        path: "content/pages",
+        format: "json",
+        match: { include: "faq" },
+        ui: { router: () => "/faq" },
+        fields: faqPageFields
+      },
+      {
         name: "prescriptionsPage",
         label: "Seite: Rezeptbestellung",
         path: "content/pages",
@@ -210,6 +276,7 @@ var config_default = defineConfig({
         ui: { router: () => "/rezeptbestellung" },
         fields: [
           { type: "string", name: "title", label: "Meta-Titel", required: true },
+          ...seoFields,
           { type: "string", name: "eyebrow", label: "Eyebrow" },
           { type: "string", name: "heading", label: "\xDCberschrift", required: true },
           { type: "string", name: "intro", label: "Intro", ui: { component: "textarea" } },
@@ -229,12 +296,23 @@ var config_default = defineConfig({
         ui: { router: () => "/kontakt" },
         fields: [
           { type: "string", name: "title", label: "Meta-Titel", required: true },
+          ...seoFields,
           { type: "string", name: "eyebrow", label: "Eyebrow" },
           { type: "string", name: "heading", label: "\xDCberschrift", required: true },
           { type: "string", name: "addressLines", label: "Adresszeilen", list: true },
           { type: "string", name: "phoneLabel", label: "Telefonanzeige" },
           { type: "string", name: "phoneHref", label: "Telefonlink" },
           { type: "string", name: "email", label: "E-Mail" },
+          {
+            type: "object",
+            name: "access",
+            label: "Anfahrt & Parken",
+            fields: [
+              { type: "string", name: "title", label: "Titel" },
+              { type: "string", name: "text", label: "Text", ui: { component: "textarea" } },
+              { type: "string", name: "items", label: "Hinweise", list: true }
+            ]
+          },
           { type: "string", name: "mapTitle", label: "Karten-Titel" },
           { type: "string", name: "mapQuery", label: "Google Maps Query" }
         ]
@@ -246,7 +324,7 @@ var config_default = defineConfig({
         format: "json",
         match: { include: "{impressum,datenschutz}" },
         ui: { router: ({ document }) => `/${document._sys.filename}` },
-        fields: legalFields
+        fields: [...seoFields, ...legalFields]
       }
     ]
   }

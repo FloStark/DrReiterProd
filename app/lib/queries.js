@@ -1,5 +1,9 @@
 export const siteFields = `
   siteTitle
+  siteUrl
+  defaultDescription
+  keywords
+  socialImage
   brandLabel
   logo
   favicon
@@ -14,6 +18,8 @@ export const siteFields = `
 
 export const homeFields = `
   title
+  seoTitle
+  seoDescription
   doctors {
     name
     initials
@@ -45,6 +51,8 @@ export const homeFields = `
 export const doctorFields = `
   slug
   title
+  seoTitle
+  seoDescription
   subtitle
   sections {
     id
@@ -59,6 +67,8 @@ export const doctorFields = `
 
 export const bookingFields = `
   title
+  seoTitle
+  seoDescription
   eyebrow
   heading
   intro
@@ -73,6 +83,8 @@ export const bookingFields = `
 
 export const prescriptionsFields = `
   title
+  seoTitle
+  seoDescription
   eyebrow
   heading
   intro
@@ -85,18 +97,43 @@ export const prescriptionsFields = `
 
 export const contactFields = `
   title
+  seoTitle
+  seoDescription
   eyebrow
   heading
   addressLines
   phoneLabel
   phoneHref
   email
+  access { title text items }
   mapTitle
   mapQuery
 `;
 
+export const infoFields = `
+  title
+  seoTitle
+  seoDescription
+  eyebrow
+  heading
+  intro
+  sections { title text items href linkLabel }
+`;
+
+export const faqFields = `
+  title
+  seoTitle
+  seoDescription
+  eyebrow
+  heading
+  intro
+  faqs { question answer }
+`;
+
 export const legalFields = `
   title
+  seoTitle
+  seoDescription
   heading
   body
 `;
@@ -124,6 +161,16 @@ export const prescriptionsQuery = `query prescriptionsPage($sitePath: String!, $
 export const contactQuery = `query contactPage($sitePath: String!, $pagePath: String!) {
   siteSettings(relativePath: $sitePath) { ${siteFields} }
   contactPage(relativePath: $pagePath) { ${contactFields} }
+}`;
+
+export const infoQuery = `query infoPages($sitePath: String!, $pagePath: String!) {
+  siteSettings(relativePath: $sitePath) { ${siteFields} }
+  infoPages(relativePath: $pagePath) { ${infoFields} }
+}`;
+
+export const faqQuery = `query faqPage($sitePath: String!, $pagePath: String!) {
+  siteSettings(relativePath: $sitePath) { ${siteFields} }
+  faqPage(relativePath: $pagePath) { ${faqFields} }
 }`;
 
 export const legalQuery = `query legalPages($sitePath: String!, $pagePath: String!) {

@@ -319,7 +319,85 @@ export function ContactClient(props) {
             <p className="mt-6">Telefon: <a href={`tel:${page.phoneHref}`} data-tina-field={tinaField(page, 'phoneLabel')}>{page.phoneLabel}</a></p>
             <p>E-Mail: <a href={`mailto:${page.email}`} data-tina-field={tinaField(page, 'email')}>{page.email}</a></p>
           </div>
-          <iframe className="h-80 w-full rounded-3xl border-0" title={page.mapTitle} loading="lazy" src={`https://www.google.com/maps?q=${encodeURIComponent(page.mapQuery)}&output=embed`} />
+          <div className="space-y-6">
+            <iframe className="h-80 w-full rounded-3xl border-0" title={page.mapTitle} loading="lazy" src={`https://www.google.com/maps?q=${encodeURIComponent(page.mapQuery)}&output=embed`} />
+            <div className="rounded-3xl border border-black/10 bg-white p-6 shadow-sm">
+              <h2 className="font-serif text-3xl" data-tina-field={tinaField(page.access, 'title')}>{page.access.title}</h2>
+              <p className="mt-4 leading-7 text-black/65" data-tina-field={tinaField(page.access, 'text')}>{page.access.text}</p>
+              <ul className="mt-5 grid gap-3">
+                {page.access.items.map((item, index) => (
+                  <li key={item} className="flex gap-3 rounded-2xl bg-reiter/30 px-4 py-3" data-tina-field={tinaField(page.access, 'items', index)}>
+                    <span className="service-dot mt-2" aria-hidden="true" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </PageFrame>
+  );
+}
+
+export function InfoPageClient(props) {
+  const data = usePageTina(props);
+  const site = data.siteSettings;
+  const page = data.infoPages;
+
+  return (
+    <PageFrame site={site}>
+      <section className="mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-24">
+        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-black/50" data-tina-field={tinaField(page, 'eyebrow')}>{page.eyebrow}</p>
+        <h1 className="mt-4 max-w-4xl font-serif text-5xl md:text-7xl" data-tina-field={tinaField(page, 'heading')}>{page.heading}</h1>
+        <p className="mt-6 max-w-3xl text-xl leading-9 text-black/65" data-tina-field={tinaField(page, 'intro')}>{page.intro}</p>
+        <div className="mt-12 grid gap-6 md:grid-cols-2">
+          {page.sections.map((section, index) => (
+            <article key={`${section.title}-${index}`} className="premium-card rounded-[2rem] border border-black/10 bg-white p-6 shadow-sm">
+              <h2 className="font-serif text-3xl" data-tina-field={tinaField(section, 'title')}>{section.title}</h2>
+              <p className="mt-4 leading-7 text-black/65" data-tina-field={tinaField(section, 'text')}>{section.text}</p>
+              <ul className="mt-5 grid gap-3">
+                {section.items.map((item, itemIndex) => (
+                  <li key={item} className="flex gap-3 rounded-2xl bg-reiter/30 px-4 py-3" data-tina-field={tinaField(section, 'items', itemIndex)}>
+                    <span className="service-dot mt-2" aria-hidden="true" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              {section.href ? (
+                <Link href={section.href} className="mt-6 inline-flex rounded-full bg-black px-5 py-3 text-sm font-semibold uppercase tracking-[0.16em] text-white" data-tina-field={tinaField(section, 'linkLabel')}>
+                  {section.linkLabel}
+                </Link>
+              ) : null}
+            </article>
+          ))}
+        </div>
+      </section>
+    </PageFrame>
+  );
+}
+
+export function FaqClient(props) {
+  const data = usePageTina(props);
+  const site = data.siteSettings;
+  const page = data.faqPage;
+
+  return (
+    <PageFrame site={site}>
+      <section className="mx-auto max-w-5xl px-5 py-16 md:px-8 md:py-24">
+        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-black/50" data-tina-field={tinaField(page, 'eyebrow')}>{page.eyebrow}</p>
+        <h1 className="mt-4 font-serif text-5xl md:text-7xl" data-tina-field={tinaField(page, 'heading')}>{page.heading}</h1>
+        <p className="mt-6 max-w-3xl text-xl leading-9 text-black/65" data-tina-field={tinaField(page, 'intro')}>{page.intro}</p>
+        <div className="mt-12 divide-y divide-black/10 rounded-[2rem] border border-black/10 bg-white shadow-sm">
+          {page.faqs.map((faq, index) => (
+            <details key={faq.question} className="group p-6" open={index === 0}>
+              <summary className="cursor-pointer list-none font-serif text-2xl" data-tina-field={tinaField(faq, 'question')}>
+                {faq.question}
+                <span className="float-right text-base transition group-open:rotate-45">+</span>
+              </summary>
+              <p className="mt-4 leading-7 text-black/65" data-tina-field={tinaField(faq, 'answer')}>{faq.answer}</p>
+            </details>
+          ))}
         </div>
       </section>
     </PageFrame>

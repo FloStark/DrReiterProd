@@ -62,6 +62,10 @@ type Query {
   doctorPagesConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: DoctorPagesFilter): DoctorPagesConnection!
   bookingPage(relativePath: String): BookingPage!
   bookingPageConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: BookingPageFilter): BookingPageConnection!
+  infoPages(relativePath: String): InfoPages!
+  infoPagesConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: InfoPagesFilter): InfoPagesConnection!
+  faqPage(relativePath: String): FaqPage!
+  faqPageConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: FaqPageFilter): FaqPageConnection!
   prescriptionsPage(relativePath: String): PrescriptionsPage!
   prescriptionsPageConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: PrescriptionsPageFilter): PrescriptionsPageConnection!
   contactPage(relativePath: String): ContactPage!
@@ -75,6 +79,8 @@ input DocumentFilter {
   homePage: HomePageFilter
   doctorPages: DoctorPagesFilter
   bookingPage: BookingPageFilter
+  infoPages: InfoPagesFilter
+  faqPage: FaqPageFilter
   prescriptionsPage: PrescriptionsPageFilter
   contactPage: ContactPageFilter
   legalPages: LegalPagesFilter
@@ -103,7 +109,7 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter, folder: String): DocumentConnection!
 }
 
-union DocumentNode = SiteSettings | HomePage | DoctorPages | BookingPage | PrescriptionsPage | ContactPage | LegalPages | Folder
+union DocumentNode = SiteSettings | HomePage | DoctorPages | BookingPage | InfoPages | FaqPage | PrescriptionsPage | ContactPage | LegalPages | Folder
 
 type SiteSettingsVacationPopupLinesSegments {
   text: String!
@@ -129,6 +135,10 @@ type SiteSettingsNavigation {
 
 type SiteSettings implements Node & Document {
   siteTitle: String!
+  siteUrl: String!
+  defaultDescription: String
+  keywords: [String]
+  socialImage: String
   brandLabel: String!
   logo: String
   favicon: String
@@ -190,6 +200,10 @@ input SiteSettingsNavigationFilter {
 
 input SiteSettingsFilter {
   siteTitle: StringFilter
+  siteUrl: StringFilter
+  defaultDescription: StringFilter
+  keywords: StringFilter
+  socialImage: ImageFilter
   brandLabel: StringFilter
   logo: ImageFilter
   favicon: ImageFilter
@@ -245,6 +259,8 @@ type HomePageDirections {
 
 type HomePage implements Node & Document {
   title: String!
+  seoTitle: String
+  seoDescription: String
   doctors: [HomePageDoctors]
   ordination: HomePageOrdination
   directions: HomePageDirections
@@ -290,6 +306,8 @@ input HomePageDirectionsFilter {
 
 input HomePageFilter {
   title: StringFilter
+  seoTitle: StringFilter
+  seoDescription: StringFilter
   doctors: HomePageDoctorsFilter
   ordination: HomePageOrdinationFilter
   directions: HomePageDirectionsFilter
@@ -319,6 +337,8 @@ type DoctorPagesSections {
 type DoctorPages implements Node & Document {
   slug: String!
   title: String!
+  seoTitle: String
+  seoDescription: String
   subtitle: String!
   sections: [DoctorPagesSections]
   id: ID!
@@ -339,6 +359,8 @@ input DoctorPagesSectionsFilter {
 input DoctorPagesFilter {
   slug: StringFilter
   title: StringFilter
+  seoTitle: StringFilter
+  seoDescription: StringFilter
   subtitle: StringFilter
   sections: DoctorPagesSectionsFilter
 }
@@ -364,6 +386,8 @@ type BookingPageDoctors {
 
 type BookingPage implements Node & Document {
   title: String!
+  seoTitle: String
+  seoDescription: String
   eyebrow: String
   heading: String!
   intro: String
@@ -389,6 +413,8 @@ input BookingPageDoctorsFilter {
 
 input BookingPageFilter {
   title: StringFilter
+  seoTitle: StringFilter
+  seoDescription: StringFilter
   eyebrow: StringFilter
   heading: StringFilter
   intro: StringFilter
@@ -412,8 +438,104 @@ type BookingPageConnection implements Connection {
   edges: [BookingPageConnectionEdges]
 }
 
+type InfoPagesSections {
+  title: String!
+  text: String
+  items: [String]
+  href: String
+  linkLabel: String
+}
+
+type InfoPages implements Node & Document {
+  title: String!
+  seoTitle: String
+  seoDescription: String
+  eyebrow: String
+  heading: String!
+  intro: String
+  sections: [InfoPagesSections]
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input InfoPagesSectionsFilter {
+  title: StringFilter
+  text: StringFilter
+  items: StringFilter
+  href: StringFilter
+  linkLabel: StringFilter
+}
+
+input InfoPagesFilter {
+  title: StringFilter
+  seoTitle: StringFilter
+  seoDescription: StringFilter
+  eyebrow: StringFilter
+  heading: StringFilter
+  intro: StringFilter
+  sections: InfoPagesSectionsFilter
+}
+
+type InfoPagesConnectionEdges {
+  cursor: String!
+  node: InfoPages
+}
+
+type InfoPagesConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [InfoPagesConnectionEdges]
+}
+
+type FaqPageFaqs {
+  question: String!
+  answer: String
+}
+
+type FaqPage implements Node & Document {
+  title: String!
+  seoTitle: String
+  seoDescription: String
+  eyebrow: String
+  heading: String!
+  intro: String
+  faqs: [FaqPageFaqs]
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input FaqPageFaqsFilter {
+  question: StringFilter
+  answer: StringFilter
+}
+
+input FaqPageFilter {
+  title: StringFilter
+  seoTitle: StringFilter
+  seoDescription: StringFilter
+  eyebrow: StringFilter
+  heading: StringFilter
+  intro: StringFilter
+  faqs: FaqPageFaqsFilter
+}
+
+type FaqPageConnectionEdges {
+  cursor: String!
+  node: FaqPage
+}
+
+type FaqPageConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [FaqPageConnectionEdges]
+}
+
 type PrescriptionsPage implements Node & Document {
   title: String!
+  seoTitle: String
+  seoDescription: String
   eyebrow: String
   heading: String!
   intro: String
@@ -429,6 +551,8 @@ type PrescriptionsPage implements Node & Document {
 
 input PrescriptionsPageFilter {
   title: StringFilter
+  seoTitle: StringFilter
+  seoDescription: StringFilter
   eyebrow: StringFilter
   heading: StringFilter
   intro: StringFilter
@@ -450,14 +574,23 @@ type PrescriptionsPageConnection implements Connection {
   edges: [PrescriptionsPageConnectionEdges]
 }
 
+type ContactPageAccess {
+  title: String
+  text: String
+  items: [String]
+}
+
 type ContactPage implements Node & Document {
   title: String!
+  seoTitle: String
+  seoDescription: String
   eyebrow: String
   heading: String!
   addressLines: [String]
   phoneLabel: String
   phoneHref: String
   email: String
+  access: ContactPageAccess
   mapTitle: String
   mapQuery: String
   id: ID!
@@ -465,14 +598,23 @@ type ContactPage implements Node & Document {
   _values: JSON!
 }
 
+input ContactPageAccessFilter {
+  title: StringFilter
+  text: StringFilter
+  items: StringFilter
+}
+
 input ContactPageFilter {
   title: StringFilter
+  seoTitle: StringFilter
+  seoDescription: StringFilter
   eyebrow: StringFilter
   heading: StringFilter
   addressLines: StringFilter
   phoneLabel: StringFilter
   phoneHref: StringFilter
   email: StringFilter
+  access: ContactPageAccessFilter
   mapTitle: StringFilter
   mapQuery: StringFilter
 }
@@ -489,6 +631,8 @@ type ContactPageConnection implements Connection {
 }
 
 type LegalPages implements Node & Document {
+  seoTitle: String
+  seoDescription: String
   title: String!
   heading: String!
   body: [String]
@@ -498,6 +642,8 @@ type LegalPages implements Node & Document {
 }
 
 input LegalPagesFilter {
+  seoTitle: StringFilter
+  seoDescription: StringFilter
   title: StringFilter
   heading: StringFilter
   body: StringFilter
@@ -528,6 +674,10 @@ type Mutation {
   createDoctorPages(relativePath: String!, params: DoctorPagesMutation!): DoctorPages!
   updateBookingPage(relativePath: String!, params: BookingPageMutation!): BookingPage!
   createBookingPage(relativePath: String!, params: BookingPageMutation!): BookingPage!
+  updateInfoPages(relativePath: String!, params: InfoPagesMutation!): InfoPages!
+  createInfoPages(relativePath: String!, params: InfoPagesMutation!): InfoPages!
+  updateFaqPage(relativePath: String!, params: FaqPageMutation!): FaqPage!
+  createFaqPage(relativePath: String!, params: FaqPageMutation!): FaqPage!
   updatePrescriptionsPage(relativePath: String!, params: PrescriptionsPageMutation!): PrescriptionsPage!
   createPrescriptionsPage(relativePath: String!, params: PrescriptionsPageMutation!): PrescriptionsPage!
   updateContactPage(relativePath: String!, params: ContactPageMutation!): ContactPage!
@@ -541,6 +691,8 @@ input DocumentUpdateMutation {
   homePage: HomePageMutation
   doctorPages: DoctorPagesMutation
   bookingPage: BookingPageMutation
+  infoPages: InfoPagesMutation
+  faqPage: FaqPageMutation
   prescriptionsPage: PrescriptionsPageMutation
   contactPage: ContactPageMutation
   legalPages: LegalPagesMutation
@@ -552,6 +704,8 @@ input DocumentMutation {
   homePage: HomePageMutation
   doctorPages: DoctorPagesMutation
   bookingPage: BookingPageMutation
+  infoPages: InfoPagesMutation
+  faqPage: FaqPageMutation
   prescriptionsPage: PrescriptionsPageMutation
   contactPage: ContactPageMutation
   legalPages: LegalPagesMutation
@@ -581,6 +735,10 @@ input SiteSettingsNavigationMutation {
 
 input SiteSettingsMutation {
   siteTitle: String
+  siteUrl: String
+  defaultDescription: String
+  keywords: [String]
+  socialImage: String
   brandLabel: String
   logo: String
   favicon: String
@@ -625,6 +783,8 @@ input HomePageDirectionsMutation {
 
 input HomePageMutation {
   title: String
+  seoTitle: String
+  seoDescription: String
   doctors: [HomePageDoctorsMutation]
   ordination: HomePageOrdinationMutation
   directions: HomePageDirectionsMutation
@@ -643,6 +803,8 @@ input DoctorPagesSectionsMutation {
 input DoctorPagesMutation {
   slug: String
   title: String
+  seoTitle: String
+  seoDescription: String
   subtitle: String
   sections: [DoctorPagesSectionsMutation]
 }
@@ -657,6 +819,8 @@ input BookingPageDoctorsMutation {
 
 input BookingPageMutation {
   title: String
+  seoTitle: String
+  seoDescription: String
   eyebrow: String
   heading: String
   intro: String
@@ -669,8 +833,43 @@ input BookingPageMutation {
   patientHeading: String
 }
 
+input InfoPagesSectionsMutation {
+  title: String
+  text: String
+  items: [String]
+  href: String
+  linkLabel: String
+}
+
+input InfoPagesMutation {
+  title: String
+  seoTitle: String
+  seoDescription: String
+  eyebrow: String
+  heading: String
+  intro: String
+  sections: [InfoPagesSectionsMutation]
+}
+
+input FaqPageFaqsMutation {
+  question: String
+  answer: String
+}
+
+input FaqPageMutation {
+  title: String
+  seoTitle: String
+  seoDescription: String
+  eyebrow: String
+  heading: String
+  intro: String
+  faqs: [FaqPageFaqsMutation]
+}
+
 input PrescriptionsPageMutation {
   title: String
+  seoTitle: String
+  seoDescription: String
   eyebrow: String
   heading: String
   intro: String
@@ -681,19 +880,30 @@ input PrescriptionsPageMutation {
   emptyListText: String
 }
 
+input ContactPageAccessMutation {
+  title: String
+  text: String
+  items: [String]
+}
+
 input ContactPageMutation {
   title: String
+  seoTitle: String
+  seoDescription: String
   eyebrow: String
   heading: String
   addressLines: [String]
   phoneLabel: String
   phoneHref: String
   email: String
+  access: ContactPageAccessMutation
   mapTitle: String
   mapQuery: String
 }
 
 input LegalPagesMutation {
+  seoTitle: String
+  seoDescription: String
   title: String
   heading: String
   body: [String]

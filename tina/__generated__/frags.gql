@@ -1,6 +1,10 @@
 fragment SiteSettingsParts on SiteSettings {
   __typename
   siteTitle
+  siteUrl
+  defaultDescription
+  keywords
+  socialImage
   brandLabel
   logo
   favicon
@@ -29,6 +33,8 @@ fragment SiteSettingsParts on SiteSettings {
 fragment HomePageParts on HomePage {
   __typename
   title
+  seoTitle
+  seoDescription
   doctors {
     __typename
     name
@@ -69,6 +75,8 @@ fragment DoctorPagesParts on DoctorPages {
   __typename
   slug
   title
+  seoTitle
+  seoDescription
   subtitle
   sections {
     __typename
@@ -85,6 +93,8 @@ fragment DoctorPagesParts on DoctorPages {
 fragment BookingPageParts on BookingPage {
   __typename
   title
+  seoTitle
+  seoDescription
   eyebrow
   heading
   intro
@@ -104,9 +114,44 @@ fragment BookingPageParts on BookingPage {
   patientHeading
 }
 
+fragment InfoPagesParts on InfoPages {
+  __typename
+  title
+  seoTitle
+  seoDescription
+  eyebrow
+  heading
+  intro
+  sections {
+    __typename
+    title
+    text
+    items
+    href
+    linkLabel
+  }
+}
+
+fragment FaqPageParts on FaqPage {
+  __typename
+  title
+  seoTitle
+  seoDescription
+  eyebrow
+  heading
+  intro
+  faqs {
+    __typename
+    question
+    answer
+  }
+}
+
 fragment PrescriptionsPageParts on PrescriptionsPage {
   __typename
   title
+  seoTitle
+  seoDescription
   eyebrow
   heading
   intro
@@ -120,18 +165,28 @@ fragment PrescriptionsPageParts on PrescriptionsPage {
 fragment ContactPageParts on ContactPage {
   __typename
   title
+  seoTitle
+  seoDescription
   eyebrow
   heading
   addressLines
   phoneLabel
   phoneHref
   email
+  access {
+    __typename
+    title
+    text
+    items
+  }
   mapTitle
   mapQuery
 }
 
 fragment LegalPagesParts on LegalPages {
   __typename
+  seoTitle
+  seoDescription
   title
   heading
   body

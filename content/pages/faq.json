@@ -1,0 +1,30 @@
+{
+  "title": "Häufige Fragen",
+  "seoTitle": "FAQ | Ordination Dr. Reiter Graz",
+  "seoDescription": "Häufige Fragen zur Ordination Dr. Reiter in Graz: Terminvereinbarung, Rezeptbestellung, Unterlagen, E-Card und Notfälle.",
+  "eyebrow": "FAQ",
+  "heading": "Häufige Fragen",
+  "intro": "Antworten auf organisatorische Fragen rund um Termine, Rezepte und den Besuch in der Ordination.",
+  "faqs": [
+    {
+      "question": "Brauche ich einen Termin?",
+      "answer": "Bitte vereinbaren Sie nach Möglichkeit vorab einen Termin. So können Wartezeiten reduziert und Anliegen besser vorbereitet werden."
+    },
+    {
+      "question": "Was soll ich zum ersten Termin mitbringen?",
+      "answer": "Bitte bringen Sie Ihre E-Card, vorhandene Befunde, Arztbriefe und eine aktuelle Medikamentenliste mit."
+    },
+    {
+      "question": "Wie funktioniert die Rezeptbestellung?",
+      "answer": "Wählen Sie zuerst die Ärztin oder den Arzt, suchen Sie das Medikament aus der hinterlegten Liste und geben Sie die Packungsanzahl an. Freitexteingaben sind bewusst nicht vorgesehen."
+    },
+    {
+      "question": "Was tun im Notfall?",
+      "answer": "Bei akuten medizinischen Notfällen wenden Sie sich bitte an den Rettungsnotruf 144 oder an die nächstgelegene Notaufnahme."
+    },
+    {
+      "question": "Kann ich Befunde per E-Mail senden?",
+      "answer": "Bitte senden Sie medizinische Unterlagen nur nach vorheriger Rücksprache. Beachten Sie, dass E-Mail-Kommunikation nicht in jedem Fall vollständig verschlüsselt ist."
+    }
+  ]
+}

@@ -1,11 +1,22 @@
 {
   "title": "Kontakt",
+  "seoTitle": "Kontakt | Ordination Dr. Reiter Graz",
+  "seoDescription": "Kontakt zur Ordination Dr. Reiter in der Mariahilfer Str. 1, 8020 Graz. Telefon 0316 7173880 und office@ordination-reiter.com.",
   "eyebrow": "Kontakt",
   "heading": "Ordination Dr. Reiter",
   "addressLines": ["Mariahilfer Str. 1", "8020 Graz"],
   "phoneLabel": "0316 7173880",
   "phoneHref": "03167173880",
   "email": "office@ordination-reiter.com",
+  "access": {
+    "title": "Anfahrt & Parken",
+    "text": "Die Ordination befindet sich in der Mariahilfer Str. 1 in 8020 Graz und ist zentral erreichbar.",
+    "items": [
+      "Öffentliche Anreise über Straßenbahn und Bus im direkten Umfeld.",
+      "Kurzparkzonen und öffentliche Parkmöglichkeiten befinden sich in der Umgebung.",
+      "Bitte planen Sie für Parkplatzsuche und Anreise ausreichend Zeit ein."
+    ]
+  },
   "mapTitle": "Google Maps Standort Ordination Dr. Reiter",
   "mapQuery": "Mariahilfer Str. 1, 8020 Graz"
 }

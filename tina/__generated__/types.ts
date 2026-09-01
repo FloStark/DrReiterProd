@@ -89,6 +89,10 @@ export type Query = {
   doctorPagesConnection: DoctorPagesConnection;
   bookingPage: BookingPage;
   bookingPageConnection: BookingPageConnection;
+  infoPages: InfoPages;
+  infoPagesConnection: InfoPagesConnection;
+  faqPage: FaqPage;
+  faqPageConnection: FaqPageConnection;
   prescriptionsPage: PrescriptionsPage;
   prescriptionsPageConnection: PrescriptionsPageConnection;
   contactPage: ContactPage;
@@ -179,6 +183,36 @@ export type QueryBookingPageConnectionArgs = {
 };
 
 
+export type QueryInfoPagesArgs = {
+  relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryInfoPagesConnectionArgs = {
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<InfoPagesFilter>;
+};
+
+
+export type QueryFaqPageArgs = {
+  relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryFaqPageConnectionArgs = {
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<FaqPageFilter>;
+};
+
+
 export type QueryPrescriptionsPageArgs = {
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
@@ -228,6 +262,8 @@ export type DocumentFilter = {
   homePage?: InputMaybe<HomePageFilter>;
   doctorPages?: InputMaybe<DoctorPagesFilter>;
   bookingPage?: InputMaybe<BookingPageFilter>;
+  infoPages?: InputMaybe<InfoPagesFilter>;
+  faqPage?: InputMaybe<FaqPageFilter>;
   prescriptionsPage?: InputMaybe<PrescriptionsPageFilter>;
   contactPage?: InputMaybe<ContactPageFilter>;
   legalPages?: InputMaybe<LegalPagesFilter>;
@@ -270,7 +306,7 @@ export type CollectionDocumentsArgs = {
   folder?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type DocumentNode = SiteSettings | HomePage | DoctorPages | BookingPage | PrescriptionsPage | ContactPage | LegalPages | Folder;
+export type DocumentNode = SiteSettings | HomePage | DoctorPages | BookingPage | InfoPages | FaqPage | PrescriptionsPage | ContactPage | LegalPages | Folder;
 
 export type SiteSettingsVacationPopupLinesSegments = {
   __typename?: 'SiteSettingsVacationPopupLinesSegments';
@@ -301,6 +337,10 @@ export type SiteSettingsNavigation = {
 export type SiteSettings = Node & Document & {
   __typename?: 'SiteSettings';
   siteTitle: Scalars['String']['output'];
+  siteUrl: Scalars['String']['output'];
+  defaultDescription?: Maybe<Scalars['String']['output']>;
+  keywords?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  socialImage?: Maybe<Scalars['String']['output']>;
   brandLabel: Scalars['String']['output'];
   logo?: Maybe<Scalars['String']['output']>;
   favicon?: Maybe<Scalars['String']['output']>;
@@ -362,6 +402,10 @@ export type SiteSettingsNavigationFilter = {
 
 export type SiteSettingsFilter = {
   siteTitle?: InputMaybe<StringFilter>;
+  siteUrl?: InputMaybe<StringFilter>;
+  defaultDescription?: InputMaybe<StringFilter>;
+  keywords?: InputMaybe<StringFilter>;
+  socialImage?: InputMaybe<ImageFilter>;
   brandLabel?: InputMaybe<StringFilter>;
   logo?: InputMaybe<ImageFilter>;
   favicon?: InputMaybe<ImageFilter>;
@@ -424,6 +468,8 @@ export type HomePageDirections = {
 export type HomePage = Node & Document & {
   __typename?: 'HomePage';
   title: Scalars['String']['output'];
+  seoTitle?: Maybe<Scalars['String']['output']>;
+  seoDescription?: Maybe<Scalars['String']['output']>;
   doctors?: Maybe<Array<Maybe<HomePageDoctors>>>;
   ordination?: Maybe<HomePageOrdination>;
   directions?: Maybe<HomePageDirections>;
@@ -469,6 +515,8 @@ export type HomePageDirectionsFilter = {
 
 export type HomePageFilter = {
   title?: InputMaybe<StringFilter>;
+  seoTitle?: InputMaybe<StringFilter>;
+  seoDescription?: InputMaybe<StringFilter>;
   doctors?: InputMaybe<HomePageDoctorsFilter>;
   ordination?: InputMaybe<HomePageOrdinationFilter>;
   directions?: InputMaybe<HomePageDirectionsFilter>;
@@ -502,6 +550,8 @@ export type DoctorPages = Node & Document & {
   __typename?: 'DoctorPages';
   slug: Scalars['String']['output'];
   title: Scalars['String']['output'];
+  seoTitle?: Maybe<Scalars['String']['output']>;
+  seoDescription?: Maybe<Scalars['String']['output']>;
   subtitle: Scalars['String']['output'];
   sections?: Maybe<Array<Maybe<DoctorPagesSections>>>;
   id: Scalars['ID']['output'];
@@ -522,6 +572,8 @@ export type DoctorPagesSectionsFilter = {
 export type DoctorPagesFilter = {
   slug?: InputMaybe<StringFilter>;
   title?: InputMaybe<StringFilter>;
+  seoTitle?: InputMaybe<StringFilter>;
+  seoDescription?: InputMaybe<StringFilter>;
   subtitle?: InputMaybe<StringFilter>;
   sections?: InputMaybe<DoctorPagesSectionsFilter>;
 };
@@ -551,6 +603,8 @@ export type BookingPageDoctors = {
 export type BookingPage = Node & Document & {
   __typename?: 'BookingPage';
   title: Scalars['String']['output'];
+  seoTitle?: Maybe<Scalars['String']['output']>;
+  seoDescription?: Maybe<Scalars['String']['output']>;
   eyebrow?: Maybe<Scalars['String']['output']>;
   heading: Scalars['String']['output'];
   intro?: Maybe<Scalars['String']['output']>;
@@ -576,6 +630,8 @@ export type BookingPageDoctorsFilter = {
 
 export type BookingPageFilter = {
   title?: InputMaybe<StringFilter>;
+  seoTitle?: InputMaybe<StringFilter>;
+  seoDescription?: InputMaybe<StringFilter>;
   eyebrow?: InputMaybe<StringFilter>;
   heading?: InputMaybe<StringFilter>;
   intro?: InputMaybe<StringFilter>;
@@ -601,9 +657,113 @@ export type BookingPageConnection = Connection & {
   edges?: Maybe<Array<Maybe<BookingPageConnectionEdges>>>;
 };
 
+export type InfoPagesSections = {
+  __typename?: 'InfoPagesSections';
+  title: Scalars['String']['output'];
+  text?: Maybe<Scalars['String']['output']>;
+  items?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  href?: Maybe<Scalars['String']['output']>;
+  linkLabel?: Maybe<Scalars['String']['output']>;
+};
+
+export type InfoPages = Node & Document & {
+  __typename?: 'InfoPages';
+  title: Scalars['String']['output'];
+  seoTitle?: Maybe<Scalars['String']['output']>;
+  seoDescription?: Maybe<Scalars['String']['output']>;
+  eyebrow?: Maybe<Scalars['String']['output']>;
+  heading: Scalars['String']['output'];
+  intro?: Maybe<Scalars['String']['output']>;
+  sections?: Maybe<Array<Maybe<InfoPagesSections>>>;
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type InfoPagesSectionsFilter = {
+  title?: InputMaybe<StringFilter>;
+  text?: InputMaybe<StringFilter>;
+  items?: InputMaybe<StringFilter>;
+  href?: InputMaybe<StringFilter>;
+  linkLabel?: InputMaybe<StringFilter>;
+};
+
+export type InfoPagesFilter = {
+  title?: InputMaybe<StringFilter>;
+  seoTitle?: InputMaybe<StringFilter>;
+  seoDescription?: InputMaybe<StringFilter>;
+  eyebrow?: InputMaybe<StringFilter>;
+  heading?: InputMaybe<StringFilter>;
+  intro?: InputMaybe<StringFilter>;
+  sections?: InputMaybe<InfoPagesSectionsFilter>;
+};
+
+export type InfoPagesConnectionEdges = {
+  __typename?: 'InfoPagesConnectionEdges';
+  cursor: Scalars['String']['output'];
+  node?: Maybe<InfoPages>;
+};
+
+export type InfoPagesConnection = Connection & {
+  __typename?: 'InfoPagesConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float']['output'];
+  edges?: Maybe<Array<Maybe<InfoPagesConnectionEdges>>>;
+};
+
+export type FaqPageFaqs = {
+  __typename?: 'FaqPageFaqs';
+  question: Scalars['String']['output'];
+  answer?: Maybe<Scalars['String']['output']>;
+};
+
+export type FaqPage = Node & Document & {
+  __typename?: 'FaqPage';
+  title: Scalars['String']['output'];
+  seoTitle?: Maybe<Scalars['String']['output']>;
+  seoDescription?: Maybe<Scalars['String']['output']>;
+  eyebrow?: Maybe<Scalars['String']['output']>;
+  heading: Scalars['String']['output'];
+  intro?: Maybe<Scalars['String']['output']>;
+  faqs?: Maybe<Array<Maybe<FaqPageFaqs>>>;
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type FaqPageFaqsFilter = {
+  question?: InputMaybe<StringFilter>;
+  answer?: InputMaybe<StringFilter>;
+};
+
+export type FaqPageFilter = {
+  title?: InputMaybe<StringFilter>;
+  seoTitle?: InputMaybe<StringFilter>;
+  seoDescription?: InputMaybe<StringFilter>;
+  eyebrow?: InputMaybe<StringFilter>;
+  heading?: InputMaybe<StringFilter>;
+  intro?: InputMaybe<StringFilter>;
+  faqs?: InputMaybe<FaqPageFaqsFilter>;
+};
+
+export type FaqPageConnectionEdges = {
+  __typename?: 'FaqPageConnectionEdges';
+  cursor: Scalars['String']['output'];
+  node?: Maybe<FaqPage>;
+};
+
+export type FaqPageConnection = Connection & {
+  __typename?: 'FaqPageConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float']['output'];
+  edges?: Maybe<Array<Maybe<FaqPageConnectionEdges>>>;
+};
+
 export type PrescriptionsPage = Node & Document & {
   __typename?: 'PrescriptionsPage';
   title: Scalars['String']['output'];
+  seoTitle?: Maybe<Scalars['String']['output']>;
+  seoDescription?: Maybe<Scalars['String']['output']>;
   eyebrow?: Maybe<Scalars['String']['output']>;
   heading: Scalars['String']['output'];
   intro?: Maybe<Scalars['String']['output']>;
@@ -619,6 +779,8 @@ export type PrescriptionsPage = Node & Document & {
 
 export type PrescriptionsPageFilter = {
   title?: InputMaybe<StringFilter>;
+  seoTitle?: InputMaybe<StringFilter>;
+  seoDescription?: InputMaybe<StringFilter>;
   eyebrow?: InputMaybe<StringFilter>;
   heading?: InputMaybe<StringFilter>;
   intro?: InputMaybe<StringFilter>;
@@ -642,15 +804,25 @@ export type PrescriptionsPageConnection = Connection & {
   edges?: Maybe<Array<Maybe<PrescriptionsPageConnectionEdges>>>;
 };
 
+export type ContactPageAccess = {
+  __typename?: 'ContactPageAccess';
+  title?: Maybe<Scalars['String']['output']>;
+  text?: Maybe<Scalars['String']['output']>;
+  items?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+};
+
 export type ContactPage = Node & Document & {
   __typename?: 'ContactPage';
   title: Scalars['String']['output'];
+  seoTitle?: Maybe<Scalars['String']['output']>;
+  seoDescription?: Maybe<Scalars['String']['output']>;
   eyebrow?: Maybe<Scalars['String']['output']>;
   heading: Scalars['String']['output'];
   addressLines?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   phoneLabel?: Maybe<Scalars['String']['output']>;
   phoneHref?: Maybe<Scalars['String']['output']>;
   email?: Maybe<Scalars['String']['output']>;
+  access?: Maybe<ContactPageAccess>;
   mapTitle?: Maybe<Scalars['String']['output']>;
   mapQuery?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
@@ -658,14 +830,23 @@ export type ContactPage = Node & Document & {
   _values: Scalars['JSON']['output'];
 };
 
+export type ContactPageAccessFilter = {
+  title?: InputMaybe<StringFilter>;
+  text?: InputMaybe<StringFilter>;
+  items?: InputMaybe<StringFilter>;
+};
+
 export type ContactPageFilter = {
   title?: InputMaybe<StringFilter>;
+  seoTitle?: InputMaybe<StringFilter>;
+  seoDescription?: InputMaybe<StringFilter>;
   eyebrow?: InputMaybe<StringFilter>;
   heading?: InputMaybe<StringFilter>;
   addressLines?: InputMaybe<StringFilter>;
   phoneLabel?: InputMaybe<StringFilter>;
   phoneHref?: InputMaybe<StringFilter>;
   email?: InputMaybe<StringFilter>;
+  access?: InputMaybe<ContactPageAccessFilter>;
   mapTitle?: InputMaybe<StringFilter>;
   mapQuery?: InputMaybe<StringFilter>;
 };
@@ -685,6 +866,8 @@ export type ContactPageConnection = Connection & {
 
 export type LegalPages = Node & Document & {
   __typename?: 'LegalPages';
+  seoTitle?: Maybe<Scalars['String']['output']>;
+  seoDescription?: Maybe<Scalars['String']['output']>;
   title: Scalars['String']['output'];
   heading: Scalars['String']['output'];
   body?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
@@ -694,6 +877,8 @@ export type LegalPages = Node & Document & {
 };
 
 export type LegalPagesFilter = {
+  seoTitle?: InputMaybe<StringFilter>;
+  seoDescription?: InputMaybe<StringFilter>;
   title?: InputMaybe<StringFilter>;
   heading?: InputMaybe<StringFilter>;
   body?: InputMaybe<StringFilter>;
@@ -727,6 +912,10 @@ export type Mutation = {
   createDoctorPages: DoctorPages;
   updateBookingPage: BookingPage;
   createBookingPage: BookingPage;
+  updateInfoPages: InfoPages;
+  createInfoPages: InfoPages;
+  updateFaqPage: FaqPage;
+  createFaqPage: FaqPage;
   updatePrescriptionsPage: PrescriptionsPage;
   createPrescriptionsPage: PrescriptionsPage;
   updateContactPage: ContactPage;
@@ -817,6 +1006,30 @@ export type MutationCreateBookingPageArgs = {
 };
 
 
+export type MutationUpdateInfoPagesArgs = {
+  relativePath: Scalars['String']['input'];
+  params: InfoPagesMutation;
+};
+
+
+export type MutationCreateInfoPagesArgs = {
+  relativePath: Scalars['String']['input'];
+  params: InfoPagesMutation;
+};
+
+
+export type MutationUpdateFaqPageArgs = {
+  relativePath: Scalars['String']['input'];
+  params: FaqPageMutation;
+};
+
+
+export type MutationCreateFaqPageArgs = {
+  relativePath: Scalars['String']['input'];
+  params: FaqPageMutation;
+};
+
+
 export type MutationUpdatePrescriptionsPageArgs = {
   relativePath: Scalars['String']['input'];
   params: PrescriptionsPageMutation;
@@ -857,6 +1070,8 @@ export type DocumentUpdateMutation = {
   homePage?: InputMaybe<HomePageMutation>;
   doctorPages?: InputMaybe<DoctorPagesMutation>;
   bookingPage?: InputMaybe<BookingPageMutation>;
+  infoPages?: InputMaybe<InfoPagesMutation>;
+  faqPage?: InputMaybe<FaqPageMutation>;
   prescriptionsPage?: InputMaybe<PrescriptionsPageMutation>;
   contactPage?: InputMaybe<ContactPageMutation>;
   legalPages?: InputMaybe<LegalPagesMutation>;
@@ -868,6 +1083,8 @@ export type DocumentMutation = {
   homePage?: InputMaybe<HomePageMutation>;
   doctorPages?: InputMaybe<DoctorPagesMutation>;
   bookingPage?: InputMaybe<BookingPageMutation>;
+  infoPages?: InputMaybe<InfoPagesMutation>;
+  faqPage?: InputMaybe<FaqPageMutation>;
   prescriptionsPage?: InputMaybe<PrescriptionsPageMutation>;
   contactPage?: InputMaybe<ContactPageMutation>;
   legalPages?: InputMaybe<LegalPagesMutation>;
@@ -897,6 +1114,10 @@ export type SiteSettingsNavigationMutation = {
 
 export type SiteSettingsMutation = {
   siteTitle?: InputMaybe<Scalars['String']['input']>;
+  siteUrl?: InputMaybe<Scalars['String']['input']>;
+  defaultDescription?: InputMaybe<Scalars['String']['input']>;
+  keywords?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  socialImage?: InputMaybe<Scalars['String']['input']>;
   brandLabel?: InputMaybe<Scalars['String']['input']>;
   logo?: InputMaybe<Scalars['String']['input']>;
   favicon?: InputMaybe<Scalars['String']['input']>;
@@ -941,6 +1162,8 @@ export type HomePageDirectionsMutation = {
 
 export type HomePageMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
+  seoTitle?: InputMaybe<Scalars['String']['input']>;
+  seoDescription?: InputMaybe<Scalars['String']['input']>;
   doctors?: InputMaybe<Array<InputMaybe<HomePageDoctorsMutation>>>;
   ordination?: InputMaybe<HomePageOrdinationMutation>;
   directions?: InputMaybe<HomePageDirectionsMutation>;
@@ -959,6 +1182,8 @@ export type DoctorPagesSectionsMutation = {
 export type DoctorPagesMutation = {
   slug?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
+  seoTitle?: InputMaybe<Scalars['String']['input']>;
+  seoDescription?: InputMaybe<Scalars['String']['input']>;
   subtitle?: InputMaybe<Scalars['String']['input']>;
   sections?: InputMaybe<Array<InputMaybe<DoctorPagesSectionsMutation>>>;
 };
@@ -973,6 +1198,8 @@ export type BookingPageDoctorsMutation = {
 
 export type BookingPageMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
+  seoTitle?: InputMaybe<Scalars['String']['input']>;
+  seoDescription?: InputMaybe<Scalars['String']['input']>;
   eyebrow?: InputMaybe<Scalars['String']['input']>;
   heading?: InputMaybe<Scalars['String']['input']>;
   intro?: InputMaybe<Scalars['String']['input']>;
@@ -985,8 +1212,43 @@ export type BookingPageMutation = {
   patientHeading?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type InfoPagesSectionsMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  text?: InputMaybe<Scalars['String']['input']>;
+  items?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  href?: InputMaybe<Scalars['String']['input']>;
+  linkLabel?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type InfoPagesMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  seoTitle?: InputMaybe<Scalars['String']['input']>;
+  seoDescription?: InputMaybe<Scalars['String']['input']>;
+  eyebrow?: InputMaybe<Scalars['String']['input']>;
+  heading?: InputMaybe<Scalars['String']['input']>;
+  intro?: InputMaybe<Scalars['String']['input']>;
+  sections?: InputMaybe<Array<InputMaybe<InfoPagesSectionsMutation>>>;
+};
+
+export type FaqPageFaqsMutation = {
+  question?: InputMaybe<Scalars['String']['input']>;
+  answer?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type FaqPageMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  seoTitle?: InputMaybe<Scalars['String']['input']>;
+  seoDescription?: InputMaybe<Scalars['String']['input']>;
+  eyebrow?: InputMaybe<Scalars['String']['input']>;
+  heading?: InputMaybe<Scalars['String']['input']>;
+  intro?: InputMaybe<Scalars['String']['input']>;
+  faqs?: InputMaybe<Array<InputMaybe<FaqPageFaqsMutation>>>;
+};
+
 export type PrescriptionsPageMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
+  seoTitle?: InputMaybe<Scalars['String']['input']>;
+  seoDescription?: InputMaybe<Scalars['String']['input']>;
   eyebrow?: InputMaybe<Scalars['String']['input']>;
   heading?: InputMaybe<Scalars['String']['input']>;
   intro?: InputMaybe<Scalars['String']['input']>;
@@ -997,19 +1259,30 @@ export type PrescriptionsPageMutation = {
   emptyListText?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type ContactPageAccessMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  text?: InputMaybe<Scalars['String']['input']>;
+  items?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
 export type ContactPageMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
+  seoTitle?: InputMaybe<Scalars['String']['input']>;
+  seoDescription?: InputMaybe<Scalars['String']['input']>;
   eyebrow?: InputMaybe<Scalars['String']['input']>;
   heading?: InputMaybe<Scalars['String']['input']>;
   addressLines?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   phoneLabel?: InputMaybe<Scalars['String']['input']>;
   phoneHref?: InputMaybe<Scalars['String']['input']>;
   email?: InputMaybe<Scalars['String']['input']>;
+  access?: InputMaybe<ContactPageAccessMutation>;
   mapTitle?: InputMaybe<Scalars['String']['input']>;
   mapQuery?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type LegalPagesMutation = {
+  seoTitle?: InputMaybe<Scalars['String']['input']>;
+  seoDescription?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
   heading?: InputMaybe<Scalars['String']['input']>;
   body?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
@@ -1066,6 +1339,10 @@ export type SiteSettingsNavigationFilter = {
 
 export type SiteSettingsFilter = {
   siteTitle?: StringFilter | null | undefined;
+  siteUrl?: StringFilter | null | undefined;
+  defaultDescription?: StringFilter | null | undefined;
+  keywords?: StringFilter | null | undefined;
+  socialImage?: ImageFilter | null | undefined;
   brandLabel?: StringFilter | null | undefined;
   logo?: ImageFilter | null | undefined;
   favicon?: ImageFilter | null | undefined;
@@ -1110,6 +1387,8 @@ export type HomePageDirectionsFilter = {
 
 export type HomePageFilter = {
   title?: StringFilter | null | undefined;
+  seoTitle?: StringFilter | null | undefined;
+  seoDescription?: StringFilter | null | undefined;
   doctors?: HomePageDoctorsFilter | null | undefined;
   ordination?: HomePageOrdinationFilter | null | undefined;
   directions?: HomePageDirectionsFilter | null | undefined;
@@ -1128,6 +1407,8 @@ export type DoctorPagesSectionsFilter = {
 export type DoctorPagesFilter = {
   slug?: StringFilter | null | undefined;
   title?: StringFilter | null | undefined;
+  seoTitle?: StringFilter | null | undefined;
+  seoDescription?: StringFilter | null | undefined;
   subtitle?: StringFilter | null | undefined;
   sections?: DoctorPagesSectionsFilter | null | undefined;
 };
@@ -1142,6 +1423,8 @@ export type BookingPageDoctorsFilter = {
 
 export type BookingPageFilter = {
   title?: StringFilter | null | undefined;
+  seoTitle?: StringFilter | null | undefined;
+  seoDescription?: StringFilter | null | undefined;
   eyebrow?: StringFilter | null | undefined;
   heading?: StringFilter | null | undefined;
   intro?: StringFilter | null | undefined;
@@ -1154,8 +1437,43 @@ export type BookingPageFilter = {
   patientHeading?: StringFilter | null | undefined;
 };
 
+export type InfoPagesSectionsFilter = {
+  title?: StringFilter | null | undefined;
+  text?: StringFilter | null | undefined;
+  items?: StringFilter | null | undefined;
+  href?: StringFilter | null | undefined;
+  linkLabel?: StringFilter | null | undefined;
+};
+
+export type InfoPagesFilter = {
+  title?: StringFilter | null | undefined;
+  seoTitle?: StringFilter | null | undefined;
+  seoDescription?: StringFilter | null | undefined;
+  eyebrow?: StringFilter | null | undefined;
+  heading?: StringFilter | null | undefined;
+  intro?: StringFilter | null | undefined;
+  sections?: InfoPagesSectionsFilter | null | undefined;
+};
+
+export type FaqPageFaqsFilter = {
+  question?: StringFilter | null | undefined;
+  answer?: StringFilter | null | undefined;
+};
+
+export type FaqPageFilter = {
+  title?: StringFilter | null | undefined;
+  seoTitle?: StringFilter | null | undefined;
+  seoDescription?: StringFilter | null | undefined;
+  eyebrow?: StringFilter | null | undefined;
+  heading?: StringFilter | null | undefined;
+  intro?: StringFilter | null | undefined;
+  faqs?: FaqPageFaqsFilter | null | undefined;
+};
+
 export type PrescriptionsPageFilter = {
   title?: StringFilter | null | undefined;
+  seoTitle?: StringFilter | null | undefined;
+  seoDescription?: StringFilter | null | undefined;
   eyebrow?: StringFilter | null | undefined;
   heading?: StringFilter | null | undefined;
   intro?: StringFilter | null | undefined;
@@ -1166,44 +1484,59 @@ export type PrescriptionsPageFilter = {
   emptyListText?: StringFilter | null | undefined;
 };
 
+export type ContactPageAccessFilter = {
+  title?: StringFilter | null | undefined;
+  text?: StringFilter | null | undefined;
+  items?: StringFilter | null | undefined;
+};
+
 export type ContactPageFilter = {
   title?: StringFilter | null | undefined;
+  seoTitle?: StringFilter | null | undefined;
+  seoDescription?: StringFilter | null | undefined;
   eyebrow?: StringFilter | null | undefined;
   heading?: StringFilter | null | undefined;
   addressLines?: StringFilter | null | undefined;
   phoneLabel?: StringFilter | null | undefined;
   phoneHref?: StringFilter | null | undefined;
   email?: StringFilter | null | undefined;
+  access?: ContactPageAccessFilter | null | undefined;
   mapTitle?: StringFilter | null | undefined;
   mapQuery?: StringFilter | null | undefined;
 };
 
 export type LegalPagesFilter = {
+  seoTitle?: StringFilter | null | undefined;
+  seoDescription?: StringFilter | null | undefined;
   title?: StringFilter | null | undefined;
   heading?: StringFilter | null | undefined;
   body?: StringFilter | null | undefined;
 };
 
-export type SiteSettingsPartsFragment = { __typename: 'SiteSettings', siteTitle: string, brandLabel: string, logo: string | null, favicon: string | null, vacationPopup: { __typename: 'SiteSettingsVacationPopup', enabled: boolean | null, endDate: string | null, title: string | null, lines: Array<{ __typename: 'SiteSettingsVacationPopupLines', segments: Array<{ __typename: 'SiteSettingsVacationPopupLinesSegments', text: string, bold: boolean | null, red: boolean | null } | null> | null } | null> | null } | null, navigation: Array<{ __typename: 'SiteSettingsNavigation', label: string, href: string } | null> | null };
+export type SiteSettingsPartsFragment = { __typename: 'SiteSettings', siteTitle: string, siteUrl: string, defaultDescription: string | null, keywords: Array<string | null> | null, socialImage: string | null, brandLabel: string, logo: string | null, favicon: string | null, vacationPopup: { __typename: 'SiteSettingsVacationPopup', enabled: boolean | null, endDate: string | null, title: string | null, lines: Array<{ __typename: 'SiteSettingsVacationPopupLines', segments: Array<{ __typename: 'SiteSettingsVacationPopupLinesSegments', text: string, bold: boolean | null, red: boolean | null } | null> | null } | null> | null } | null, navigation: Array<{ __typename: 'SiteSettingsNavigation', label: string, href: string } | null> | null };
 
-export type HomePagePartsFragment = { __typename: 'HomePage', title: string, doctors: Array<{ __typename: 'HomePageDoctors', name: string, initials: string, specialty: string, photo: string | null, photoPosition: string | null, href: string, servicesTitle: string | null, services: Array<string | null> | null, openingHours: string | null, phoneLabel: string | null, phoneHref: string | null } | null> | null, ordination: { __typename: 'HomePageOrdination', eyebrow: string | null, title: string, text: string | null, images: Array<{ __typename: 'HomePageOrdinationImages', image: string | null, imagePosition: string | null, alt: string | null } | null> | null } | null, directions: { __typename: 'HomePageDirections', eyebrow: string | null, title: string, text: string | null, mapTitle: string | null, mapQuery: string | null } | null };
+export type HomePagePartsFragment = { __typename: 'HomePage', title: string, seoTitle: string | null, seoDescription: string | null, doctors: Array<{ __typename: 'HomePageDoctors', name: string, initials: string, specialty: string, photo: string | null, photoPosition: string | null, href: string, servicesTitle: string | null, services: Array<string | null> | null, openingHours: string | null, phoneLabel: string | null, phoneHref: string | null } | null> | null, ordination: { __typename: 'HomePageOrdination', eyebrow: string | null, title: string, text: string | null, images: Array<{ __typename: 'HomePageOrdinationImages', image: string | null, imagePosition: string | null, alt: string | null } | null> | null } | null, directions: { __typename: 'HomePageDirections', eyebrow: string | null, title: string, text: string | null, mapTitle: string | null, mapQuery: string | null } | null };
 
-export type DoctorPagesPartsFragment = { __typename: 'DoctorPages', slug: string, title: string, subtitle: string, sections: Array<{ __typename: 'DoctorPagesSections', id: string, short: string, title: string, theme: string | null, text: string | null, services: Array<string | null> | null, actions: boolean | null } | null> | null };
+export type DoctorPagesPartsFragment = { __typename: 'DoctorPages', slug: string, title: string, seoTitle: string | null, seoDescription: string | null, subtitle: string, sections: Array<{ __typename: 'DoctorPagesSections', id: string, short: string, title: string, theme: string | null, text: string | null, services: Array<string | null> | null, actions: boolean | null } | null> | null };
 
-export type BookingPagePartsFragment = { __typename: 'BookingPage', title: string, eyebrow: string | null, heading: string, intro: string | null, steps: Array<string | null> | null, doctorQuestion: string, appointmentHeading: string | null, appointmentTypes: Array<string | null> | null, times: Array<string | null> | null, patientHeading: string | null, doctors: Array<{ __typename: 'BookingPageDoctors', label: string, name: string, initials: string, photo: string | null, photoPosition: string | null } | null> | null };
+export type BookingPagePartsFragment = { __typename: 'BookingPage', title: string, seoTitle: string | null, seoDescription: string | null, eyebrow: string | null, heading: string, intro: string | null, steps: Array<string | null> | null, doctorQuestion: string, appointmentHeading: string | null, appointmentTypes: Array<string | null> | null, times: Array<string | null> | null, patientHeading: string | null, doctors: Array<{ __typename: 'BookingPageDoctors', label: string, name: string, initials: string, photo: string | null, photoPosition: string | null } | null> | null };
 
-export type PrescriptionsPagePartsFragment = { __typename: 'PrescriptionsPage', title: string, eyebrow: string | null, heading: string, intro: string | null, steps: Array<string | null> | null, doctorOptions: Array<string | null> | null, searchPlaceholder: string | null, emptySelectionText: string | null, emptyListText: string | null };
+export type InfoPagesPartsFragment = { __typename: 'InfoPages', title: string, seoTitle: string | null, seoDescription: string | null, eyebrow: string | null, heading: string, intro: string | null, sections: Array<{ __typename: 'InfoPagesSections', title: string, text: string | null, items: Array<string | null> | null, href: string | null, linkLabel: string | null } | null> | null };
 
-export type ContactPagePartsFragment = { __typename: 'ContactPage', title: string, eyebrow: string | null, heading: string, addressLines: Array<string | null> | null, phoneLabel: string | null, phoneHref: string | null, email: string | null, mapTitle: string | null, mapQuery: string | null };
+export type FaqPagePartsFragment = { __typename: 'FaqPage', title: string, seoTitle: string | null, seoDescription: string | null, eyebrow: string | null, heading: string, intro: string | null, faqs: Array<{ __typename: 'FaqPageFaqs', question: string, answer: string | null } | null> | null };
 
-export type LegalPagesPartsFragment = { __typename: 'LegalPages', title: string, heading: string, body: Array<string | null> | null };
+export type PrescriptionsPagePartsFragment = { __typename: 'PrescriptionsPage', title: string, seoTitle: string | null, seoDescription: string | null, eyebrow: string | null, heading: string, intro: string | null, steps: Array<string | null> | null, doctorOptions: Array<string | null> | null, searchPlaceholder: string | null, emptySelectionText: string | null, emptyListText: string | null };
+
+export type ContactPagePartsFragment = { __typename: 'ContactPage', title: string, seoTitle: string | null, seoDescription: string | null, eyebrow: string | null, heading: string, addressLines: Array<string | null> | null, phoneLabel: string | null, phoneHref: string | null, email: string | null, mapTitle: string | null, mapQuery: string | null, access: { __typename: 'ContactPageAccess', title: string | null, text: string | null, items: Array<string | null> | null } | null };
+
+export type LegalPagesPartsFragment = { __typename: 'LegalPages', seoTitle: string | null, seoDescription: string | null, title: string, heading: string, body: Array<string | null> | null };
 
 export type SiteSettingsQueryVariables = Exact<{
   relativePath: string;
 }>;
 
 
-export type SiteSettingsQuery = { siteSettings: { __typename: 'SiteSettings', id: string, siteTitle: string, brandLabel: string, logo: string | null, favicon: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, vacationPopup: { __typename: 'SiteSettingsVacationPopup', enabled: boolean | null, endDate: string | null, title: string | null, lines: Array<{ __typename: 'SiteSettingsVacationPopupLines', segments: Array<{ __typename: 'SiteSettingsVacationPopupLinesSegments', text: string, bold: boolean | null, red: boolean | null } | null> | null } | null> | null } | null, navigation: Array<{ __typename: 'SiteSettingsNavigation', label: string, href: string } | null> | null } };
+export type SiteSettingsQuery = { siteSettings: { __typename: 'SiteSettings', id: string, siteTitle: string, siteUrl: string, defaultDescription: string | null, keywords: Array<string | null> | null, socialImage: string | null, brandLabel: string, logo: string | null, favicon: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, vacationPopup: { __typename: 'SiteSettingsVacationPopup', enabled: boolean | null, endDate: string | null, title: string | null, lines: Array<{ __typename: 'SiteSettingsVacationPopupLines', segments: Array<{ __typename: 'SiteSettingsVacationPopupLinesSegments', text: string, bold: boolean | null, red: boolean | null } | null> | null } | null> | null } | null, navigation: Array<{ __typename: 'SiteSettingsNavigation', label: string, href: string } | null> | null } };
 
 export type SiteSettingsConnectionQueryVariables = Exact<{
   before?: string | null | undefined;
@@ -1215,14 +1548,14 @@ export type SiteSettingsConnectionQueryVariables = Exact<{
 }>;
 
 
-export type SiteSettingsConnectionQuery = { siteSettingsConnection: { totalCount: number, pageInfo: { hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges: Array<{ cursor: string, node: { __typename: 'SiteSettings', id: string, siteTitle: string, brandLabel: string, logo: string | null, favicon: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, vacationPopup: { __typename: 'SiteSettingsVacationPopup', enabled: boolean | null, endDate: string | null, title: string | null, lines: Array<{ __typename: 'SiteSettingsVacationPopupLines', segments: Array<{ __typename: 'SiteSettingsVacationPopupLinesSegments', text: string, bold: boolean | null, red: boolean | null } | null> | null } | null> | null } | null, navigation: Array<{ __typename: 'SiteSettingsNavigation', label: string, href: string } | null> | null } | null } | null> | null } };
+export type SiteSettingsConnectionQuery = { siteSettingsConnection: { totalCount: number, pageInfo: { hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges: Array<{ cursor: string, node: { __typename: 'SiteSettings', id: string, siteTitle: string, siteUrl: string, defaultDescription: string | null, keywords: Array<string | null> | null, socialImage: string | null, brandLabel: string, logo: string | null, favicon: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, vacationPopup: { __typename: 'SiteSettingsVacationPopup', enabled: boolean | null, endDate: string | null, title: string | null, lines: Array<{ __typename: 'SiteSettingsVacationPopupLines', segments: Array<{ __typename: 'SiteSettingsVacationPopupLinesSegments', text: string, bold: boolean | null, red: boolean | null } | null> | null } | null> | null } | null, navigation: Array<{ __typename: 'SiteSettingsNavigation', label: string, href: string } | null> | null } | null } | null> | null } };
 
 export type HomePageQueryVariables = Exact<{
   relativePath: string;
 }>;
 
 
-export type HomePageQuery = { homePage: { __typename: 'HomePage', id: string, title: string, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, doctors: Array<{ __typename: 'HomePageDoctors', name: string, initials: string, specialty: string, photo: string | null, photoPosition: string | null, href: string, servicesTitle: string | null, services: Array<string | null> | null, openingHours: string | null, phoneLabel: string | null, phoneHref: string | null } | null> | null, ordination: { __typename: 'HomePageOrdination', eyebrow: string | null, title: string, text: string | null, images: Array<{ __typename: 'HomePageOrdinationImages', image: string | null, imagePosition: string | null, alt: string | null } | null> | null } | null, directions: { __typename: 'HomePageDirections', eyebrow: string | null, title: string, text: string | null, mapTitle: string | null, mapQuery: string | null } | null } };
+export type HomePageQuery = { homePage: { __typename: 'HomePage', id: string, title: string, seoTitle: string | null, seoDescription: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, doctors: Array<{ __typename: 'HomePageDoctors', name: string, initials: string, specialty: string, photo: string | null, photoPosition: string | null, href: string, servicesTitle: string | null, services: Array<string | null> | null, openingHours: string | null, phoneLabel: string | null, phoneHref: string | null } | null> | null, ordination: { __typename: 'HomePageOrdination', eyebrow: string | null, title: string, text: string | null, images: Array<{ __typename: 'HomePageOrdinationImages', image: string | null, imagePosition: string | null, alt: string | null } | null> | null } | null, directions: { __typename: 'HomePageDirections', eyebrow: string | null, title: string, text: string | null, mapTitle: string | null, mapQuery: string | null } | null } };
 
 export type HomePageConnectionQueryVariables = Exact<{
   before?: string | null | undefined;
@@ -1234,14 +1567,14 @@ export type HomePageConnectionQueryVariables = Exact<{
 }>;
 
 
-export type HomePageConnectionQuery = { homePageConnection: { totalCount: number, pageInfo: { hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges: Array<{ cursor: string, node: { __typename: 'HomePage', id: string, title: string, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, doctors: Array<{ __typename: 'HomePageDoctors', name: string, initials: string, specialty: string, photo: string | null, photoPosition: string | null, href: string, servicesTitle: string | null, services: Array<string | null> | null, openingHours: string | null, phoneLabel: string | null, phoneHref: string | null } | null> | null, ordination: { __typename: 'HomePageOrdination', eyebrow: string | null, title: string, text: string | null, images: Array<{ __typename: 'HomePageOrdinationImages', image: string | null, imagePosition: string | null, alt: string | null } | null> | null } | null, directions: { __typename: 'HomePageDirections', eyebrow: string | null, title: string, text: string | null, mapTitle: string | null, mapQuery: string | null } | null } | null } | null> | null } };
+export type HomePageConnectionQuery = { homePageConnection: { totalCount: number, pageInfo: { hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges: Array<{ cursor: string, node: { __typename: 'HomePage', id: string, title: string, seoTitle: string | null, seoDescription: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, doctors: Array<{ __typename: 'HomePageDoctors', name: string, initials: string, specialty: string, photo: string | null, photoPosition: string | null, href: string, servicesTitle: string | null, services: Array<string | null> | null, openingHours: string | null, phoneLabel: string | null, phoneHref: string | null } | null> | null, ordination: { __typename: 'HomePageOrdination', eyebrow: string | null, title: string, text: string | null, images: Array<{ __typename: 'HomePageOrdinationImages', image: string | null, imagePosition: string | null, alt: string | null } | null> | null } | null, directions: { __typename: 'HomePageDirections', eyebrow: string | null, title: string, text: string | null, mapTitle: string | null, mapQuery: string | null } | null } | null } | null> | null } };
 
 export type DoctorPagesQueryVariables = Exact<{
   relativePath: string;
 }>;
 
 
-export type DoctorPagesQuery = { doctorPages: { __typename: 'DoctorPages', id: string, slug: string, title: string, subtitle: string, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, sections: Array<{ __typename: 'DoctorPagesSections', id: string, short: string, title: string, theme: string | null, text: string | null, services: Array<string | null> | null, actions: boolean | null } | null> | null } };
+export type DoctorPagesQuery = { doctorPages: { __typename: 'DoctorPages', id: string, slug: string, title: string, seoTitle: string | null, seoDescription: string | null, subtitle: string, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, sections: Array<{ __typename: 'DoctorPagesSections', id: string, short: string, title: string, theme: string | null, text: string | null, services: Array<string | null> | null, actions: boolean | null } | null> | null } };
 
 export type DoctorPagesConnectionQueryVariables = Exact<{
   before?: string | null | undefined;
@@ -1253,14 +1586,14 @@ export type DoctorPagesConnectionQueryVariables = Exact<{
 }>;
 
 
-export type DoctorPagesConnectionQuery = { doctorPagesConnection: { totalCount: number, pageInfo: { hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges: Array<{ cursor: string, node: { __typename: 'DoctorPages', id: string, slug: string, title: string, subtitle: string, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, sections: Array<{ __typename: 'DoctorPagesSections', id: string, short: string, title: string, theme: string | null, text: string | null, services: Array<string | null> | null, actions: boolean | null } | null> | null } | null } | null> | null } };
+export type DoctorPagesConnectionQuery = { doctorPagesConnection: { totalCount: number, pageInfo: { hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges: Array<{ cursor: string, node: { __typename: 'DoctorPages', id: string, slug: string, title: string, seoTitle: string | null, seoDescription: string | null, subtitle: string, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, sections: Array<{ __typename: 'DoctorPagesSections', id: string, short: string, title: string, theme: string | null, text: string | null, services: Array<string | null> | null, actions: boolean | null } | null> | null } | null } | null> | null } };
 
 export type BookingPageQueryVariables = Exact<{
   relativePath: string;
 }>;
 
 
-export type BookingPageQuery = { bookingPage: { __typename: 'BookingPage', id: string, title: string, eyebrow: string | null, heading: string, intro: string | null, steps: Array<string | null> | null, doctorQuestion: string, appointmentHeading: string | null, appointmentTypes: Array<string | null> | null, times: Array<string | null> | null, patientHeading: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, doctors: Array<{ __typename: 'BookingPageDoctors', label: string, name: string, initials: string, photo: string | null, photoPosition: string | null } | null> | null } };
+export type BookingPageQuery = { bookingPage: { __typename: 'BookingPage', id: string, title: string, seoTitle: string | null, seoDescription: string | null, eyebrow: string | null, heading: string, intro: string | null, steps: Array<string | null> | null, doctorQuestion: string, appointmentHeading: string | null, appointmentTypes: Array<string | null> | null, times: Array<string | null> | null, patientHeading: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, doctors: Array<{ __typename: 'BookingPageDoctors', label: string, name: string, initials: string, photo: string | null, photoPosition: string | null } | null> | null } };
 
 export type BookingPageConnectionQueryVariables = Exact<{
   before?: string | null | undefined;
@@ -1272,14 +1605,52 @@ export type BookingPageConnectionQueryVariables = Exact<{
 }>;
 
 
-export type BookingPageConnectionQuery = { bookingPageConnection: { totalCount: number, pageInfo: { hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges: Array<{ cursor: string, node: { __typename: 'BookingPage', id: string, title: string, eyebrow: string | null, heading: string, intro: string | null, steps: Array<string | null> | null, doctorQuestion: string, appointmentHeading: string | null, appointmentTypes: Array<string | null> | null, times: Array<string | null> | null, patientHeading: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, doctors: Array<{ __typename: 'BookingPageDoctors', label: string, name: string, initials: string, photo: string | null, photoPosition: string | null } | null> | null } | null } | null> | null } };
+export type BookingPageConnectionQuery = { bookingPageConnection: { totalCount: number, pageInfo: { hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges: Array<{ cursor: string, node: { __typename: 'BookingPage', id: string, title: string, seoTitle: string | null, seoDescription: string | null, eyebrow: string | null, heading: string, intro: string | null, steps: Array<string | null> | null, doctorQuestion: string, appointmentHeading: string | null, appointmentTypes: Array<string | null> | null, times: Array<string | null> | null, patientHeading: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, doctors: Array<{ __typename: 'BookingPageDoctors', label: string, name: string, initials: string, photo: string | null, photoPosition: string | null } | null> | null } | null } | null> | null } };
+
+export type InfoPagesQueryVariables = Exact<{
+  relativePath: string;
+}>;
+
+
+export type InfoPagesQuery = { infoPages: { __typename: 'InfoPages', id: string, title: string, seoTitle: string | null, seoDescription: string | null, eyebrow: string | null, heading: string, intro: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, sections: Array<{ __typename: 'InfoPagesSections', title: string, text: string | null, items: Array<string | null> | null, href: string | null, linkLabel: string | null } | null> | null } };
+
+export type InfoPagesConnectionQueryVariables = Exact<{
+  before?: string | null | undefined;
+  after?: string | null | undefined;
+  first?: number | null | undefined;
+  last?: number | null | undefined;
+  sort?: string | null | undefined;
+  filter?: InfoPagesFilter | null | undefined;
+}>;
+
+
+export type InfoPagesConnectionQuery = { infoPagesConnection: { totalCount: number, pageInfo: { hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges: Array<{ cursor: string, node: { __typename: 'InfoPages', id: string, title: string, seoTitle: string | null, seoDescription: string | null, eyebrow: string | null, heading: string, intro: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, sections: Array<{ __typename: 'InfoPagesSections', title: string, text: string | null, items: Array<string | null> | null, href: string | null, linkLabel: string | null } | null> | null } | null } | null> | null } };
+
+export type FaqPageQueryVariables = Exact<{
+  relativePath: string;
+}>;
+
+
+export type FaqPageQuery = { faqPage: { __typename: 'FaqPage', id: string, title: string, seoTitle: string | null, seoDescription: string | null, eyebrow: string | null, heading: string, intro: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, faqs: Array<{ __typename: 'FaqPageFaqs', question: string, answer: string | null } | null> | null } };
+
+export type FaqPageConnectionQueryVariables = Exact<{
+  before?: string | null | undefined;
+  after?: string | null | undefined;
+  first?: number | null | undefined;
+  last?: number | null | undefined;
+  sort?: string | null | undefined;
+  filter?: FaqPageFilter | null | undefined;
+}>;
+
+
+export type FaqPageConnectionQuery = { faqPageConnection: { totalCount: number, pageInfo: { hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges: Array<{ cursor: string, node: { __typename: 'FaqPage', id: string, title: string, seoTitle: string | null, seoDescription: string | null, eyebrow: string | null, heading: string, intro: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, faqs: Array<{ __typename: 'FaqPageFaqs', question: string, answer: string | null } | null> | null } | null } | null> | null } };
 
 export type PrescriptionsPageQueryVariables = Exact<{
   relativePath: string;
 }>;
 
 
-export type PrescriptionsPageQuery = { prescriptionsPage: { __typename: 'PrescriptionsPage', id: string, title: string, eyebrow: string | null, heading: string, intro: string | null, steps: Array<string | null> | null, doctorOptions: Array<string | null> | null, searchPlaceholder: string | null, emptySelectionText: string | null, emptyListText: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type PrescriptionsPageQuery = { prescriptionsPage: { __typename: 'PrescriptionsPage', id: string, title: string, seoTitle: string | null, seoDescription: string | null, eyebrow: string | null, heading: string, intro: string | null, steps: Array<string | null> | null, doctorOptions: Array<string | null> | null, searchPlaceholder: string | null, emptySelectionText: string | null, emptyListText: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
 export type PrescriptionsPageConnectionQueryVariables = Exact<{
   before?: string | null | undefined;
@@ -1291,14 +1662,14 @@ export type PrescriptionsPageConnectionQueryVariables = Exact<{
 }>;
 
 
-export type PrescriptionsPageConnectionQuery = { prescriptionsPageConnection: { totalCount: number, pageInfo: { hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges: Array<{ cursor: string, node: { __typename: 'PrescriptionsPage', id: string, title: string, eyebrow: string | null, heading: string, intro: string | null, steps: Array<string | null> | null, doctorOptions: Array<string | null> | null, searchPlaceholder: string | null, emptySelectionText: string | null, emptyListText: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type PrescriptionsPageConnectionQuery = { prescriptionsPageConnection: { totalCount: number, pageInfo: { hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges: Array<{ cursor: string, node: { __typename: 'PrescriptionsPage', id: string, title: string, seoTitle: string | null, seoDescription: string | null, eyebrow: string | null, heading: string, intro: string | null, steps: Array<string | null> | null, doctorOptions: Array<string | null> | null, searchPlaceholder: string | null, emptySelectionText: string | null, emptyListText: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export type ContactPageQueryVariables = Exact<{
   relativePath: string;
 }>;
 
 
-export type ContactPageQuery = { contactPage: { __typename: 'ContactPage', id: string, title: string, eyebrow: string | null, heading: string, addressLines: Array<string | null> | null, phoneLabel: string | null, phoneHref: string | null, email: string | null, mapTitle: string | null, mapQuery: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type ContactPageQuery = { contactPage: { __typename: 'ContactPage', id: string, title: string, seoTitle: string | null, seoDescription: string | null, eyebrow: string | null, heading: string, addressLines: Array<string | null> | null, phoneLabel: string | null, phoneHref: string | null, email: string | null, mapTitle: string | null, mapQuery: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, access: { __typename: 'ContactPageAccess', title: string | null, text: string | null, items: Array<string | null> | null } | null } };
 
 export type ContactPageConnectionQueryVariables = Exact<{
   before?: string | null | undefined;
@@ -1310,14 +1681,14 @@ export type ContactPageConnectionQueryVariables = Exact<{
 }>;
 
 
-export type ContactPageConnectionQuery = { contactPageConnection: { totalCount: number, pageInfo: { hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges: Array<{ cursor: string, node: { __typename: 'ContactPage', id: string, title: string, eyebrow: string | null, heading: string, addressLines: Array<string | null> | null, phoneLabel: string | null, phoneHref: string | null, email: string | null, mapTitle: string | null, mapQuery: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type ContactPageConnectionQuery = { contactPageConnection: { totalCount: number, pageInfo: { hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges: Array<{ cursor: string, node: { __typename: 'ContactPage', id: string, title: string, seoTitle: string | null, seoDescription: string | null, eyebrow: string | null, heading: string, addressLines: Array<string | null> | null, phoneLabel: string | null, phoneHref: string | null, email: string | null, mapTitle: string | null, mapQuery: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, access: { __typename: 'ContactPageAccess', title: string | null, text: string | null, items: Array<string | null> | null } | null } | null } | null> | null } };
 
 export type LegalPagesQueryVariables = Exact<{
   relativePath: string;
 }>;
 
 
-export type LegalPagesQuery = { legalPages: { __typename: 'LegalPages', id: string, title: string, heading: string, body: Array<string | null> | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type LegalPagesQuery = { legalPages: { __typename: 'LegalPages', id: string, seoTitle: string | null, seoDescription: string | null, title: string, heading: string, body: Array<string | null> | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
 export type LegalPagesConnectionQueryVariables = Exact<{
   before?: string | null | undefined;
@@ -1329,12 +1700,16 @@ export type LegalPagesConnectionQueryVariables = Exact<{
 }>;
 
 
-export type LegalPagesConnectionQuery = { legalPagesConnection: { totalCount: number, pageInfo: { hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges: Array<{ cursor: string, node: { __typename: 'LegalPages', id: string, title: string, heading: string, body: Array<string | null> | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type LegalPagesConnectionQuery = { legalPagesConnection: { totalCount: number, pageInfo: { hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges: Array<{ cursor: string, node: { __typename: 'LegalPages', id: string, seoTitle: string | null, seoDescription: string | null, title: string, heading: string, body: Array<string | null> | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export const SiteSettingsPartsFragmentDoc = gql`
     fragment SiteSettingsParts on SiteSettings {
   __typename
   siteTitle
+  siteUrl
+  defaultDescription
+  keywords
+  socialImage
   brandLabel
   logo
   favicon
@@ -1364,6 +1739,8 @@ export const HomePagePartsFragmentDoc = gql`
     fragment HomePageParts on HomePage {
   __typename
   title
+  seoTitle
+  seoDescription
   doctors {
     __typename
     name
@@ -1405,6 +1782,8 @@ export const DoctorPagesPartsFragmentDoc = gql`
   __typename
   slug
   title
+  seoTitle
+  seoDescription
   subtitle
   sections {
     __typename
@@ -1422,6 +1801,8 @@ export const BookingPagePartsFragmentDoc = gql`
     fragment BookingPageParts on BookingPage {
   __typename
   title
+  seoTitle
+  seoDescription
   eyebrow
   heading
   intro
@@ -1441,10 +1822,47 @@ export const BookingPagePartsFragmentDoc = gql`
   patientHeading
 }
     `;
+export const InfoPagesPartsFragmentDoc = gql`
+    fragment InfoPagesParts on InfoPages {
+  __typename
+  title
+  seoTitle
+  seoDescription
+  eyebrow
+  heading
+  intro
+  sections {
+    __typename
+    title
+    text
+    items
+    href
+    linkLabel
+  }
+}
+    `;
+export const FaqPagePartsFragmentDoc = gql`
+    fragment FaqPageParts on FaqPage {
+  __typename
+  title
+  seoTitle
+  seoDescription
+  eyebrow
+  heading
+  intro
+  faqs {
+    __typename
+    question
+    answer
+  }
+}
+    `;
 export const PrescriptionsPagePartsFragmentDoc = gql`
     fragment PrescriptionsPageParts on PrescriptionsPage {
   __typename
   title
+  seoTitle
+  seoDescription
   eyebrow
   heading
   intro
@@ -1459,12 +1877,20 @@ export const ContactPagePartsFragmentDoc = gql`
     fragment ContactPageParts on ContactPage {
   __typename
   title
+  seoTitle
+  seoDescription
   eyebrow
   heading
   addressLines
   phoneLabel
   phoneHref
   email
+  access {
+    __typename
+    title
+    text
+    items
+  }
   mapTitle
   mapQuery
 }
@@ -1472,6 +1898,8 @@ export const ContactPagePartsFragmentDoc = gql`
 export const LegalPagesPartsFragmentDoc = gql`
     fragment LegalPagesParts on LegalPages {
   __typename
+  seoTitle
+  seoDescription
   title
   heading
   body
@@ -1705,6 +2133,120 @@ export const BookingPageConnectionDocument = gql`
   }
 }
     ${BookingPagePartsFragmentDoc}`;
+export const InfoPagesDocument = gql`
+    query infoPages($relativePath: String!) {
+  infoPages(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...InfoPagesParts
+  }
+}
+    ${InfoPagesPartsFragmentDoc}`;
+export const InfoPagesConnectionDocument = gql`
+    query infoPagesConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: InfoPagesFilter) {
+  infoPagesConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...InfoPagesParts
+      }
+    }
+  }
+}
+    ${InfoPagesPartsFragmentDoc}`;
+export const FaqPageDocument = gql`
+    query faqPage($relativePath: String!) {
+  faqPage(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...FaqPageParts
+  }
+}
+    ${FaqPagePartsFragmentDoc}`;
+export const FaqPageConnectionDocument = gql`
+    query faqPageConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: FaqPageFilter) {
+  faqPageConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...FaqPageParts
+      }
+    }
+  }
+}
+    ${FaqPagePartsFragmentDoc}`;
 export const PrescriptionsPageDocument = gql`
     query prescriptionsPage($relativePath: String!) {
   prescriptionsPage(relativePath: $relativePath) {
@@ -1902,6 +2444,18 @@ export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) 
       },
     bookingPageConnection(variables?: BookingPageConnectionQueryVariables, options?: C): Promise<{data: BookingPageConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: BookingPageConnectionQueryVariables, query: string}> {
         return requester<{data: BookingPageConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: BookingPageConnectionQueryVariables, query: string}, BookingPageConnectionQueryVariables>(BookingPageConnectionDocument, variables, options);
+      },
+    infoPages(variables: InfoPagesQueryVariables, options?: C): Promise<{data: InfoPagesQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: InfoPagesQueryVariables, query: string}> {
+        return requester<{data: InfoPagesQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: InfoPagesQueryVariables, query: string}, InfoPagesQueryVariables>(InfoPagesDocument, variables, options);
+      },
+    infoPagesConnection(variables?: InfoPagesConnectionQueryVariables, options?: C): Promise<{data: InfoPagesConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: InfoPagesConnectionQueryVariables, query: string}> {
+        return requester<{data: InfoPagesConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: InfoPagesConnectionQueryVariables, query: string}, InfoPagesConnectionQueryVariables>(InfoPagesConnectionDocument, variables, options);
+      },
+    faqPage(variables: FaqPageQueryVariables, options?: C): Promise<{data: FaqPageQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: FaqPageQueryVariables, query: string}> {
+        return requester<{data: FaqPageQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: FaqPageQueryVariables, query: string}, FaqPageQueryVariables>(FaqPageDocument, variables, options);
+      },
+    faqPageConnection(variables?: FaqPageConnectionQueryVariables, options?: C): Promise<{data: FaqPageConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: FaqPageConnectionQueryVariables, query: string}> {
+        return requester<{data: FaqPageConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: FaqPageConnectionQueryVariables, query: string}, FaqPageConnectionQueryVariables>(FaqPageConnectionDocument, variables, options);
       },
     prescriptionsPage(variables: PrescriptionsPageQueryVariables, options?: C): Promise<{data: PrescriptionsPageQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: PrescriptionsPageQueryVariables, query: string}> {
         return requester<{data: PrescriptionsPageQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: PrescriptionsPageQueryVariables, query: string}, PrescriptionsPageQueryVariables>(PrescriptionsPageDocument, variables, options);

@@ -1,5 +1,9 @@
 {
   "siteTitle": "Ordination Dr. Reiter",
+  "siteUrl": "https://ordination-reiter.com",
+  "defaultDescription": "Ordination Dr. Reiter in Graz: Innere Medizin, Allgemeinmedizin, Vorsorge, Gutachten, Terminvereinbarung und Rezeptbestellung.",
+  "keywords": ["Ordination Dr. Reiter", "Arzt Graz", "Innere Medizin Graz", "Allgemeinmedizin Graz", "Vorsorgeuntersuchung Graz", "Rezeptbestellung Graz"],
+  "socialImage": "/uploads/DSC02966-10.jpg",
   "brandLabel": "ORDINATION DR. REITER",
   "logo": "",
   "favicon": "",
@@ -52,12 +56,20 @@
       "href": "/sigrid-reiter"
     },
     {
+      "label": "Leistungen",
+      "href": "/leistungen"
+    },
+    {
       "label": "Terminvereinbarung",
       "href": "/terminvereinbarung"
     },
     {
       "label": "Rezeptbestellung",
       "href": "/rezeptbestellung"
+    },
+    {
+      "label": "FAQ",
+      "href": "/faq"
     },
     {
       "label": "Kontakt",

@@ -8,6 +8,11 @@ const navigationFields = [
   { type: 'string', name: 'href', label: 'Link', required: true }
 ] as const;
 
+const seoFields = [
+  { type: 'string', name: 'seoTitle', label: 'SEO Titel' },
+  { type: 'string', name: 'seoDescription', label: 'SEO Beschreibung', ui: { component: 'textarea' } }
+] as const;
+
 const imagePositionOptions = [
   { label: 'Mitte', value: 'center' },
   { label: 'Oben', value: 'top' },
@@ -66,6 +71,45 @@ const legalFields = [
   { type: 'string', name: 'body', label: 'Textzeilen', list: true }
 ] as const;
 
+const infoPageFields = [
+  { type: 'string', name: 'title', label: 'Meta-Titel', required: true },
+  ...seoFields,
+  { type: 'string', name: 'eyebrow', label: 'Eyebrow' },
+  { type: 'string', name: 'heading', label: 'Überschrift', required: true },
+  { type: 'string', name: 'intro', label: 'Intro', ui: { component: 'textarea' } },
+  {
+    type: 'object',
+    name: 'sections',
+    label: 'Abschnitte',
+    list: true,
+    fields: [
+      { type: 'string', name: 'title', label: 'Titel', required: true },
+      { type: 'string', name: 'text', label: 'Text', ui: { component: 'textarea' } },
+      { type: 'string', name: 'items', label: 'Punkte', list: true },
+      { type: 'string', name: 'href', label: 'Link' },
+      { type: 'string', name: 'linkLabel', label: 'Link-Text' }
+    ]
+  }
+] as const;
+
+const faqPageFields = [
+  { type: 'string', name: 'title', label: 'Meta-Titel', required: true },
+  ...seoFields,
+  { type: 'string', name: 'eyebrow', label: 'Eyebrow' },
+  { type: 'string', name: 'heading', label: 'Überschrift', required: true },
+  { type: 'string', name: 'intro', label: 'Intro', ui: { component: 'textarea' } },
+  {
+    type: 'object',
+    name: 'faqs',
+    label: 'Fragen und Antworten',
+    list: true,
+    fields: [
+      { type: 'string', name: 'question', label: 'Frage', required: true },
+      { type: 'string', name: 'answer', label: 'Antwort', ui: { component: 'textarea' } }
+    ]
+  }
+] as const;
+
 const vacationPopupFields = [
   { type: 'boolean', name: 'enabled', label: 'Popup anzeigen' },
   { type: 'datetime', name: 'endDate', label: 'Anzeigen bis inklusive' },
@@ -122,6 +166,10 @@ export default defineConfig({
         ui: { router: () => '/' },
         fields: [
           { type: 'string', name: 'siteTitle', label: 'Seitentitel', required: true },
+          { type: 'string', name: 'siteUrl', label: 'Website URL', required: true },
+          { type: 'string', name: 'defaultDescription', label: 'Standard SEO Beschreibung', ui: { component: 'textarea' } },
+          { type: 'string', name: 'keywords', label: 'SEO Keywords', list: true },
+          { type: 'image', name: 'socialImage', label: 'Standard Social Sharing Bild' },
           { type: 'string', name: 'brandLabel', label: 'Header Title', required: true },
           { type: 'image', name: 'logo', label: 'Header Logo' },
           { type: 'image', name: 'favicon', label: 'Favicon' },
@@ -138,6 +186,7 @@ export default defineConfig({
         ui: { router: () => '/' },
         fields: [
           { type: 'string', name: 'title', label: 'Meta-Titel', required: true },
+          ...seoFields,
           { type: 'object', name: 'doctors', label: 'Hero Ärzte', list: true, fields: homeDoctorFields },
           {
             type: 'object',
@@ -172,6 +221,7 @@ export default defineConfig({
         fields: [
           { type: 'string', name: 'slug', label: 'Slug', required: true },
           { type: 'string', name: 'title', label: 'Überschrift', required: true },
+          ...seoFields,
           { type: 'string', name: 'subtitle', label: 'Untertitel', required: true },
           {
             type: 'object',
@@ -199,6 +249,7 @@ export default defineConfig({
         ui: { router: () => '/terminvereinbarung' },
         fields: [
           { type: 'string', name: 'title', label: 'Meta-Titel', required: true },
+          ...seoFields,
           { type: 'string', name: 'eyebrow', label: 'Eyebrow' },
           { type: 'string', name: 'heading', label: 'Überschrift', required: true },
           { type: 'string', name: 'intro', label: 'Intro', ui: { component: 'textarea' } },
@@ -212,6 +263,24 @@ export default defineConfig({
         ]
       },
       {
+        name: 'infoPages',
+        label: 'Seiten: Leistungen & Themen',
+        path: 'content/pages',
+        format: 'json',
+        match: { include: '{leistungen,vorsorgeuntersuchung,gutachten}' },
+        ui: { router: ({ document }) => `/${document._sys.filename}` },
+        fields: infoPageFields
+      },
+      {
+        name: 'faqPage',
+        label: 'Seite: FAQ',
+        path: 'content/pages',
+        format: 'json',
+        match: { include: 'faq' },
+        ui: { router: () => '/faq' },
+        fields: faqPageFields
+      },
+      {
         name: 'prescriptionsPage',
         label: 'Seite: Rezeptbestellung',
         path: 'content/pages',
@@ -220,6 +289,7 @@ export default defineConfig({
         ui: { router: () => '/rezeptbestellung' },
         fields: [
           { type: 'string', name: 'title', label: 'Meta-Titel', required: true },
+          ...seoFields,
           { type: 'string', name: 'eyebrow', label: 'Eyebrow' },
           { type: 'string', name: 'heading', label: 'Überschrift', required: true },
           { type: 'string', name: 'intro', label: 'Intro', ui: { component: 'textarea' } },
@@ -239,12 +309,23 @@ export default defineConfig({
         ui: { router: () => '/kontakt' },
         fields: [
           { type: 'string', name: 'title', label: 'Meta-Titel', required: true },
+          ...seoFields,
           { type: 'string', name: 'eyebrow', label: 'Eyebrow' },
           { type: 'string', name: 'heading', label: 'Überschrift', required: true },
           { type: 'string', name: 'addressLines', label: 'Adresszeilen', list: true },
           { type: 'string', name: 'phoneLabel', label: 'Telefonanzeige' },
           { type: 'string', name: 'phoneHref', label: 'Telefonlink' },
           { type: 'string', name: 'email', label: 'E-Mail' },
+          {
+            type: 'object',
+            name: 'access',
+            label: 'Anfahrt & Parken',
+            fields: [
+              { type: 'string', name: 'title', label: 'Titel' },
+              { type: 'string', name: 'text', label: 'Text', ui: { component: 'textarea' } },
+              { type: 'string', name: 'items', label: 'Hinweise', list: true }
+            ]
+          },
           { type: 'string', name: 'mapTitle', label: 'Karten-Titel' },
           { type: 'string', name: 'mapQuery', label: 'Google Maps Query' }
         ]
@@ -256,7 +337,7 @@ export default defineConfig({
         format: 'json',
         match: { include: '{impressum,datenschutz}' },
         ui: { router: ({ document }) => `/${document._sys.filename}` },
-        fields: legalFields
+        fields: [...seoFields, ...legalFields]
       }
     ]
   }

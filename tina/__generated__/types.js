@@ -9,6 +9,10 @@ export const SiteSettingsPartsFragmentDoc = gql`
     fragment SiteSettingsParts on SiteSettings {
   __typename
   siteTitle
+  siteUrl
+  defaultDescription
+  keywords
+  socialImage
   brandLabel
   logo
   favicon
@@ -38,6 +42,8 @@ export const HomePagePartsFragmentDoc = gql`
     fragment HomePageParts on HomePage {
   __typename
   title
+  seoTitle
+  seoDescription
   doctors {
     __typename
     name
@@ -79,6 +85,8 @@ export const DoctorPagesPartsFragmentDoc = gql`
   __typename
   slug
   title
+  seoTitle
+  seoDescription
   subtitle
   sections {
     __typename
@@ -96,6 +104,8 @@ export const BookingPagePartsFragmentDoc = gql`
     fragment BookingPageParts on BookingPage {
   __typename
   title
+  seoTitle
+  seoDescription
   eyebrow
   heading
   intro
@@ -115,10 +125,47 @@ export const BookingPagePartsFragmentDoc = gql`
   patientHeading
 }
     `;
+export const InfoPagesPartsFragmentDoc = gql`
+    fragment InfoPagesParts on InfoPages {
+  __typename
+  title
+  seoTitle
+  seoDescription
+  eyebrow
+  heading
+  intro
+  sections {
+    __typename
+    title
+    text
+    items
+    href
+    linkLabel
+  }
+}
+    `;
+export const FaqPagePartsFragmentDoc = gql`
+    fragment FaqPageParts on FaqPage {
+  __typename
+  title
+  seoTitle
+  seoDescription
+  eyebrow
+  heading
+  intro
+  faqs {
+    __typename
+    question
+    answer
+  }
+}
+    `;
 export const PrescriptionsPagePartsFragmentDoc = gql`
     fragment PrescriptionsPageParts on PrescriptionsPage {
   __typename
   title
+  seoTitle
+  seoDescription
   eyebrow
   heading
   intro
@@ -133,12 +180,20 @@ export const ContactPagePartsFragmentDoc = gql`
     fragment ContactPageParts on ContactPage {
   __typename
   title
+  seoTitle
+  seoDescription
   eyebrow
   heading
   addressLines
   phoneLabel
   phoneHref
   email
+  access {
+    __typename
+    title
+    text
+    items
+  }
   mapTitle
   mapQuery
 }
@@ -146,6 +201,8 @@ export const ContactPagePartsFragmentDoc = gql`
 export const LegalPagesPartsFragmentDoc = gql`
     fragment LegalPagesParts on LegalPages {
   __typename
+  seoTitle
+  seoDescription
   title
   heading
   body
@@ -379,6 +436,120 @@ export const BookingPageConnectionDocument = gql`
   }
 }
     ${BookingPagePartsFragmentDoc}`;
+export const InfoPagesDocument = gql`
+    query infoPages($relativePath: String!) {
+  infoPages(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...InfoPagesParts
+  }
+}
+    ${InfoPagesPartsFragmentDoc}`;
+export const InfoPagesConnectionDocument = gql`
+    query infoPagesConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: InfoPagesFilter) {
+  infoPagesConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...InfoPagesParts
+      }
+    }
+  }
+}
+    ${InfoPagesPartsFragmentDoc}`;
+export const FaqPageDocument = gql`
+    query faqPage($relativePath: String!) {
+  faqPage(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...FaqPageParts
+  }
+}
+    ${FaqPagePartsFragmentDoc}`;
+export const FaqPageConnectionDocument = gql`
+    query faqPageConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: FaqPageFilter) {
+  faqPageConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...FaqPageParts
+      }
+    }
+  }
+}
+    ${FaqPagePartsFragmentDoc}`;
 export const PrescriptionsPageDocument = gql`
     query prescriptionsPage($relativePath: String!) {
   prescriptionsPage(relativePath: $relativePath) {
@@ -575,6 +746,18 @@ export function getSdk(requester) {
     },
     bookingPageConnection(variables, options) {
       return requester(BookingPageConnectionDocument, variables, options);
+    },
+    infoPages(variables, options) {
+      return requester(InfoPagesDocument, variables, options);
+    },
+    infoPagesConnection(variables, options) {
+      return requester(InfoPagesConnectionDocument, variables, options);
+    },
+    faqPage(variables, options) {
+      return requester(FaqPageDocument, variables, options);
+    },
+    faqPageConnection(variables, options) {
+      return requester(FaqPageConnectionDocument, variables, options);
     },
     prescriptionsPage(variables, options) {
       return requester(PrescriptionsPageDocument, variables, options);

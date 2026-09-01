@@ -218,6 +218,116 @@ query bookingPageConnection($before: String, $after: String, $first: Float, $las
   }
 }
 
+query infoPages($relativePath: String!) {
+  infoPages(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...InfoPagesParts
+  }
+}
+
+query infoPagesConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: InfoPagesFilter) {
+  infoPagesConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...InfoPagesParts
+      }
+    }
+  }
+}
+
+query faqPage($relativePath: String!) {
+  faqPage(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...FaqPageParts
+  }
+}
+
+query faqPageConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: FaqPageFilter) {
+  faqPageConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...FaqPageParts
+      }
+    }
+  }
+}
+
 query prescriptionsPage($relativePath: String!) {
   prescriptionsPage(relativePath: $relativePath) {
     ... on Document {

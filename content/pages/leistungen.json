@@ -1,0 +1,38 @@
+{
+  "title": "Leistungen",
+  "seoTitle": "Leistungen | Ordination Dr. Reiter Graz",
+  "seoDescription": "Überblick über die Leistungen der Ordination Dr. Reiter in Graz: Innere Medizin, Allgemeinmedizin, Vorsorgeuntersuchung und Gutachten.",
+  "eyebrow": "Leistungen",
+  "heading": "Medizinische Betreuung mit klarer Struktur.",
+  "intro": "Die Ordination Dr. Reiter verbindet internistische und allgemeinmedizinische Betreuung an einem Standort. Wählen Sie den passenden Schwerpunkt oder vereinbaren Sie direkt einen Termin.",
+  "sections": [
+    {
+      "title": "Innere Medizin",
+      "text": "Abklärung, Behandlung und Verlaufskontrolle internistischer Beschwerden mit strukturierter Diagnostik und verständlicher Befundbesprechung.",
+      "href": "/lukas-reiter#innere-medizin",
+      "linkLabel": "Zu Dr. Lukas Reiter",
+      "items": ["EKG und Blutdruckkontrolle", "Labor- und Befundbesprechung", "Therapieplanung", "Kontrolluntersuchungen"]
+    },
+    {
+      "title": "Allgemeinmedizin",
+      "text": "Hausärztliche Versorgung für akute Beschwerden, chronische Erkrankungen, Kontrollen und persönliche medizinische Anliegen.",
+      "href": "/sigrid-reiter#allgemeinmedizin",
+      "linkLabel": "Zu Dr. Sigrid Reiter",
+      "items": ["Akutordination", "Kontrolltermine", "Impfberatung", "Familienmedizinische Betreuung"]
+    },
+    {
+      "title": "Vorsorgeuntersuchung",
+      "text": "Vorsorge mit Fokus auf Früherkennung, Risikoeinschätzung, Laborplanung und verständliche Einordnung der Ergebnisse.",
+      "href": "/vorsorgeuntersuchung",
+      "linkLabel": "Mehr zur Vorsorge",
+      "items": ["Anamnese", "Körperlicher Status", "Labor", "Befundbesprechung"]
+    },
+    {
+      "title": "Gutachten",
+      "text": "Medizinische Gutachten und Stellungnahmen nach individueller Terminvereinbarung und strukturierter Befunderhebung.",
+      "href": "/gutachten",
+      "linkLabel": "Mehr zu Gutachten",
+      "items": ["Befunderhebung", "Medizinische Einschätzung", "Dokumentation", "Termin nach Vereinbarung"]
+    }
+  ]
+}

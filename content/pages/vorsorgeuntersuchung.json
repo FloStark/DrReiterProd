@@ -1,0 +1,24 @@
+{
+  "title": "Vorsorgeuntersuchung",
+  "seoTitle": "Vorsorgeuntersuchung Graz | Ordination Dr. Reiter",
+  "seoDescription": "Vorsorgeuntersuchung in Graz bei der Ordination Dr. Reiter: Ablauf, Vorbereitung, Labor und persönliche Befundbesprechung.",
+  "eyebrow": "Vorsorge",
+  "heading": "Vorsorgeuntersuchung in Graz.",
+  "intro": "Die Vorsorgeuntersuchung unterstützt dabei, gesundheitliche Risiken frühzeitig zu erkennen und sinnvolle nächste Schritte zu planen.",
+  "sections": [
+    {
+      "title": "Ablauf",
+      "text": "Zu Beginn werden Beschwerden, Vorerkrankungen, Medikamente und familiäre Risiken besprochen. Danach folgen Untersuchung, Laborplanung und die individuelle Befundbesprechung.",
+      "href": "/terminvereinbarung",
+      "linkLabel": "Termin vereinbaren",
+      "items": ["Anamnese", "Körperlicher Status", "Labor und Risikoprofil", "Besprechung der Ergebnisse"]
+    },
+    {
+      "title": "Vorbereitung",
+      "text": "Bitte bringen Sie vorhandene Vorbefunde, eine aktuelle Medikamentenliste und Ihre E-Card mit. Falls Laborwerte geplant sind, erhalten Sie die notwendigen Informationen vorab.",
+      "href": "/faq",
+      "linkLabel": "Häufige Fragen",
+      "items": ["E-Card", "Vorbefunde", "Medikamentenliste", "Fragen und Anliegen"]
+    }
+  ]
+}
