@@ -27,6 +27,12 @@ html {
   outline-offset: 4px;
 }
 
+.safe-text {
+  hyphens: auto;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
 button:focus-visible,
 a:focus-visible,
 input:focus-visible,
@@ -138,6 +144,8 @@ nav.translate-x-0 .mobile-menu-link {
 }
 
 .premium-card {
+  max-width: 100%;
+  min-width: 0;
   transition: box-shadow 220ms ease, transform 220ms ease;
 }
 
@@ -189,6 +197,12 @@ nav.translate-x-0 .mobile-menu-link {
   display: flex;
   gap: 0.75rem;
   padding: 1.25rem;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.choice-card > * {
+  min-width: 0;
 }
 
 .choice-card:has(input:checked) {

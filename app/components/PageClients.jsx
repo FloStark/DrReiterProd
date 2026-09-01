@@ -31,7 +31,7 @@ function OrdinationSlideshow({ ordination }) {
       <div className="mx-auto grid max-w-7xl gap-8 rounded-[2rem] bg-white/70 p-4 shadow-2xl shadow-black/5 md:grid-cols-[0.75fr_1.25fr] md:items-center md:rounded-[3rem] md:p-8">
         <div className="p-2 md:p-6">
           <p className="eyebrow" data-tina-field={tinaField(ordination, 'eyebrow')}>{ordination.eyebrow}</p>
-          <h2 id="ordination-title" className="mt-4 text-4xl font-bold leading-[0.95] md:text-6xl" data-tina-field={tinaField(ordination, 'title')}>{ordination.title}</h2>
+          <h2 id="ordination-title" className="safe-text mt-4 text-4xl font-bold leading-[0.95] md:text-6xl" data-tina-field={tinaField(ordination, 'title')}>{ordination.title}</h2>
           <p className="mt-6 max-w-xl text-lg leading-8 text-black/65" data-tina-field={tinaField(ordination, 'text')}>{ordination.text}</p>
         </div>
         <div className="overflow-hidden rounded-[2rem] border border-black/5 bg-white p-3 shadow-2xl shadow-black/10 md:rounded-[2.75rem]" role="region" aria-roledescription="Slideshow" aria-label="Fotos der Ordination">
@@ -131,23 +131,23 @@ export function DoctorClient(props) {
       <section className="doctor-heading mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-24">
         <div className="rounded-[2.4rem] bg-[#f4efe7] p-7 shadow-2xl shadow-black/5 md:rounded-[3.5rem] md:p-10 lg:p-12">
           <p className="eyebrow" data-tina-field={tinaField(doctor, 'subtitle')}>{doctor.subtitle}</p>
-          <h1 className="mt-5 text-5xl font-bold leading-[0.92] tracking-[-0.05em] md:text-8xl" data-tina-field={tinaField(doctor, 'title')}>{doctor.title}</h1>
+          <h1 className="safe-text mt-5 text-5xl font-bold leading-[0.92] tracking-[-0.05em] md:text-8xl" data-tina-field={tinaField(doctor, 'title')}>{doctor.title}</h1>
         </div>
       </section>
       {doctor.sections.map((section) => (
         <section key={section.id} id={section.id} className="doctor-section px-5 py-10 md:px-8 md:py-14">
-          <div className={`mx-auto grid max-w-7xl gap-10 rounded-[2.4rem] p-6 shadow-2xl md:grid-cols-[0.8fr_1.2fr] md:rounded-[3rem] md:p-10 ${section.theme === 'accent' ? 'bg-[#24384d] text-white shadow-black/10' : 'bg-white/75 text-black shadow-black/5'}`}>
-            <div>
+          <div className={`mx-auto grid max-w-7xl gap-10 overflow-hidden rounded-[2.4rem] p-6 shadow-2xl md:grid-cols-[0.8fr_1.2fr] md:rounded-[3rem] md:p-10 ${section.theme === 'accent' ? 'bg-[#24384d] text-white shadow-black/10' : 'bg-white/75 text-black shadow-black/5'}`}>
+            <div className="min-w-0">
               <p className={`eyebrow ${section.theme === 'accent' ? '!text-white/75' : ''}`} data-tina-field={tinaField(section, 'short')}>{section.short}</p>
-              <h2 className="mt-4 text-4xl font-bold leading-none tracking-[-0.04em] md:text-6xl" data-tina-field={tinaField(section, 'title')}>{section.title}</h2>
+              <h2 className="safe-text mt-4 text-3xl font-bold leading-none tracking-[-0.04em] sm:text-4xl md:text-6xl" data-tina-field={tinaField(section, 'title')}>{section.title}</h2>
             </div>
-            <div className="space-y-8">
+            <div className="min-w-0 space-y-8">
               <p className={`text-xl leading-9 ${section.theme === 'accent' ? 'text-white/90' : 'text-black/70'}`} data-tina-field={tinaField(section, 'text')}>{section.text}</p>
               <ul className="grid gap-3 sm:grid-cols-2">
                 {section.services.map((service, index) => (
                   <li key={service} className={`flex items-start gap-3 rounded-[1.5rem] border p-5 ${section.theme === 'accent' ? 'border-white/10 bg-white/10 text-white' : 'border-black/5 bg-[#f4efe7]'}`} data-tina-field={tinaField(section, 'services', index)}>
                     <span className={section.theme === 'accent' ? 'mt-2 h-2 w-2 flex-none rounded-full bg-reiter shadow-[0_0_0_5px_rgb(195_207_219_/_0.18)]' : 'service-dot'} aria-hidden="true" />
-                    <span>{service}</span>
+                    <span className="safe-text min-w-0">{service}</span>
                   </li>
                 ))}
               </ul>
@@ -349,18 +349,18 @@ export function InfoPageClient(props) {
     <PageFrame site={site}>
       <section className="mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-24">
         <p className="text-xs font-semibold uppercase tracking-[0.3em] text-black/50" data-tina-field={tinaField(page, 'eyebrow')}>{page.eyebrow}</p>
-        <h1 className="mt-4 max-w-4xl font-serif text-5xl md:text-7xl" data-tina-field={tinaField(page, 'heading')}>{page.heading}</h1>
+        <h1 className="safe-text mt-4 max-w-4xl font-serif text-4xl md:text-7xl" data-tina-field={tinaField(page, 'heading')}>{page.heading}</h1>
         <p className="mt-6 max-w-3xl text-xl leading-9 text-black/65" data-tina-field={tinaField(page, 'intro')}>{page.intro}</p>
         <div className="mt-12 grid gap-6 md:grid-cols-2">
           {page.sections.map((section, index) => (
-            <article key={`${section.title}-${index}`} className="premium-card rounded-[2rem] border border-black/10 bg-white p-6 shadow-sm">
-              <h2 className="font-serif text-3xl" data-tina-field={tinaField(section, 'title')}>{section.title}</h2>
+            <article key={`${section.title}-${index}`} className="premium-card min-w-0 overflow-hidden rounded-[2rem] border border-black/10 bg-white p-6 shadow-sm">
+              <h2 className="safe-text font-serif text-2xl sm:text-3xl" data-tina-field={tinaField(section, 'title')}>{section.title}</h2>
               <p className="mt-4 leading-7 text-black/65" data-tina-field={tinaField(section, 'text')}>{section.text}</p>
               <ul className="mt-5 grid gap-3">
                 {section.items.map((item, itemIndex) => (
                   <li key={item} className="flex gap-3 rounded-2xl bg-reiter/30 px-4 py-3" data-tina-field={tinaField(section, 'items', itemIndex)}>
                     <span className="service-dot mt-2" aria-hidden="true" />
-                    <span>{item}</span>
+                    <span className="safe-text min-w-0">{item}</span>
                   </li>
                 ))}
               </ul>
