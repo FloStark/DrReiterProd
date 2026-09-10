@@ -4,32 +4,90 @@
   "seoTitle": "Dr. Lukas Reiter | Facharzt für Innere Medizin in Graz",
   "seoDescription": "Leistungen von Dr. Lukas Reiter in Graz: Innere Medizin, Diagnostik, Befundbesprechung, Therapieplanung und medizinische Gutachten.",
   "subtitle": "Facharzt für Innere Medizin",
+  "intro": "Dr. Lukas Reiter betreut Patientinnen und Patienten mit internistischen Fragestellungen, Herz-Kreislauf-Themen, Stoffwechselerkrankungen und komplexeren Befunden. Im Mittelpunkt stehen eine strukturierte Abklärung, verständliche Befundbesprechung und ein Therapieplan, der im Alltag umsetzbar bleibt.",
+  "portrait": "/uploads/DSC03100-Bearbeitet-51.jpg",
+  "photoPosition": "top",
+  "credentials": [
+    "Facharzt für Innere Medizin",
+    "Internistische Diagnostik",
+    "Befund- und Therapieplanung",
+    "Gutachten nach Vereinbarung"
+  ],
   "sections": [
     {
       "id": "innere-medizin",
       "short": "IM",
-      "title": "Innere Medizin ",
+      "title": "Innere Medizin",
       "theme": "light",
-      "text": "Abklärung, Behandlung und Verlaufskontrolle internistischer Beschwerden mit ruhiger Diagnostik und klarer Beratung.",
+      "text": "Internistische Medizin bedeutet, Beschwerden nicht isoliert zu betrachten, sondern Zusammenhänge zwischen Herz-Kreislauf-System, Stoffwechsel, Laborwerten, Vorerkrankungen und Medikamenten mitzudenken.",
+      "details": "In der Ordination werden Symptome, Vorbefunde und Risikofaktoren geordnet erhoben. Danach folgen zielgerichtete Untersuchungen und eine Besprechung, welche nächsten Schritte medizinisch sinnvoll sind. Das schafft Orientierung, besonders wenn mehrere Befunde oder Beschwerden gleichzeitig vorliegen.",
+      "image": "/uploads/DSC03052-Bearbeitet-33.jpg",
+      "imagePosition": "center",
       "services": [
-        "Kardiologische Basisdiagnostik",
-        "Labor- und Befundbesprechung",
+        "Abklärung von Herz-Kreislauf-Beschwerden",
+        "Einordnung von Laborwerten und Vorbefunden",
         "EKG und Blutdruckkontrolle",
-        "Therapieplanung und Kontrollen"
+        "Therapieplanung, Verlaufskontrollen und Medikationscheck"
       ],
+      "linkHref": "/leistungen",
+      "linkLabel": "Alle Leistungen ansehen",
       "actions": true
+    },
+    {
+      "id": "herz-kreislauf",
+      "short": "Herz",
+      "title": "Herz-Kreislauf und Risikoprofil",
+      "theme": "accent",
+      "text": "Blutdruck, EKG, Belastbarkeit, Cholesterinwerte und persönliche Risikofaktoren werden gemeinsam betrachtet, damit mögliche Risiken früh erkannt und kontrolliert werden können.",
+      "details": "Besonders bei Bluthochdruck, Herzrasen, Schwindel, auffälligen Befunden oder familiärer Vorbelastung ist eine klare internistische Einordnung hilfreich. Ziel ist eine realistische Einschätzung und eine Therapie, die regelmäßig überprüft werden kann.",
+      "image": "/uploads/DSC03031-25.jpg",
+      "imagePosition": "center",
+      "services": [
+        "Ruhe-EKG und Blutdruckmessung",
+        "Risikoeinschätzung bei Herz-Kreislauf-Erkrankungen",
+        "Kontrolle bestehender Therapien",
+        "Koordination weiterführender Diagnostik"
+      ],
+      "linkHref": "/terminvereinbarung",
+      "linkLabel": "Termin zur Abklärung vereinbaren",
+      "actions": false
+    },
+    {
+      "id": "befundbesprechung",
+      "short": "Befund",
+      "title": "Befundbesprechung und Therapieplanung",
+      "theme": "light",
+      "text": "Laborbefunde, Krankenhausberichte oder Facharztbefunde sind oft umfangreich. Eine ruhige Besprechung hilft, die Bedeutung der Ergebnisse und die nächsten Schritte zu verstehen.",
+      "details": "Gemeinsam wird geklärt, welche Werte kontrolliert werden sollten, welche Maßnahmen Priorität haben und ob eine Anpassung der Medikation oder weitere Abklärung notwendig ist. Bitte bringen Sie relevante Vorbefunde und eine aktuelle Medikamentenliste mit.",
+      "image": "/uploads/DSC03059-Bearbeitet-36.jpg",
+      "imagePosition": "center",
+      "services": [
+        "Besprechung externer Befunde",
+        "Medikationscheck und Therapieziele",
+        "Planung von Kontrollen",
+        "Verständliche Zusammenfassung der nächsten Schritte"
+      ],
+      "linkHref": "/kontakt",
+      "linkLabel": "Kontakt aufnehmen",
+      "actions": false
     },
     {
       "id": "gutachten",
       "short": "Gutachten",
       "title": "Gutachten",
       "theme": "accent",
-      "text": "Medizinische Gutachten und Stellungnahmen nach individueller Terminvereinbarung.",
+      "text": "Medizinische Gutachten und Stellungnahmen erfolgen nach individueller Terminvereinbarung und mit strukturierter Vorbereitung der notwendigen Unterlagen.",
+      "details": "Für gutachterliche Fragestellungen ist eine präzise Dokumentation besonders wichtig. Je nach Anliegen werden Anamnese, Untersuchung, vorhandene Befunde und formale Anforderungen gemeinsam geklärt, bevor eine Einschätzung erstellt wird.",
+      "image": "/uploads/DSC03048-31.jpg",
+      "imagePosition": "center",
       "services": [
         "Strukturierte Befunderhebung",
         "Medizinische Einschätzung",
-        "Dokumentation für formale Anforderungen"
+        "Dokumentation für formale Anforderungen",
+        "Termin und Unterlagen nach Rücksprache"
       ],
+      "linkHref": "/gutachten",
+      "linkLabel": "Mehr zu Gutachten",
       "actions": false
     }
   ]

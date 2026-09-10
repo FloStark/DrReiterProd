@@ -49,6 +49,19 @@ fragment HomePageParts on HomePage {
     phoneLabel
     phoneHref
   }
+  focusAreas {
+    __typename
+    eyebrow
+    title
+    text
+    cards {
+      __typename
+      title
+      text
+      href
+      linkLabel
+    }
+  }
   ordination {
     __typename
     eyebrow
@@ -78,6 +91,10 @@ fragment DoctorPagesParts on DoctorPages {
   seoTitle
   seoDescription
   subtitle
+  intro
+  portrait
+  photoPosition
+  credentials
   sections {
     __typename
     id
@@ -85,7 +102,12 @@ fragment DoctorPagesParts on DoctorPages {
     title
     theme
     text
+    details
+    image
+    imagePosition
     services
+    linkHref
+    linkLabel
     actions
   }
 }

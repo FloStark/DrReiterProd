@@ -58,6 +58,19 @@ export const HomePagePartsFragmentDoc = gql`
     phoneLabel
     phoneHref
   }
+  focusAreas {
+    __typename
+    eyebrow
+    title
+    text
+    cards {
+      __typename
+      title
+      text
+      href
+      linkLabel
+    }
+  }
   ordination {
     __typename
     eyebrow
@@ -88,6 +101,10 @@ export const DoctorPagesPartsFragmentDoc = gql`
   seoTitle
   seoDescription
   subtitle
+  intro
+  portrait
+  photoPosition
+  credentials
   sections {
     __typename
     id
@@ -95,7 +112,12 @@ export const DoctorPagesPartsFragmentDoc = gql`
     title
     theme
     text
+    details
+    image
+    imagePosition
     services
+    linkHref
+    linkLabel
     actions
   }
 }
@@ -799,7 +821,7 @@ const generateRequester = (client) => {
 export const ExperimentalGetTinaClient = () => getSdk(
   generateRequester(
     createClient({
-      url: "https://content.tinajs.io/2.4/content/a7f121a6-ef75-447d-bd19-ea1b25d3d4e2/github/main",
+      url: "http://localhost:4001/graphql",
       queries
     })
   )

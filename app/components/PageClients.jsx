@@ -69,23 +69,21 @@ export function HomeClient(props) {
   const data = usePageTina(props);
   const site = data.siteSettings;
   const page = data.homePage;
+  const focusAreas = page.focusAreas;
 
   return (
     <PageFrame site={site}>
-      <section className="mx-auto grid min-h-[calc(100vh-5rem)] max-w-7xl divide-y divide-black/15 px-5 py-12 md:grid-cols-2 md:divide-x md:divide-y-0 md:px-8">
+      <section className="relative mx-auto grid max-w-7xl divide-y divide-black/15 px-5 py-12 md:grid-cols-2 md:divide-y-0 md:px-8">
+        <div className="absolute bottom-12 left-1/2 top-12 hidden w-px -translate-x-1/2 bg-black/15 md:block" aria-hidden="true" />
         {page.doctors.map((doctor, index) => (
-          <article key={doctor.href} className={`flex flex-col items-center justify-between gap-8 text-center ${index === 0 ? 'pb-10 md:pr-12 md:pb-0' : 'pt-10 md:pt-0 md:pl-12'}`}>
+          <article key={doctor.href} className={`flex flex-col items-center justify-between gap-8 rounded-[2.4rem] text-center ${index === 0 ? 'pb-10 md:pr-12 md:pb-0' : 'pt-10 md:pt-0 md:pl-12'}`}>
             <div className="flex w-full flex-col items-center gap-6">
               <Link href={doctor.href} className="profile-photo" aria-label={doctor.name}>
                 {doctor.photo ? <img src={doctor.photo} alt={doctor.name} style={{ objectPosition: doctor.photoPosition || 'center' }} data-tina-field={tinaField(doctor, 'photo')} /> : <span data-tina-field={tinaField(doctor, 'initials')}>{doctor.initials}</span>}
               </Link>
               <div>
                 <p className="text-xs uppercase tracking-[0.28em] text-black/55" data-tina-field={tinaField(doctor, 'specialty')}>{doctor.specialty}</p>
-                {index === 0 ? (
-                  <h1 className="mt-3 font-serif text-4xl md:text-6xl" data-tina-field={tinaField(doctor, 'name')}>{doctor.name}</h1>
-                ) : (
-                  <h2 className="mt-3 font-serif text-4xl md:text-6xl" data-tina-field={tinaField(doctor, 'name')}>{doctor.name}</h2>
-                )}
+                <h2 className="mt-3 font-serif text-4xl md:text-6xl" data-tina-field={tinaField(doctor, 'name')}>{doctor.name}</h2>
               </div>
               <div className="premium-card w-full max-w-md rounded-[2rem] border border-black/10 bg-white p-5 text-left shadow-sm">
                 <h3 className="text-xs font-semibold uppercase tracking-[0.24em] text-black/45" data-tina-field={tinaField(doctor, 'servicesTitle')}>{doctor.servicesTitle}</h3>
@@ -97,6 +95,7 @@ export function HomeClient(props) {
                     </li>
                   ))}
                 </ul>
+                <Link href={doctor.href} className="mt-5 inline-flex rounded-full bg-black px-5 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-[#24384d]">Profil und Leistungen ansehen</Link>
               </div>
             </div>
             <div className="space-y-2 text-sm leading-7">
@@ -106,6 +105,28 @@ export function HomeClient(props) {
           </article>
         ))}
       </section>
+      {focusAreas ? (
+        <section className="px-5 py-16 md:px-8 md:py-24">
+          <div className="mx-auto max-w-7xl">
+            <div className="max-w-3xl">
+              <p className="eyebrow" data-tina-field={tinaField(focusAreas, 'eyebrow')}>{focusAreas.eyebrow}</p>
+              <h2 className="safe-text mt-4 text-4xl font-bold leading-none tracking-[-0.04em] md:text-6xl" data-tina-field={tinaField(focusAreas, 'title')}>{focusAreas.title}</h2>
+              <p className="mt-5 text-lg leading-8 text-black/65" data-tina-field={tinaField(focusAreas, 'text')}>{focusAreas.text}</p>
+            </div>
+            <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+              {focusAreas.cards?.map((card, index) => (
+                <article key={card.title} className="premium-card flex min-h-72 flex-col justify-between rounded-[2rem] border border-black/10 bg-white p-6 shadow-sm" data-tina-field={tinaField(focusAreas, 'cards', index)}>
+                  <div>
+                    <h3 className="safe-text text-2xl font-bold leading-tight" data-tina-field={tinaField(card, 'title')}>{card.title}</h3>
+                    <p className="mt-4 leading-7 text-black/65" data-tina-field={tinaField(card, 'text')}>{card.text}</p>
+                  </div>
+                  {card.href && card.linkLabel ? <Link href={card.href} className="mt-6 inline-flex text-sm font-bold underline-offset-4 hover:underline" data-tina-field={tinaField(card, 'linkLabel')}>{card.linkLabel}</Link> : null}
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
       <OrdinationSlideshow ordination={page.ordination} />
       <section id="anfahrt" className="px-5 py-16 md:px-8 md:py-24">
         <div className="mx-auto grid max-w-7xl gap-8 rounded-[2.4rem] bg-[#24384d] p-5 text-white shadow-2xl shadow-black/10 md:grid-cols-[0.8fr_1.2fr] md:items-center md:rounded-[3rem] md:p-8 lg:p-10">
@@ -129,21 +150,34 @@ export function DoctorClient(props) {
   return (
     <PageFrame site={site}>
       <section className="doctor-heading mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-24">
-        <div className="rounded-[2.4rem] bg-[#f4efe7] p-7 shadow-2xl shadow-black/5 md:rounded-[3.5rem] md:p-10 lg:p-12">
-          <p className="eyebrow" data-tina-field={tinaField(doctor, 'subtitle')}>{doctor.subtitle}</p>
-          <h1 className="safe-text mt-5 text-5xl font-bold leading-[0.92] tracking-[-0.05em] md:text-8xl" data-tina-field={tinaField(doctor, 'title')}>{doctor.title}</h1>
+        <div className="grid gap-8 rounded-[2.4rem] bg-[#f4efe7] p-7 shadow-2xl shadow-black/5 md:grid-cols-[1fr_0.72fr] md:items-end md:rounded-[3.5rem] md:p-10 lg:p-12">
+          <div>
+            <p className="eyebrow" data-tina-field={tinaField(doctor, 'subtitle')}>{doctor.subtitle}</p>
+            <h1 className="safe-text mt-5 text-5xl font-bold leading-[0.92] tracking-[-0.05em] md:text-8xl" data-tina-field={tinaField(doctor, 'title')}>{doctor.title}</h1>
+            {doctor.intro ? <p className="mt-7 max-w-3xl text-lg leading-8 text-black/70 md:text-xl md:leading-9" data-tina-field={tinaField(doctor, 'intro')}>{doctor.intro}</p> : null}
+            {doctor.credentials?.length ? (
+              <div className="mt-8 flex flex-wrap gap-3">
+                {doctor.credentials.map((credential, index) => <span key={credential} className="rounded-full bg-white px-4 py-2 text-sm font-semibold shadow-sm" data-tina-field={tinaField(doctor, 'credentials', index)}>{credential}</span>)}
+              </div>
+            ) : null}
+          </div>
+          <div className="overflow-hidden rounded-[2rem] border border-black/10 bg-white p-3 shadow-xl shadow-black/10">
+            {doctor.portrait ? <img className="aspect-[4/5] w-full rounded-[1.5rem] object-cover" src={doctor.portrait} alt={doctor.title} style={{ objectPosition: doctor.photoPosition || 'center' }} data-tina-field={tinaField(doctor, 'portrait')} /> : null}
+          </div>
         </div>
       </section>
-      {doctor.sections.map((section) => (
+      {doctor.sections.map((section, sectionIndex) => {
+        const imageFirst = sectionIndex % 2 === 1;
+
+        return (
         <section key={section.id} id={section.id} className="doctor-section px-5 py-10 md:px-8 md:py-14">
-          <div className={`mx-auto grid max-w-7xl gap-10 overflow-hidden rounded-[2.4rem] p-6 shadow-2xl md:grid-cols-[0.8fr_1.2fr] md:rounded-[3rem] md:p-10 ${section.theme === 'accent' ? 'bg-[#24384d] text-white shadow-black/10' : 'bg-white/75 text-black shadow-black/5'}`}>
-            <div className="min-w-0">
+          <div className={`mx-auto grid max-w-7xl gap-10 overflow-hidden rounded-[2.4rem] p-6 shadow-2xl md:grid-cols-2 md:items-center md:rounded-[3rem] md:p-10 ${section.theme === 'accent' ? 'bg-[#24384d] text-white shadow-black/10' : 'bg-white/75 text-black shadow-black/5'}`}>
+            <div className={`min-w-0 ${imageFirst ? 'md:order-2' : ''}`}>
               <p className={`eyebrow ${section.theme === 'accent' ? '!text-white/75' : ''}`} data-tina-field={tinaField(section, 'short')}>{section.short}</p>
               <h2 className="safe-text mt-4 text-3xl font-bold leading-none tracking-[-0.04em] sm:text-4xl md:text-6xl" data-tina-field={tinaField(section, 'title')}>{section.title}</h2>
-            </div>
-            <div className="min-w-0 space-y-8">
-              <p className={`text-xl leading-9 ${section.theme === 'accent' ? 'text-white/90' : 'text-black/70'}`} data-tina-field={tinaField(section, 'text')}>{section.text}</p>
-              <ul className="grid gap-3 sm:grid-cols-2">
+              <p className={`mt-6 text-xl leading-9 ${section.theme === 'accent' ? 'text-white/90' : 'text-black/70'}`} data-tina-field={tinaField(section, 'text')}>{section.text}</p>
+              {section.details ? <p className={`mt-5 leading-8 ${section.theme === 'accent' ? 'text-white/75' : 'text-black/62'}`} data-tina-field={tinaField(section, 'details')}>{section.details}</p> : null}
+              <ul className="mt-8 grid gap-3 sm:grid-cols-2">
                 {section.services.map((service, index) => (
                   <li key={service} className={`flex items-start gap-3 rounded-[1.5rem] border p-5 ${section.theme === 'accent' ? 'border-white/10 bg-white/10 text-white' : 'border-black/5 bg-[#f4efe7]'}`} data-tina-field={tinaField(section, 'services', index)}>
                     <span className={section.theme === 'accent' ? 'mt-2 h-2 w-2 flex-none rounded-full bg-reiter shadow-[0_0_0_5px_rgb(195_207_219_/_0.18)]' : 'service-dot'} aria-hidden="true" />
@@ -152,15 +186,30 @@ export function DoctorClient(props) {
                 ))}
               </ul>
               {section.actions ? (
-                <div className="grid max-w-xs gap-3">
-                  <Link href="/terminvereinbarung" className="rounded-full bg-black px-6 py-3 text-center text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-[#24384d]">Terminvereinbarung</Link>
-                  <Link href="/rezeptbestellung" className="rounded-full border border-black/15 bg-white px-6 py-3 text-center text-sm font-bold transition hover:-translate-y-0.5 hover:border-black">Rezeptbestellung</Link>
+                <div className={`mt-6 grid gap-3 sm:max-w-3xl ${section.linkHref && section.linkLabel ? 'sm:grid-cols-3' : 'sm:grid-cols-2'}`}>
+                  {section.linkHref && section.linkLabel ? <Link href={section.linkHref} className={`flex items-center justify-center rounded-full px-6 py-3 text-center text-sm font-bold transition hover:-translate-y-0.5 ${section.theme === 'accent' ? 'bg-white text-black hover:bg-reiter' : 'bg-black text-white hover:bg-[#24384d]'}`} data-tina-field={tinaField(section, 'linkLabel')}>{section.linkLabel}</Link> : null}
+                  <Link href="/terminvereinbarung" className="flex items-center justify-center rounded-full bg-black px-6 py-3 text-center text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-[#24384d]">Terminvereinbarung</Link>
+                  <Link href="/rezeptbestellung" className="flex items-center justify-center rounded-full border border-black/15 bg-white px-6 py-3 text-center text-sm font-bold text-black transition hover:-translate-y-0.5 hover:border-black">Rezeptbestellung</Link>
                 </div>
+              ) : section.linkHref && section.linkLabel ? (
+                <Link href={section.linkHref} className={`mt-6 inline-flex rounded-full px-6 py-3 text-sm font-bold transition hover:-translate-y-0.5 ${section.theme === 'accent' ? 'bg-white text-black hover:bg-reiter' : 'bg-black text-white hover:bg-[#24384d]'}`} data-tina-field={tinaField(section, 'linkLabel')}>{section.linkLabel}</Link>
               ) : null}
+            </div>
+            <div className={`min-w-0 ${imageFirst ? 'md:order-1' : ''}`}>
+              <div className={`overflow-hidden rounded-[2rem] p-3 shadow-2xl ${section.theme === 'accent' ? 'bg-white/10 shadow-black/20' : 'bg-[#f4efe7] shadow-black/5'}`}>
+                {section.image ? (
+                  <img className="aspect-[4/3] w-full rounded-[1.5rem] object-cover" src={section.image} alt={section.title} style={{ objectPosition: section.imagePosition || 'center' }} data-tina-field={tinaField(section, 'image')} />
+                ) : (
+                  <div className={`grid aspect-[4/3] place-items-center rounded-[1.5rem] text-center ${section.theme === 'accent' ? 'bg-white/10 text-white/60' : 'bg-reiter/40 text-black/45'}`} data-tina-field={tinaField(section, 'image')}>
+                    <span className="max-w-xs px-6 text-sm font-semibold uppercase tracking-[0.24em]">Bild in TinaCMS hochladen</span>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </section>
-      ))}
+        );
+      })}
     </PageFrame>
   );
 }

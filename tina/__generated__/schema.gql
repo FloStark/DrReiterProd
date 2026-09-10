@@ -236,6 +236,20 @@ type HomePageDoctors {
   phoneHref: String
 }
 
+type HomePageFocusAreasCards {
+  title: String!
+  text: String
+  href: String
+  linkLabel: String
+}
+
+type HomePageFocusAreas {
+  eyebrow: String
+  title: String!
+  text: String
+  cards: [HomePageFocusAreasCards]
+}
+
 type HomePageOrdinationImages {
   image: String
   imagePosition: String
@@ -262,6 +276,7 @@ type HomePage implements Node & Document {
   seoTitle: String
   seoDescription: String
   doctors: [HomePageDoctors]
+  focusAreas: HomePageFocusAreas
   ordination: HomePageOrdination
   directions: HomePageDirections
   id: ID!
@@ -281,6 +296,20 @@ input HomePageDoctorsFilter {
   openingHours: StringFilter
   phoneLabel: StringFilter
   phoneHref: StringFilter
+}
+
+input HomePageFocusAreasCardsFilter {
+  title: StringFilter
+  text: StringFilter
+  href: StringFilter
+  linkLabel: StringFilter
+}
+
+input HomePageFocusAreasFilter {
+  eyebrow: StringFilter
+  title: StringFilter
+  text: StringFilter
+  cards: HomePageFocusAreasCardsFilter
 }
 
 input HomePageOrdinationImagesFilter {
@@ -309,6 +338,7 @@ input HomePageFilter {
   seoTitle: StringFilter
   seoDescription: StringFilter
   doctors: HomePageDoctorsFilter
+  focusAreas: HomePageFocusAreasFilter
   ordination: HomePageOrdinationFilter
   directions: HomePageDirectionsFilter
 }
@@ -330,7 +360,12 @@ type DoctorPagesSections {
   title: String!
   theme: String
   text: String
+  details: String
+  image: String
+  imagePosition: String
   services: [String]
+  linkHref: String
+  linkLabel: String
   actions: Boolean
 }
 
@@ -340,6 +375,10 @@ type DoctorPages implements Node & Document {
   seoTitle: String
   seoDescription: String
   subtitle: String!
+  intro: String
+  portrait: String
+  photoPosition: String
+  credentials: [String]
   sections: [DoctorPagesSections]
   id: ID!
   _sys: SystemInfo!
@@ -352,7 +391,12 @@ input DoctorPagesSectionsFilter {
   title: StringFilter
   theme: StringFilter
   text: StringFilter
+  details: StringFilter
+  image: ImageFilter
+  imagePosition: StringFilter
   services: StringFilter
+  linkHref: StringFilter
+  linkLabel: StringFilter
   actions: BooleanFilter
 }
 
@@ -362,6 +406,10 @@ input DoctorPagesFilter {
   seoTitle: StringFilter
   seoDescription: StringFilter
   subtitle: StringFilter
+  intro: StringFilter
+  portrait: ImageFilter
+  photoPosition: StringFilter
+  credentials: StringFilter
   sections: DoctorPagesSectionsFilter
 }
 
@@ -760,6 +808,20 @@ input HomePageDoctorsMutation {
   phoneHref: String
 }
 
+input HomePageFocusAreasCardsMutation {
+  title: String
+  text: String
+  href: String
+  linkLabel: String
+}
+
+input HomePageFocusAreasMutation {
+  eyebrow: String
+  title: String
+  text: String
+  cards: [HomePageFocusAreasCardsMutation]
+}
+
 input HomePageOrdinationImagesMutation {
   image: String
   imagePosition: String
@@ -786,6 +848,7 @@ input HomePageMutation {
   seoTitle: String
   seoDescription: String
   doctors: [HomePageDoctorsMutation]
+  focusAreas: HomePageFocusAreasMutation
   ordination: HomePageOrdinationMutation
   directions: HomePageDirectionsMutation
 }
@@ -796,7 +859,12 @@ input DoctorPagesSectionsMutation {
   title: String
   theme: String
   text: String
+  details: String
+  image: String
+  imagePosition: String
   services: [String]
+  linkHref: String
+  linkLabel: String
   actions: Boolean
 }
 
@@ -806,6 +874,10 @@ input DoctorPagesMutation {
   seoTitle: String
   seoDescription: String
   subtitle: String
+  intro: String
+  portrait: String
+  photoPosition: String
+  credentials: [String]
   sections: [DoctorPagesSectionsMutation]
 }
 

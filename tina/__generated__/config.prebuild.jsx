@@ -36,6 +36,12 @@ var mapFields = [
   { type: "string", name: "mapTitle", label: "Karten-Titel" },
   { type: "string", name: "mapQuery", label: "Google Maps Query" }
 ];
+var linkCardFields = [
+  { type: "string", name: "title", label: "Titel", required: true },
+  { type: "string", name: "text", label: "Text", ui: { component: "textarea" } },
+  { type: "string", name: "href", label: "Link" },
+  { type: "string", name: "linkLabel", label: "Link-Text" }
+];
 var homeDoctorFields = [
   { type: "string", name: "name", label: "Name", required: true },
   { type: "string", name: "initials", label: "Initialen", required: true },
@@ -177,6 +183,17 @@ var config_default = defineConfig({
           { type: "object", name: "doctors", label: "Hero \xC4rzte", list: true, fields: homeDoctorFields },
           {
             type: "object",
+            name: "focusAreas",
+            label: "Leistungs-Teaser",
+            fields: [
+              { type: "string", name: "eyebrow", label: "Eyebrow" },
+              { type: "string", name: "title", label: "Titel", required: true },
+              { type: "string", name: "text", label: "Text", ui: { component: "textarea" } },
+              { type: "object", name: "cards", label: "Karten", list: true, fields: linkCardFields }
+            ]
+          },
+          {
+            type: "object",
             name: "ordination",
             label: "Unsere Ordination Slideshow",
             fields: [
@@ -210,6 +227,10 @@ var config_default = defineConfig({
           { type: "string", name: "title", label: "\xDCberschrift", required: true },
           ...seoFields,
           { type: "string", name: "subtitle", label: "Untertitel", required: true },
+          { type: "string", name: "intro", label: "Intro", ui: { component: "textarea" } },
+          { type: "image", name: "portrait", label: "Portrait / Hero Bild" },
+          photoPositionField,
+          { type: "string", name: "credentials", label: "Kurzinfos", list: true },
           {
             type: "object",
             name: "sections",
@@ -221,7 +242,12 @@ var config_default = defineConfig({
               { type: "string", name: "title", label: "Abschnittstitel", required: true },
               { type: "string", name: "theme", label: "Farbschema", options: ["light", "accent"] },
               { type: "string", name: "text", label: "Beschreibung", ui: { component: "textarea" } },
+              { type: "string", name: "details", label: "Detailtext", ui: { component: "textarea" } },
+              { type: "image", name: "image", label: "Abschnittsbild" },
+              imagePositionField,
               { type: "string", name: "services", label: "Leistungen", list: true },
+              { type: "string", name: "linkHref", label: "Link" },
+              { type: "string", name: "linkLabel", label: "Link-Text" },
               { type: "boolean", name: "actions", label: "Termin/Rezept Buttons anzeigen" }
             ]
           }

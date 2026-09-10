@@ -4,33 +4,90 @@
   "seoTitle": "Dr. Sigrid Reiter | Allgemeinmedizin & Vorsorge in Graz",
   "seoDescription": "Leistungen von Dr. Sigrid Reiter in Graz: Allgemeinmedizin, Familienmedizin, Vorsorgeuntersuchung, Akutordination und Impfberatung.",
   "subtitle": "Ärztin für Allgemeinmedizin",
+  "intro": "Dr. Sigrid Reiter ist erste Ansprechpartnerin für akute Beschwerden, längerfristige hausärztliche Begleitung, Vorsorge und medizinische Orientierung im Alltag. Die Betreuung ist persönlich, nachvollziehbar und auf die jeweilige Lebenssituation abgestimmt.",
+  "portrait": "/uploads/DSC03126-Bearbeitet-64.jpg",
+  "photoPosition": "top",
+  "credentials": [
+    "Ärztin für Allgemeinmedizin",
+    "Hausärztliche Versorgung",
+    "Vorsorgeuntersuchung",
+    "Familienmedizinische Betreuung"
+  ],
   "sections": [
     {
       "id": "allgemeinmedizin",
       "short": "AM",
       "title": "Allgemeinmedizin",
       "theme": "light",
-      "text": "Hausärztliche Betreuung für akute Anliegen, chronische Erkrankungen und persönliche Vorsorge.",
+      "text": "Die Allgemeinmedizin ist oft der erste medizinische Kontaktpunkt: bei akuten Beschwerden, Fragen zu Medikamenten, chronischen Erkrankungen oder wenn unklar ist, welcher nächste Schritt sinnvoll ist.",
+      "details": "In der Ordination werden Beschwerden eingeordnet, notwendige Untersuchungen geplant und weitere Behandlungen koordiniert. Ziel ist eine verlässliche hausärztliche Begleitung mit klarer Kommunikation und kurzen Wegen innerhalb der Ordination.",
+      "image": "/uploads/DSC03165-Bearbeitet-83.jpg",
+      "imagePosition": "center",
       "services": [
         "Akutordination",
         "Kontrolltermine",
-        "Impfberatung",
-        "Hausärztliche Begleitung"
+        "Medikationscheck und Überweisungen",
+        "Hausärztliche Begleitung für jedes Alter"
       ],
+      "linkHref": "/terminvereinbarung",
+      "linkLabel": "Termin vereinbaren",
       "actions": true
+    },
+    {
+      "id": "familienmedizin",
+      "short": "Familie",
+      "title": "Familienmedizinische Betreuung",
+      "theme": "accent",
+      "text": "Eine gute hausärztliche Betreuung kennt nicht nur einzelne Befunde, sondern auch Lebensumstände, Belastungen und längerfristige Entwicklungen.",
+      "details": "Dr. Sigrid Reiter begleitet Familien, Berufstätige und ältere Patientinnen und Patienten bei wiederkehrenden medizinischen Fragen, Kontrollen und Prävention. Dabei geht es um medizinische Sicherheit, aber auch um realistische Empfehlungen für den Alltag.",
+      "image": "/uploads/DSC03171-87.jpg",
+      "imagePosition": "center",
+      "services": [
+        "Begleitung bei chronischen Erkrankungen",
+        "Kontrollen und Verlaufsplanung",
+        "Gesundheitsberatung im Alltag",
+        "Koordination mit Fachärztinnen und Fachärzten"
+      ],
+      "linkHref": "/leistungen",
+      "linkLabel": "Leistungsübersicht öffnen",
+      "actions": false
     },
     {
       "id": "vorsorgeuntersuchungen",
       "short": "Vorsorge",
       "title": "Vorsorgeuntersuchung",
-      "theme": "accent",
-      "text": "Vorsorge mit Fokus auf Früherkennung, Lebensstil und verständlicher Einordnung der Ergebnisse.",
+      "theme": "light",
+      "text": "Vorsorgeuntersuchungen helfen, gesundheitliche Risiken frühzeitig zu erkennen und Veränderungen rechtzeitig zu begleiten.",
+      "details": "Die Untersuchung umfasst Anamnese, körperlichen Status, Laborplanung und eine Besprechung der Ergebnisse. Daraus entstehen individuelle Empfehlungen zu Kontrollen, Impfungen, Ernährung, Bewegung oder weiterführender Abklärung.",
+      "image": "/uploads/DSC03076-40.jpg",
+      "imagePosition": "center",
       "services": [
         "Anamnese und Status",
         "Laborplanung",
         "Befundbesprechung",
         "Individuelle Empfehlungen"
       ],
+      "linkHref": "/vorsorgeuntersuchung",
+      "linkLabel": "Mehr zur Vorsorgeuntersuchung",
+      "actions": false
+    },
+    {
+      "id": "impfberatung",
+      "short": "Impfen",
+      "title": "Impfberatung und Prävention",
+      "theme": "accent",
+      "text": "Impfungen und Prävention werden individuell geplant: abhängig von Alter, Vorerkrankungen, Reiseplänen, beruflichem Risiko und vorhandenen Impfunterlagen.",
+      "details": "Bitte bringen Sie Ihren Impfpass mit. Gemeinsam wird geprüft, welche Auffrischungen sinnvoll sind und welche präventiven Maßnahmen zu Ihrer Situation passen.",
+      "image": "/uploads/DSC02983-13.jpg",
+      "imagePosition": "center",
+      "services": [
+        "Kontrolle des Impfstatus",
+        "Auffrischungs- und Standardimpfungen",
+        "Präventionsberatung",
+        "Dokumentation und weitere Empfehlungen"
+      ],
+      "linkHref": "/kontakt",
+      "linkLabel": "Fragen zur Impfung stellen",
       "actions": false
     }
   ]

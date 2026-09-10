@@ -33,6 +33,12 @@ export const homeFields = `
     phoneLabel
     phoneHref
   }
+  focusAreas {
+    eyebrow
+    title
+    text
+    cards { title text href linkLabel }
+  }
   ordination {
     eyebrow
     title
@@ -54,13 +60,22 @@ export const doctorFields = `
   seoTitle
   seoDescription
   subtitle
+  intro
+  portrait
+  photoPosition
+  credentials
   sections {
     id
     short
     title
     theme
     text
+    details
+    image
+    imagePosition
     services
+    linkHref
+    linkLabel
     actions
   }
 `;

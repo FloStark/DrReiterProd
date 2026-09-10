@@ -14,8 +14,8 @@
       "services": [
         "Innere Medizin",
         "Gutachten",
-        "EKG und Blutdruckkontrolle",
-        "Befundbesprechung"
+        "Herz-Kreislauf-Abklärung",
+        "EKG, Labor und Blutdruckkontrolle"
       ],
       "openingHours": "Mo, Mi 08:00-13:00 · Do 14:00-18:00",
       "phoneLabel": "0316 7173880",
@@ -33,17 +33,48 @@
         "Allgemeinmedizin",
         "Familienmedizin",
         "Vorsorgeuntersuchung",
-        "Impfberatung"
+        "Akutordination und Impfberatung"
       ],
       "openingHours": "Di, Fr 08:00-13:00 · Mi 14:00-18:00",
       "phoneLabel": "0316 7173880",
       "phoneHref": "03167173880"
     }
   ],
+  "focusAreas": {
+    "eyebrow": "Schwerpunkte",
+    "title": "Gut vorbereitet vom ersten Kontakt bis zur Befundbesprechung.",
+    "text": "Die wichtigsten Anliegen können direkt über die Website angestoßen werden. Für komplexere Beschwerden nehmen wir uns Zeit für Anamnese, Untersuchung, Befundsichtung und die nächsten sinnvollen Schritte.",
+    "cards": [
+      {
+        "title": "Internistische Abklärung",
+        "text": "Strukturierte Diagnostik bei Herz-Kreislauf-Beschwerden, Stoffwechselthemen, unklarer Müdigkeit oder auffälligen Vorbefunden.",
+        "href": "/lukas-reiter#innere-medizin",
+        "linkLabel": "Zu Dr. Lukas Reiter"
+      },
+      {
+        "title": "Hausärztliche Betreuung",
+        "text": "Erste Anlaufstelle für akute Beschwerden, Kontrollen, chronische Erkrankungen, Überweisungen und medizinische Orientierung.",
+        "href": "/sigrid-reiter#allgemeinmedizin",
+        "linkLabel": "Zu Dr. Sigrid Reiter"
+      },
+      {
+        "title": "Vorsorge & Prävention",
+        "text": "Vorsorgeuntersuchungen mit Labor, Risikoeinschätzung und persönlichen Empfehlungen für Alltag, Lebensstil und weitere Kontrollen.",
+        "href": "/vorsorgeuntersuchung",
+        "linkLabel": "Mehr zur Vorsorge"
+      },
+      {
+        "title": "Rezepte & Termine",
+        "text": "Dauermedikation kann bequem vorbestellt werden; Termine werden nach Anliegen und zuständigem ärztlichen Schwerpunkt koordiniert.",
+        "href": "/rezeptbestellung",
+        "linkLabel": "Rezept bestellen"
+      }
+    ]
+  },
   "ordination": {
     "eyebrow": "Unsere Ordination",
-    "title": "Ruhige Atmosphäre, klare Abläufe.",
-    "text": "Einblicke in die Ordination und die Räume der Praxis. Die Bilder können direkt im CMS ausgetauscht und erweitert werden.",
+    "title": "Moderne Praxisräume für konzentrierte Medizin.",
+    "text": "Die Ordination ist bewusst übersichtlich gestaltet: Empfang, Wartebereich, Labor und Untersuchungsräume unterstützen einen ruhigen Ablauf. So bleibt der Fokus dort, wo er hingehört: auf Ihrem Anliegen, einer sorgfältigen Untersuchung und einer nachvollziehbaren Empfehlung.",
     "images": [
       {
         "image": "/uploads/DSC02966-10.jpg",
@@ -53,7 +84,7 @@
       {
         "image": "/uploads/DSC02989-16.jpg",
         "imagePosition": "center",
-        "alt": "Warteberich"
+        "alt": "Wartebereich"
       },
       {
         "image": "/uploads/DSC03031-25.jpg",
@@ -75,7 +106,7 @@
   "directions": {
     "eyebrow": "Anfahrt",
     "title": "Gut erreichbar im Herzen von Graz.",
-    "text": "Mariahilfer Str. 1, 8020 Graz. Öffentliche Anreise über Straßenbahn und Bus im direkten Umfeld.",
+    "text": "Sie finden uns in der Mariahilfer Str. 1, 8020 Graz. Bitte planen Sie bei Anreise mit dem Auto ausreichend Zeit für die Parkplatzsuche ein; öffentliche Verkehrsmittel befinden sich in unmittelbarer Nähe.",
     "mapTitle": "Google Maps Standort Ordination Dr. Reiter",
     "mapQuery": "Mariahilfer Str. 1, 8020 Graz"
   }

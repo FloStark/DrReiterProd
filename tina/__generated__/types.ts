@@ -441,6 +441,22 @@ export type HomePageDoctors = {
   phoneHref?: Maybe<Scalars['String']['output']>;
 };
 
+export type HomePageFocusAreasCards = {
+  __typename?: 'HomePageFocusAreasCards';
+  title: Scalars['String']['output'];
+  text?: Maybe<Scalars['String']['output']>;
+  href?: Maybe<Scalars['String']['output']>;
+  linkLabel?: Maybe<Scalars['String']['output']>;
+};
+
+export type HomePageFocusAreas = {
+  __typename?: 'HomePageFocusAreas';
+  eyebrow?: Maybe<Scalars['String']['output']>;
+  title: Scalars['String']['output'];
+  text?: Maybe<Scalars['String']['output']>;
+  cards?: Maybe<Array<Maybe<HomePageFocusAreasCards>>>;
+};
+
 export type HomePageOrdinationImages = {
   __typename?: 'HomePageOrdinationImages';
   image?: Maybe<Scalars['String']['output']>;
@@ -471,6 +487,7 @@ export type HomePage = Node & Document & {
   seoTitle?: Maybe<Scalars['String']['output']>;
   seoDescription?: Maybe<Scalars['String']['output']>;
   doctors?: Maybe<Array<Maybe<HomePageDoctors>>>;
+  focusAreas?: Maybe<HomePageFocusAreas>;
   ordination?: Maybe<HomePageOrdination>;
   directions?: Maybe<HomePageDirections>;
   id: Scalars['ID']['output'];
@@ -490,6 +507,20 @@ export type HomePageDoctorsFilter = {
   openingHours?: InputMaybe<StringFilter>;
   phoneLabel?: InputMaybe<StringFilter>;
   phoneHref?: InputMaybe<StringFilter>;
+};
+
+export type HomePageFocusAreasCardsFilter = {
+  title?: InputMaybe<StringFilter>;
+  text?: InputMaybe<StringFilter>;
+  href?: InputMaybe<StringFilter>;
+  linkLabel?: InputMaybe<StringFilter>;
+};
+
+export type HomePageFocusAreasFilter = {
+  eyebrow?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+  text?: InputMaybe<StringFilter>;
+  cards?: InputMaybe<HomePageFocusAreasCardsFilter>;
 };
 
 export type HomePageOrdinationImagesFilter = {
@@ -518,6 +549,7 @@ export type HomePageFilter = {
   seoTitle?: InputMaybe<StringFilter>;
   seoDescription?: InputMaybe<StringFilter>;
   doctors?: InputMaybe<HomePageDoctorsFilter>;
+  focusAreas?: InputMaybe<HomePageFocusAreasFilter>;
   ordination?: InputMaybe<HomePageOrdinationFilter>;
   directions?: InputMaybe<HomePageDirectionsFilter>;
 };
@@ -542,7 +574,12 @@ export type DoctorPagesSections = {
   title: Scalars['String']['output'];
   theme?: Maybe<Scalars['String']['output']>;
   text?: Maybe<Scalars['String']['output']>;
+  details?: Maybe<Scalars['String']['output']>;
+  image?: Maybe<Scalars['String']['output']>;
+  imagePosition?: Maybe<Scalars['String']['output']>;
   services?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  linkHref?: Maybe<Scalars['String']['output']>;
+  linkLabel?: Maybe<Scalars['String']['output']>;
   actions?: Maybe<Scalars['Boolean']['output']>;
 };
 
@@ -553,6 +590,10 @@ export type DoctorPages = Node & Document & {
   seoTitle?: Maybe<Scalars['String']['output']>;
   seoDescription?: Maybe<Scalars['String']['output']>;
   subtitle: Scalars['String']['output'];
+  intro?: Maybe<Scalars['String']['output']>;
+  portrait?: Maybe<Scalars['String']['output']>;
+  photoPosition?: Maybe<Scalars['String']['output']>;
+  credentials?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   sections?: Maybe<Array<Maybe<DoctorPagesSections>>>;
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
@@ -565,7 +606,12 @@ export type DoctorPagesSectionsFilter = {
   title?: InputMaybe<StringFilter>;
   theme?: InputMaybe<StringFilter>;
   text?: InputMaybe<StringFilter>;
+  details?: InputMaybe<StringFilter>;
+  image?: InputMaybe<ImageFilter>;
+  imagePosition?: InputMaybe<StringFilter>;
   services?: InputMaybe<StringFilter>;
+  linkHref?: InputMaybe<StringFilter>;
+  linkLabel?: InputMaybe<StringFilter>;
   actions?: InputMaybe<BooleanFilter>;
 };
 
@@ -575,6 +621,10 @@ export type DoctorPagesFilter = {
   seoTitle?: InputMaybe<StringFilter>;
   seoDescription?: InputMaybe<StringFilter>;
   subtitle?: InputMaybe<StringFilter>;
+  intro?: InputMaybe<StringFilter>;
+  portrait?: InputMaybe<ImageFilter>;
+  photoPosition?: InputMaybe<StringFilter>;
+  credentials?: InputMaybe<StringFilter>;
   sections?: InputMaybe<DoctorPagesSectionsFilter>;
 };
 
@@ -1139,6 +1189,20 @@ export type HomePageDoctorsMutation = {
   phoneHref?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type HomePageFocusAreasCardsMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  text?: InputMaybe<Scalars['String']['input']>;
+  href?: InputMaybe<Scalars['String']['input']>;
+  linkLabel?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type HomePageFocusAreasMutation = {
+  eyebrow?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  text?: InputMaybe<Scalars['String']['input']>;
+  cards?: InputMaybe<Array<InputMaybe<HomePageFocusAreasCardsMutation>>>;
+};
+
 export type HomePageOrdinationImagesMutation = {
   image?: InputMaybe<Scalars['String']['input']>;
   imagePosition?: InputMaybe<Scalars['String']['input']>;
@@ -1165,6 +1229,7 @@ export type HomePageMutation = {
   seoTitle?: InputMaybe<Scalars['String']['input']>;
   seoDescription?: InputMaybe<Scalars['String']['input']>;
   doctors?: InputMaybe<Array<InputMaybe<HomePageDoctorsMutation>>>;
+  focusAreas?: InputMaybe<HomePageFocusAreasMutation>;
   ordination?: InputMaybe<HomePageOrdinationMutation>;
   directions?: InputMaybe<HomePageDirectionsMutation>;
 };
@@ -1175,7 +1240,12 @@ export type DoctorPagesSectionsMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   theme?: InputMaybe<Scalars['String']['input']>;
   text?: InputMaybe<Scalars['String']['input']>;
+  details?: InputMaybe<Scalars['String']['input']>;
+  image?: InputMaybe<Scalars['String']['input']>;
+  imagePosition?: InputMaybe<Scalars['String']['input']>;
   services?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  linkHref?: InputMaybe<Scalars['String']['input']>;
+  linkLabel?: InputMaybe<Scalars['String']['input']>;
   actions?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -1185,6 +1255,10 @@ export type DoctorPagesMutation = {
   seoTitle?: InputMaybe<Scalars['String']['input']>;
   seoDescription?: InputMaybe<Scalars['String']['input']>;
   subtitle?: InputMaybe<Scalars['String']['input']>;
+  intro?: InputMaybe<Scalars['String']['input']>;
+  portrait?: InputMaybe<Scalars['String']['input']>;
+  photoPosition?: InputMaybe<Scalars['String']['input']>;
+  credentials?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   sections?: InputMaybe<Array<InputMaybe<DoctorPagesSectionsMutation>>>;
 };
 
@@ -1364,6 +1438,20 @@ export type HomePageDoctorsFilter = {
   phoneHref?: StringFilter | null | undefined;
 };
 
+export type HomePageFocusAreasCardsFilter = {
+  title?: StringFilter | null | undefined;
+  text?: StringFilter | null | undefined;
+  href?: StringFilter | null | undefined;
+  linkLabel?: StringFilter | null | undefined;
+};
+
+export type HomePageFocusAreasFilter = {
+  eyebrow?: StringFilter | null | undefined;
+  title?: StringFilter | null | undefined;
+  text?: StringFilter | null | undefined;
+  cards?: HomePageFocusAreasCardsFilter | null | undefined;
+};
+
 export type HomePageOrdinationImagesFilter = {
   image?: ImageFilter | null | undefined;
   imagePosition?: StringFilter | null | undefined;
@@ -1390,6 +1478,7 @@ export type HomePageFilter = {
   seoTitle?: StringFilter | null | undefined;
   seoDescription?: StringFilter | null | undefined;
   doctors?: HomePageDoctorsFilter | null | undefined;
+  focusAreas?: HomePageFocusAreasFilter | null | undefined;
   ordination?: HomePageOrdinationFilter | null | undefined;
   directions?: HomePageDirectionsFilter | null | undefined;
 };
@@ -1400,7 +1489,12 @@ export type DoctorPagesSectionsFilter = {
   title?: StringFilter | null | undefined;
   theme?: StringFilter | null | undefined;
   text?: StringFilter | null | undefined;
+  details?: StringFilter | null | undefined;
+  image?: ImageFilter | null | undefined;
+  imagePosition?: StringFilter | null | undefined;
   services?: StringFilter | null | undefined;
+  linkHref?: StringFilter | null | undefined;
+  linkLabel?: StringFilter | null | undefined;
   actions?: BooleanFilter | null | undefined;
 };
 
@@ -1410,6 +1504,10 @@ export type DoctorPagesFilter = {
   seoTitle?: StringFilter | null | undefined;
   seoDescription?: StringFilter | null | undefined;
   subtitle?: StringFilter | null | undefined;
+  intro?: StringFilter | null | undefined;
+  portrait?: ImageFilter | null | undefined;
+  photoPosition?: StringFilter | null | undefined;
+  credentials?: StringFilter | null | undefined;
   sections?: DoctorPagesSectionsFilter | null | undefined;
 };
 
@@ -1515,9 +1613,9 @@ export type LegalPagesFilter = {
 
 export type SiteSettingsPartsFragment = { __typename: 'SiteSettings', siteTitle: string, siteUrl: string, defaultDescription: string | null, keywords: Array<string | null> | null, socialImage: string | null, brandLabel: string, logo: string | null, favicon: string | null, vacationPopup: { __typename: 'SiteSettingsVacationPopup', enabled: boolean | null, endDate: string | null, title: string | null, lines: Array<{ __typename: 'SiteSettingsVacationPopupLines', segments: Array<{ __typename: 'SiteSettingsVacationPopupLinesSegments', text: string, bold: boolean | null, red: boolean | null } | null> | null } | null> | null } | null, navigation: Array<{ __typename: 'SiteSettingsNavigation', label: string, href: string } | null> | null };
 
-export type HomePagePartsFragment = { __typename: 'HomePage', title: string, seoTitle: string | null, seoDescription: string | null, doctors: Array<{ __typename: 'HomePageDoctors', name: string, initials: string, specialty: string, photo: string | null, photoPosition: string | null, href: string, servicesTitle: string | null, services: Array<string | null> | null, openingHours: string | null, phoneLabel: string | null, phoneHref: string | null } | null> | null, ordination: { __typename: 'HomePageOrdination', eyebrow: string | null, title: string, text: string | null, images: Array<{ __typename: 'HomePageOrdinationImages', image: string | null, imagePosition: string | null, alt: string | null } | null> | null } | null, directions: { __typename: 'HomePageDirections', eyebrow: string | null, title: string, text: string | null, mapTitle: string | null, mapQuery: string | null } | null };
+export type HomePagePartsFragment = { __typename: 'HomePage', title: string, seoTitle: string | null, seoDescription: string | null, doctors: Array<{ __typename: 'HomePageDoctors', name: string, initials: string, specialty: string, photo: string | null, photoPosition: string | null, href: string, servicesTitle: string | null, services: Array<string | null> | null, openingHours: string | null, phoneLabel: string | null, phoneHref: string | null } | null> | null, focusAreas: { __typename: 'HomePageFocusAreas', eyebrow: string | null, title: string, text: string | null, cards: Array<{ __typename: 'HomePageFocusAreasCards', title: string, text: string | null, href: string | null, linkLabel: string | null } | null> | null } | null, ordination: { __typename: 'HomePageOrdination', eyebrow: string | null, title: string, text: string | null, images: Array<{ __typename: 'HomePageOrdinationImages', image: string | null, imagePosition: string | null, alt: string | null } | null> | null } | null, directions: { __typename: 'HomePageDirections', eyebrow: string | null, title: string, text: string | null, mapTitle: string | null, mapQuery: string | null } | null };
 
-export type DoctorPagesPartsFragment = { __typename: 'DoctorPages', slug: string, title: string, seoTitle: string | null, seoDescription: string | null, subtitle: string, sections: Array<{ __typename: 'DoctorPagesSections', id: string, short: string, title: string, theme: string | null, text: string | null, services: Array<string | null> | null, actions: boolean | null } | null> | null };
+export type DoctorPagesPartsFragment = { __typename: 'DoctorPages', slug: string, title: string, seoTitle: string | null, seoDescription: string | null, subtitle: string, intro: string | null, portrait: string | null, photoPosition: string | null, credentials: Array<string | null> | null, sections: Array<{ __typename: 'DoctorPagesSections', id: string, short: string, title: string, theme: string | null, text: string | null, details: string | null, image: string | null, imagePosition: string | null, services: Array<string | null> | null, linkHref: string | null, linkLabel: string | null, actions: boolean | null } | null> | null };
 
 export type BookingPagePartsFragment = { __typename: 'BookingPage', title: string, seoTitle: string | null, seoDescription: string | null, eyebrow: string | null, heading: string, intro: string | null, steps: Array<string | null> | null, doctorQuestion: string, appointmentHeading: string | null, appointmentTypes: Array<string | null> | null, times: Array<string | null> | null, patientHeading: string | null, doctors: Array<{ __typename: 'BookingPageDoctors', label: string, name: string, initials: string, photo: string | null, photoPosition: string | null } | null> | null };
 
@@ -1555,7 +1653,7 @@ export type HomePageQueryVariables = Exact<{
 }>;
 
 
-export type HomePageQuery = { homePage: { __typename: 'HomePage', id: string, title: string, seoTitle: string | null, seoDescription: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, doctors: Array<{ __typename: 'HomePageDoctors', name: string, initials: string, specialty: string, photo: string | null, photoPosition: string | null, href: string, servicesTitle: string | null, services: Array<string | null> | null, openingHours: string | null, phoneLabel: string | null, phoneHref: string | null } | null> | null, ordination: { __typename: 'HomePageOrdination', eyebrow: string | null, title: string, text: string | null, images: Array<{ __typename: 'HomePageOrdinationImages', image: string | null, imagePosition: string | null, alt: string | null } | null> | null } | null, directions: { __typename: 'HomePageDirections', eyebrow: string | null, title: string, text: string | null, mapTitle: string | null, mapQuery: string | null } | null } };
+export type HomePageQuery = { homePage: { __typename: 'HomePage', id: string, title: string, seoTitle: string | null, seoDescription: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, doctors: Array<{ __typename: 'HomePageDoctors', name: string, initials: string, specialty: string, photo: string | null, photoPosition: string | null, href: string, servicesTitle: string | null, services: Array<string | null> | null, openingHours: string | null, phoneLabel: string | null, phoneHref: string | null } | null> | null, focusAreas: { __typename: 'HomePageFocusAreas', eyebrow: string | null, title: string, text: string | null, cards: Array<{ __typename: 'HomePageFocusAreasCards', title: string, text: string | null, href: string | null, linkLabel: string | null } | null> | null } | null, ordination: { __typename: 'HomePageOrdination', eyebrow: string | null, title: string, text: string | null, images: Array<{ __typename: 'HomePageOrdinationImages', image: string | null, imagePosition: string | null, alt: string | null } | null> | null } | null, directions: { __typename: 'HomePageDirections', eyebrow: string | null, title: string, text: string | null, mapTitle: string | null, mapQuery: string | null } | null } };
 
 export type HomePageConnectionQueryVariables = Exact<{
   before?: string | null | undefined;
@@ -1567,14 +1665,14 @@ export type HomePageConnectionQueryVariables = Exact<{
 }>;
 
 
-export type HomePageConnectionQuery = { homePageConnection: { totalCount: number, pageInfo: { hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges: Array<{ cursor: string, node: { __typename: 'HomePage', id: string, title: string, seoTitle: string | null, seoDescription: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, doctors: Array<{ __typename: 'HomePageDoctors', name: string, initials: string, specialty: string, photo: string | null, photoPosition: string | null, href: string, servicesTitle: string | null, services: Array<string | null> | null, openingHours: string | null, phoneLabel: string | null, phoneHref: string | null } | null> | null, ordination: { __typename: 'HomePageOrdination', eyebrow: string | null, title: string, text: string | null, images: Array<{ __typename: 'HomePageOrdinationImages', image: string | null, imagePosition: string | null, alt: string | null } | null> | null } | null, directions: { __typename: 'HomePageDirections', eyebrow: string | null, title: string, text: string | null, mapTitle: string | null, mapQuery: string | null } | null } | null } | null> | null } };
+export type HomePageConnectionQuery = { homePageConnection: { totalCount: number, pageInfo: { hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges: Array<{ cursor: string, node: { __typename: 'HomePage', id: string, title: string, seoTitle: string | null, seoDescription: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, doctors: Array<{ __typename: 'HomePageDoctors', name: string, initials: string, specialty: string, photo: string | null, photoPosition: string | null, href: string, servicesTitle: string | null, services: Array<string | null> | null, openingHours: string | null, phoneLabel: string | null, phoneHref: string | null } | null> | null, focusAreas: { __typename: 'HomePageFocusAreas', eyebrow: string | null, title: string, text: string | null, cards: Array<{ __typename: 'HomePageFocusAreasCards', title: string, text: string | null, href: string | null, linkLabel: string | null } | null> | null } | null, ordination: { __typename: 'HomePageOrdination', eyebrow: string | null, title: string, text: string | null, images: Array<{ __typename: 'HomePageOrdinationImages', image: string | null, imagePosition: string | null, alt: string | null } | null> | null } | null, directions: { __typename: 'HomePageDirections', eyebrow: string | null, title: string, text: string | null, mapTitle: string | null, mapQuery: string | null } | null } | null } | null> | null } };
 
 export type DoctorPagesQueryVariables = Exact<{
   relativePath: string;
 }>;
 
 
-export type DoctorPagesQuery = { doctorPages: { __typename: 'DoctorPages', id: string, slug: string, title: string, seoTitle: string | null, seoDescription: string | null, subtitle: string, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, sections: Array<{ __typename: 'DoctorPagesSections', id: string, short: string, title: string, theme: string | null, text: string | null, services: Array<string | null> | null, actions: boolean | null } | null> | null } };
+export type DoctorPagesQuery = { doctorPages: { __typename: 'DoctorPages', id: string, slug: string, title: string, seoTitle: string | null, seoDescription: string | null, subtitle: string, intro: string | null, portrait: string | null, photoPosition: string | null, credentials: Array<string | null> | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, sections: Array<{ __typename: 'DoctorPagesSections', id: string, short: string, title: string, theme: string | null, text: string | null, details: string | null, image: string | null, imagePosition: string | null, services: Array<string | null> | null, linkHref: string | null, linkLabel: string | null, actions: boolean | null } | null> | null } };
 
 export type DoctorPagesConnectionQueryVariables = Exact<{
   before?: string | null | undefined;
@@ -1586,7 +1684,7 @@ export type DoctorPagesConnectionQueryVariables = Exact<{
 }>;
 
 
-export type DoctorPagesConnectionQuery = { doctorPagesConnection: { totalCount: number, pageInfo: { hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges: Array<{ cursor: string, node: { __typename: 'DoctorPages', id: string, slug: string, title: string, seoTitle: string | null, seoDescription: string | null, subtitle: string, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, sections: Array<{ __typename: 'DoctorPagesSections', id: string, short: string, title: string, theme: string | null, text: string | null, services: Array<string | null> | null, actions: boolean | null } | null> | null } | null } | null> | null } };
+export type DoctorPagesConnectionQuery = { doctorPagesConnection: { totalCount: number, pageInfo: { hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges: Array<{ cursor: string, node: { __typename: 'DoctorPages', id: string, slug: string, title: string, seoTitle: string | null, seoDescription: string | null, subtitle: string, intro: string | null, portrait: string | null, photoPosition: string | null, credentials: Array<string | null> | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, sections: Array<{ __typename: 'DoctorPagesSections', id: string, short: string, title: string, theme: string | null, text: string | null, details: string | null, image: string | null, imagePosition: string | null, services: Array<string | null> | null, linkHref: string | null, linkLabel: string | null, actions: boolean | null } | null> | null } | null } | null> | null } };
 
 export type BookingPageQueryVariables = Exact<{
   relativePath: string;
@@ -1755,6 +1853,19 @@ export const HomePagePartsFragmentDoc = gql`
     phoneLabel
     phoneHref
   }
+  focusAreas {
+    __typename
+    eyebrow
+    title
+    text
+    cards {
+      __typename
+      title
+      text
+      href
+      linkLabel
+    }
+  }
   ordination {
     __typename
     eyebrow
@@ -1785,6 +1896,10 @@ export const DoctorPagesPartsFragmentDoc = gql`
   seoTitle
   seoDescription
   subtitle
+  intro
+  portrait
+  photoPosition
+  credentials
   sections {
     __typename
     id
@@ -1792,7 +1907,12 @@ export const DoctorPagesPartsFragmentDoc = gql`
     title
     theme
     text
+    details
+    image
+    imagePosition
     services
+    linkHref
+    linkLabel
     actions
   }
 }
@@ -2522,7 +2642,7 @@ export const ExperimentalGetTinaClient = () =>
   getSdk(
     generateRequester(
       createClient({
-        url: "https://content.tinajs.io/2.4/content/a7f121a6-ef75-447d-bd19-ea1b25d3d4e2/github/main",
+        url: "http://localhost:4001/graphql",
         queries,
       })
     )
