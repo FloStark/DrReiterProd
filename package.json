@@ -11,12 +11,12 @@
   },
   "dependencies": {
     "@netlify/plugin-nextjs": "^5.15.13",
-    "@tinacms/cli": "^2.6.1",
+    "@tinacms/cli": "^2.7.0",
     "netlify-cli": "^27.4.2",
     "next": "^16.3.4",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
-    "tinacms": "^3.12.1"
+    "tinacms": "^3.13.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.5.4",
