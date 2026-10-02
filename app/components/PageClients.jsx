@@ -48,9 +48,9 @@ function OrdinationSlideshow({ ordination }) {
               </div>
             ))}
           </div>
-          <div className="mt-4 flex items-center justify-between gap-4 px-2">
-            <p className="text-sm text-black/55" data-tina-field={slides[active] ? tinaField(slides[active], 'alt') : undefined}>{slides[active]?.alt || 'Ordinationsfoto'}</p>
-            <div className="flex items-center gap-2">
+          <div className="mt-4 flex flex-col items-start gap-3 px-2">
+            <p className="safe-text max-w-full text-sm text-black/55" data-tina-field={slides[active] ? tinaField(slides[active], 'alt') : undefined}>{slides[active]?.alt || 'Ordinationsfoto'}</p>
+            <div className="flex max-w-full flex-wrap items-center justify-start gap-2">
               <button className="rounded-full border border-black/15 bg-white px-3 py-1 text-xs transition hover:bg-black hover:text-white" type="button" onClick={previousSlide}>Zurück</button>
               <button className="rounded-full border border-black/15 bg-white px-3 py-1 text-xs transition hover:bg-black hover:text-white" type="button" aria-pressed={paused} onClick={() => setPaused((value) => !value)}>{paused ? 'Start' : 'Pause'}</button>
               <button className="rounded-full border border-black/15 bg-white px-3 py-1 text-xs transition hover:bg-black hover:text-white" type="button" onClick={nextSlide}>Weiter</button>
@@ -225,21 +225,59 @@ export function BookingClient(props) {
 
   const update = (event) => setForm((current) => ({ ...current, [event.target.name]: event.target.value }));
 
+  const requiredFields = [
+    ['doctor'],
+    ['type', 'date', 'time'],
+    ['firstName', 'lastName', 'birthDate', 'socialNumber', 'address']
+  ];
+
+  const goNext = () => {
+    const missing = requiredFields[step].find((field) => !String(form[field] || '').trim());
+    if (missing) {
+      const field = document.querySelector(`[name="${missing}"]`);
+      field?.focus();
+      return;
+    }
+
+    if (step === steps.length - 1) {
+      setSubmitted(true);
+      return;
+    }
+
+    setStep((current) => Math.min(steps.length - 1, current + 1));
+  };
+
+  const selectedDoctor = page.doctors.find((doctor) => doctor.name === form.doctor);
+
   return (
     <PageFrame site={site}>
       <section className="booking-page mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-24">
-        <div className="rounded-[2.5rem] bg-gradient-to-br from-reiter/55 via-white to-white p-6 shadow-2xl shadow-black/5 md:p-10">
+        <div className="booking-intro rounded-[2.5rem] bg-gradient-to-br from-reiter/55 via-white to-white p-6 shadow-2xl shadow-black/5 md:p-10">
           <p className="text-xs font-semibold uppercase tracking-[0.3em] text-black/50" data-tina-field={tinaField(page, 'eyebrow')}>{page.eyebrow}</p>
-          <h1 className="mt-4 font-serif text-5xl md:text-7xl" data-tina-field={tinaField(page, 'heading')}>{page.heading}</h1>
+          <h1 className="safe-text mt-4 max-w-full font-serif text-4xl leading-[0.98] sm:text-5xl md:text-7xl" data-tina-field={tinaField(page, 'heading')}>{page.heading}</h1>
           <p className="mt-5 max-w-2xl leading-7 text-black/65" data-tina-field={tinaField(page, 'intro')}>{page.intro}</p>
         </div>
-        <div className="mt-10 grid gap-3 text-sm font-semibold uppercase tracking-[0.18em] sm:grid-cols-3">
-          {steps.map((label, index) => <span key={label} className={`step-dot ${step === index ? 'is-active' : ''}`} data-tina-field={tinaField(page, 'steps', index)}>{label}</span>)}
+        <div className="booking-progress mt-8" aria-label="Fortschritt der Terminvereinbarung">
+          {steps.map((label, index) => (
+            <div key={label} className={`booking-progress-step ${index <= step ? 'is-active' : ''}`}>
+              <span className="booking-progress-number">{index + 1}</span>
+              <span className="booking-progress-label" data-tina-field={tinaField(page, 'steps', index)}>{label.replace(/^\d+\s*/, '')}</span>
+            </div>
+          ))}
         </div>
-        <form className="appointment-panel mt-10 rounded-[2rem] border border-black/10 bg-white p-5 shadow-xl shadow-black/5 md:p-8" aria-describedby="booking-status" onSubmit={(event) => event.preventDefault()}>
+        <form className="appointment-panel mt-8 rounded-[2rem] border border-black/10 bg-white p-5 shadow-xl shadow-black/5 md:p-10" aria-describedby="booking-status" onSubmit={(event) => event.preventDefault()}>
+          {selectedDoctor && step > 0 ? (
+            <div className="mb-8 flex items-center justify-between gap-4 rounded-2xl bg-[#f4efe7] px-4 py-3 text-sm">
+              <span><span className="text-black/50">Arzt:</span> <strong>{selectedDoctor.name}</strong></span>
+              <button type="button" className="font-semibold underline underline-offset-4" onClick={() => setStep(0)}>Ändern</button>
+            </div>
+          ) : null}
           {step === 0 ? (
-            <section className="space-y-5">
-              <h2 className="font-serif text-3xl" data-tina-field={tinaField(page, 'doctorQuestion')}>{page.doctorQuestion}</h2>
+            <section key="doctor" className="booking-step space-y-6">
+              <div>
+                <p className="eyebrow">Schritt 1 von 3</p>
+                <h2 className="safe-text mt-2 font-serif text-3xl md:text-4xl" data-tina-field={tinaField(page, 'doctorQuestion')}>{page.doctorQuestion}</h2>
+              </div>
               <div className="grid gap-4 md:grid-cols-2">
                 {page.doctors.map((doctor, index) => (
                   <label key={doctor.name} className="doctor-booking-card" data-tina-field={tinaField(page, 'doctors', index)}>
@@ -257,22 +295,28 @@ export function BookingClient(props) {
             </section>
           ) : null}
           {step === 1 ? (
-            <section className="space-y-5">
-              <h2 className="font-serif text-3xl" data-tina-field={tinaField(page, 'appointmentHeading')}>{page.appointmentHeading}</h2>
-              <div className="grid gap-4 md:grid-cols-3">
+            <section key="appointment" className="booking-step space-y-6">
+              <div>
+                <p className="eyebrow">Schritt 2 von 3</p>
+                <h2 className="safe-text mt-2 font-serif text-3xl md:text-4xl" data-tina-field={tinaField(page, 'appointmentHeading')}>{page.appointmentHeading}</h2>
+              </div>
+              <div className="grid gap-4 sm:grid-cols-2">
                 {page.appointmentTypes.map((type, index) => (
-                  <label key={type} className="choice-card min-h-28" data-tina-field={tinaField(page, 'appointmentTypes', index)}>
+                  <label key={type} className="choice-card booking-type-card min-h-28" data-tina-field={tinaField(page, 'appointmentTypes', index)}>
                     <input required type="radio" name="type" value={type} checked={form.type === type} onChange={update} />{type}
                   </label>
                 ))}
-                <label className="choice-card min-h-28">Tag<input required className="field-input mt-3" type="date" name="date" value={form.date || ''} onChange={update} /></label>
-                <label className="choice-card min-h-28">Uhrzeit<select required className="field-input mt-3" name="time" value={form.time || ''} onChange={update}><option value="">Bitte wählen</option>{page.times.map((time) => <option key={time}>{time}</option>)}</select></label>
+                <label className="booking-field-card field-label">Tag<input required className="field-input" type="date" name="date" value={form.date || ''} onChange={update} /></label>
+                <label className="booking-field-card field-label">Uhrzeit<select required className="field-input" name="time" value={form.time || ''} onChange={update}><option value="">Bitte wählen</option>{page.times.map((time) => <option key={time}>{time}</option>)}</select></label>
               </div>
             </section>
           ) : null}
           {step === 2 ? (
-            <section className="space-y-5">
-              <h2 className="font-serif text-3xl" data-tina-field={tinaField(page, 'patientHeading')}>{page.patientHeading}</h2>
+            <section key="patient" className="booking-step space-y-6">
+              <div>
+                <p className="eyebrow">Schritt 3 von 3</p>
+                <h2 className="safe-text mt-2 font-serif text-3xl md:text-4xl" data-tina-field={tinaField(page, 'patientHeading')}>{page.patientHeading}</h2>
+              </div>
               <div className="grid gap-4 md:grid-cols-2">
                 <label className="field-label">Vorname<input required className="field-input" name="firstName" value={form.firstName || ''} onChange={update} /></label>
                 <label className="field-label">Nachname<input required className="field-input" name="lastName" value={form.lastName || ''} onChange={update} /></label>
@@ -282,11 +326,18 @@ export function BookingClient(props) {
               </div>
             </section>
           ) : null}
-          <div className="mt-8 flex justify-between gap-3">
-            <button className="rounded-full border border-black px-5 py-3 text-sm font-semibold uppercase tracking-[0.16em]" type="button" hidden={step === 0} onClick={() => setStep((current) => Math.max(0, current - 1))}>Zurück</button>
-            <button className="rounded-full bg-black px-5 py-3 text-sm font-semibold uppercase tracking-[0.16em] text-white disabled:opacity-50" type="button" disabled={submitted} onClick={() => (step === steps.length - 1 ? setSubmitted(true) : setStep((current) => Math.min(steps.length - 1, current + 1)))}>{submitted ? 'Gesendet' : step === steps.length - 1 ? 'Absenden' : 'Weiter'}</button>
+          {submitted ? (
+            <div className="booking-success mt-8 rounded-3xl bg-[#24384d] p-6 text-white" role="status">
+              <p className="eyebrow !text-white/70">Anfrage vorbereitet</p>
+              <h3 className="mt-2 font-serif text-3xl">Vielen Dank.</h3>
+              <p className="mt-3 leading-7 text-white/80">Ihre Angaben wurden erfasst. Die finale Übergabe an das Buchungssystem wird mit der AWEB-/Quentis-Anbindung aktiviert.</p>
+            </div>
+          ) : null}
+          <div className="mt-8 flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <button className="rounded-full border border-black px-5 py-3 text-sm font-semibold uppercase tracking-[0.16em] transition hover:bg-black hover:text-white" type="button" hidden={step === 0} onClick={() => setStep((current) => Math.max(0, current - 1))}>Zurück</button>
+            <button className="w-full rounded-full bg-black px-6 py-3 text-sm font-semibold uppercase tracking-[0.16em] text-white transition hover:-translate-y-0.5 hover:bg-[#24384d] disabled:opacity-50 sm:ml-auto sm:w-auto" type="button" disabled={submitted} onClick={goNext}>{submitted ? 'Gesendet' : step === steps.length - 1 ? 'Anfrage abschließen' : 'Weiter'}</button>
           </div>
-          <p id="booking-status" className="mt-4 text-sm text-black/60" aria-live="polite">{submitted ? 'Ihre Terminanfrage wurde vorbereitet.' : `Aktueller Schritt: ${steps[step]}`}</p>
+          <p id="booking-status" className="mt-4 text-center text-sm text-black/60" aria-live="polite">{submitted ? 'Ihre Terminanfrage wurde vorbereitet.' : `Schritt ${step + 1} von ${steps.length}`}</p>
         </form>
       </section>
     </PageFrame>
